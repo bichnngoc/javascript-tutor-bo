@@ -1,0 +1,91 @@
+2025-05-04 12:35:14,993 - INFO - Use pytorch device_name: cpu
+2025-05-04 12:35:14,993 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-04 12:35:19,208 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-04 12:35:19,208 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-04 12:35:19,213 - INFO -  * Restarting with stat
+2025-05-04 12:35:27,108 - INFO - Use pytorch device_name: cpu
+2025-05-04 12:35:27,108 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-04 12:35:31,479 - WARNING -  * Debugger is active!
+2025-05-04 12:35:31,482 - INFO -  * Debugger PIN: 666-269-712
+2025-05-04 12:36:29,780 - INFO - 127.0.0.1 - - [04/May/2025 12:36:29] "GET / HTTP/1.1" 200 -
+2025-05-04 12:36:29,895 - INFO - 127.0.0.1 - - [04/May/2025 12:36:29] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-04 12:36:41,335 - INFO - 127.0.0.1 - - [04/May/2025 12:36:41] "[33mPOST /api/chat HTTP/1.1[0m" 404 -
+2025-05-04 12:37:38,838 - INFO -  * Detected change in 'D:\\javascript-tutor-bot\\app.py', reloading
+2025-05-04 12:37:39,801 - INFO -  * Restarting with stat
+2025-05-04 12:37:49,383 - INFO - Use pytorch device_name: cpu
+2025-05-04 12:37:49,384 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-04 12:37:53,674 - WARNING -  * Debugger is active!
+2025-05-04 12:37:53,676 - INFO -  * Debugger PIN: 666-269-712
+2025-05-04 12:39:16,672 - INFO -  * Detected change in 'D:\\javascript-tutor-bot\\app.py', reloading
+2025-05-04 12:39:17,857 - INFO -  * Restarting with stat
+2025-05-04 12:39:25,284 - INFO - Use pytorch device_name: cpu
+2025-05-04 12:39:25,285 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-04 12:39:28,577 - WARNING -  * Debugger is active!
+2025-05-04 12:39:28,586 - INFO -  * Debugger PIN: 666-269-712
+2025-05-04 12:39:40,358 - INFO -  * Detected change in 'D:\\javascript-tutor-bot\\app.py', reloading
+2025-05-04 12:39:41,118 - INFO -  * Restarting with stat
+2025-05-04 12:39:48,022 - INFO - Use pytorch device_name: cpu
+2025-05-04 12:39:48,022 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-04 12:39:51,928 - WARNING -  * Debugger is active!
+2025-05-04 12:39:51,937 - INFO -  * Debugger PIN: 666-269-712
+2025-05-04 12:41:31,197 - INFO - 127.0.0.1 - - [04/May/2025 12:41:31] "[33mPOST /api/chat HTTP/1.1[0m" 404 -
+2025-05-04 12:45:31,202 - INFO -  * Detected change in 'D:\\javascript-tutor-bot\\app.py', reloading
+2025-05-04 12:45:32,116 - INFO -  * Restarting with stat
+2025-05-04 12:45:41,534 - INFO - Use pytorch device_name: cpu
+2025-05-04 12:45:41,535 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-04 12:45:45,585 - WARNING -  * Debugger is active!
+2025-05-04 12:45:45,594 - INFO -  * Debugger PIN: 666-269-712
+2025-05-04 12:45:45,935 - INFO - 127.0.0.1 - - [04/May/2025 12:45:45] "GET / HTTP/1.1" 200 -
+2025-05-04 12:45:45,937 - INFO - 127.0.0.1 - - [04/May/2025 12:45:45] "GET / HTTP/1.1" 200 -
+2025-05-04 12:45:45,939 - INFO - 127.0.0.1 - - [04/May/2025 12:45:45] "GET / HTTP/1.1" 200 -
+2025-05-04 12:45:46,025 - INFO - 127.0.0.1 - - [04/May/2025 12:45:46] "GET /static/styles.css HTTP/1.1" 200 -
+2025-05-04 12:45:54,309 - INFO - 127.0.0.1 - - [04/May/2025 12:45:54] "[33mPOST /chat HTTP/1.1[0m" 404 -
+2025-05-04 12:49:25,474 - INFO -  * Detected change in 'D:\\javascript-tutor-bot\\app.py', reloading
+2025-05-04 12:49:26,277 - INFO -  * Restarting with stat
+2025-05-04 12:49:33,363 - INFO - Use pytorch device_name: cpu
+2025-05-04 12:49:33,363 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-04 12:49:40,892 - WARNING -  * Debugger is active!
+2025-05-04 12:49:40,898 - INFO -  * Debugger PIN: 666-269-712
+2025-05-04 12:49:56,626 - INFO - Use pytorch device_name: cpu
+2025-05-04 12:49:56,626 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-04 12:49:59,653 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-04 12:49:59,653 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-04 12:49:59,655 - INFO -  * Restarting with stat
+2025-05-04 12:50:06,140 - INFO - Use pytorch device_name: cpu
+2025-05-04 12:50:06,140 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-04 12:50:10,115 - WARNING -  * Debugger is active!
+2025-05-04 12:50:10,119 - INFO -  * Debugger PIN: 129-331-085
+2025-05-04 12:50:32,291 - INFO - 127.0.0.1 - - [04/May/2025 12:50:32] "GET / HTTP/1.1" 200 -
+2025-05-04 12:50:32,346 - INFO - 127.0.0.1 - - [04/May/2025 12:50:32] "GET /static/styles.css HTTP/1.1" 200 -
+2025-05-04 12:51:57,521 - INFO - 127.0.0.1 - - [04/May/2025 12:51:57] "POST /chat HTTP/1.1" 200 -
+2025-05-04 12:52:29,741 - INFO - 127.0.0.1 - - [04/May/2025 12:52:29] "POST /chat HTTP/1.1" 200 -
+2025-05-04 12:54:17,565 - INFO - 127.0.0.1 - - [04/May/2025 12:54:17] "POST /chat HTTP/1.1" 200 -
+2025-05-04 12:55:26,551 - INFO - 127.0.0.1 - - [04/May/2025 12:55:26] "POST /chat HTTP/1.1" 200 -
+2025-05-04 12:56:23,555 - INFO - 127.0.0.1 - - [04/May/2025 12:56:23] "POST /chat HTTP/1.1" 200 -
+2025-05-04 13:03:03,593 - INFO - 127.0.0.1 - - [04/May/2025 13:03:03] "POST /chat HTTP/1.1" 200 -
+2025-05-04 13:05:24,075 - INFO - 127.0.0.1 - - [04/May/2025 13:05:24] "POST /chat HTTP/1.1" 200 -
+2025-05-04 13:05:57,676 - INFO - 127.0.0.1 - - [04/May/2025 13:05:57] "POST /chat HTTP/1.1" 200 -
+2025-05-04 13:07:07,860 - INFO - 127.0.0.1 - - [04/May/2025 13:07:07] "POST /chat HTTP/1.1" 200 -
+2025-05-04 13:09:47,996 - INFO - 127.0.0.1 - - [04/May/2025 13:09:47] "POST /chat HTTP/1.1" 200 -
+2025-05-04 13:13:43,061 - INFO - 127.0.0.1 - - [04/May/2025 13:13:43] "POST /chat HTTP/1.1" 200 -
+2025-05-04 13:17:38,296 - INFO - 127.0.0.1 - - [04/May/2025 13:17:38] "POST /chat HTTP/1.1" 200 -
+2025-05-04 13:26:16,017 - INFO -  * Detected change in 'd:\\javascript-tutor-bot\\app.py', reloading
+2025-05-04 13:26:17,122 - INFO -  * Restarting with stat
+2025-05-04 13:26:30,516 - INFO - Use pytorch device_name: cpu
+2025-05-04 13:26:30,516 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-04 13:26:34,028 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-04 13:26:34,028 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-04 13:26:34,032 - INFO -  * Restarting with stat
+2025-05-04 13:26:40,523 - INFO - Use pytorch device_name: cpu
+2025-05-04 13:26:40,523 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-04 13:26:44,096 - WARNING -  * Debugger is active!
+2025-05-04 13:26:44,099 - INFO -  * Debugger PIN: 129-331-085
+2025-05-04 13:28:07,104 - INFO - 127.0.0.1 - - [04/May/2025 13:28:07] "POST /chat HTTP/1.1" 200 -
+2025-05-04 13:29:52,443 - INFO - 127.0.0.1 - - [04/May/2025 13:29:52] "POST /chat HTTP/1.1" 200 -
+2025-05-04 13:31:54,841 - INFO - 127.0.0.1 - - [04/May/2025 13:31:54] "POST /chat HTTP/1.1" 200 -
+2025-05-04 13:33:56,962 - INFO - 127.0.0.1 - - [04/May/2025 13:33:56] "POST /chat HTTP/1.1" 200 -
+2025-05-04 13:34:28,511 - INFO - 127.0.0.1 - - [04/May/2025 13:34:28] "POST /chat HTTP/1.1" 200 -
+2025-05-04 13:39:06,730 - INFO - 127.0.0.1 - - [04/May/2025 13:39:06] "POST /chat HTTP/1.1" 200 -

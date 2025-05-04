@@ -1,0 +1,109 @@
+/* Reset và font chữ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f5f7fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Container chính */
+.chat-container {
+  max-width: 800px;
+  margin: 20px auto;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+}
+
+/* Header */
+.chat-header {
+  background: #f0db4f; /* Màu vàng JavaScript */
+  color: #323330;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-header h1 {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Phần chuyển đổi ngôn ngữ */
+.language-switcher {
+  display: flex;
+  gap: 5px;
+}
+
+.lang-btn {
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.lang-btn.active {
+  background: white;
+  color: #323330;
+}
+
+/* Khung tin nhắn */
+.chat-messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background: #f9f9f9;
+}
+
+.message {
+  margin-bottom: 15px;
+  display: flex;
+}
+
+.message-content {
+  max-width: 80%;
+  padding: 10px 15px;
+  border-radius: 18px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+.user-message {
+  justify-content: flex-end;
+}
+
+.user-message .message-content {
+  background: #0078d4;
+  color: white;
+  border-bottom-right-radius: 5px;
+}
+
+.bot-message {
+  justify-content: flex-start;
+}
+
+.bot-message .message-content {
+  background: #e5e5ea;
+  color: #333;
+  border-bottom-left-radius: 5px;
+}
+
+.error-message {
+  justify-content: center;
+}

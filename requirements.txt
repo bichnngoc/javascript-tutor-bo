@@ -1,0 +1,8 @@
+g4f==0.2.0.1
+semantic-router>=0.1.0  # Phiên bản mới hơn
+pinecone>=3.0.0
+pandas==2.0.3
+flask==3.0.2
+python-dotenv==1.0.0
+tiktoken==0.6.0
+flask-cors==4.0.0

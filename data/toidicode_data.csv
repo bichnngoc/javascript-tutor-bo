@@ -1,0 +1,7022 @@
+id,bai,tieude,noidung
+1,Bài 29: Ajax trong javascript,Giới thiệu,"Tại thời điểm mình viết bài này, hầu như khi nhắc đếnajaxlà các bạn lại nghĩ ngay đếnjqueryvà các bạn cũng thường biết jquery được phát triển trên javascript. Vậy nên hôm nay mình sẽ giới thiệu với mọi người vềajax trong javascript(không phải jquery nhe)."
+2,Bài 29: Ajax trong javascript,"1, Tổng quan.","-Ajax (Asynchronous JavaScript and XML) - là một khái niệm được  Jesse James Garrett giới thiệu và sử dụng đầu tiền vào tháng 2 năm 2005. Khi sử dụng ajax thì chúng ta có thể sử dụng code javascript giao tiếp được với server. Ajax sử dụng đối tượngXMLHttpRequestđể giao tiếp, trao đổi thông tin giữa server với client. Đến thời điểm hiện tại thì ajax đã hỗ trên tất cả các trình duyệt (cả pc và mobile).
+
+```js
+XMLHttpRequest
+```"
+3,Bài 29: Ajax trong javascript,Khởi tạo đối tượng.,"-Để sử dụng được ajax trong javascript thì các bạn phải sử dụng đối tượng XMLHttpRequest. Và để khởi tạo đối tượng này thì chúng ta sử dụng cú pháp.
+
+```js
+var variableName = new XMLHttpRequest();
+```
+
+```js
+var variableName = new XMLHttpRequest();
+```
+Trong đó:varriableNamelà tên biến mà các bạn muốn gán cho abjectXMLHttpRequest.
+
+```js
+varriableName
+```
+
+```js
+XMLHttpRequest
+```
+-Tuy nhiên nếu như bạn đang sử dụng trình duyệt internet Explode 6 trở xuống thì đối tượng này sẽ có tên làActiveXObject. Chính vì điều đó, nên để cho chắc ăn thì các bạn nên khởi tạo đối tượng bằng cách sau:
+
+```js
+ActiveXObject
+```
+
+```js
+if (window.XMLHttpRequest) {
+    var  xhttp = new XMLHttpRequest();
+} else {
+    var xhttp = new ActiveXObject(""Microsoft.XMLHTTP"");
+}
+```
+
+```js
+if (window.XMLHttpRequest) {
+    var  xhttp = new XMLHttpRequest();
+} else {
+    var xhttp = new ActiveXObject(""Microsoft.XMLHTTP"");
+}
+```
+hoặc ngắn gọn hơn.
+
+```js
+var xhttp = new XMLHttpRequest() || ActiveXObject(""Microsoft.XMLHTTP"");
+```
+
+```js
+var xhttp = new XMLHttpRequest() || ActiveXObject(""Microsoft.XMLHTTP"");
+```"
+4,Bài 29: Ajax trong javascript,Các thuộc tính và phương thức.,"-Dưới đây mình sẽ liệu kê ra các phương thức và thuộc tính trong đối tượng này.
+Cấu hình cho một request mới.
+Trong đó:
+- method là phương thức gửi request (GET,POST).
+- url là địa chỉ gửi request.
+- async là có chấp nhận đồng bộ không (truelà không -falselà có).
+
+```js
+true
+```
+
+```js
+false
+```
+- username là tùy chọn tên user (có thể bỏ trống).
+- password là password của user (có thể bỏ trống).
+
+```js
+open()
+```
+
+```js
+string
+```
+
+```js
+header
+```
+
+```js
+value
+```
+
+```js
+readstate
+```
+Trạng thái của XMLHttpRequest.
+Trong đó nếu giá trị bằng các giá trị sau thì sẽ có trạng thái tương ứng.
+Trả về trạng thái của request. VD: 200,404,403"
+5,Bài 29: Ajax trong javascript,Ajax GET request.,"VD: Mình sẽ gửi một GET request như sau.
+
+```js
+var sendajax = function () {
+    //Khoi tao doi tuong
+    var xhttp = new XMLHttpRequest() || ActiveXObject();
+    //Bat su kien thay doi trang thai cuar request
+    xhttp.onreadystatechange = function () {
+        //Kiem tra neu nhu da gui request thanh cong
+        if (this.readyState == 4 && this.status == 200) {
+            //In ra data nhan duoc
+            addData(this.responseText)
+        }
+    }
+    //cau hinh request
+    xhttp.open('GET','description.php?data=true',true);
+    //gui request
+    xhttp.send();
+}
+var addData = function (data) {
+    document.getElementById('result').innerText = data;
+}
+```
+
+```js
+var sendajax = function () {
+    //Khoi tao doi tuong
+    var xhttp = new XMLHttpRequest() || ActiveXObject();
+    //Bat su kien thay doi trang thai cuar request
+    xhttp.onreadystatechange = function () {
+        //Kiem tra neu nhu da gui request thanh cong
+        if (this.readyState == 4 && this.status == 200) {
+            //In ra data nhan duoc
+            addData(this.responseText)
+        }
+    }
+    //cau hinh request
+    xhttp.open('GET','description.php?data=true',true);
+    //gui request
+    xhttp.send();
+}
+var addData = function (data) {
+    document.getElementById('result').innerText = data;
+}
+```
+Xem Kết Quả"
+6,Bài 29: Ajax trong javascript,Ajax POST request,"-Đối với POST request thông thường (không gửi kèm theo dữ liệu) thì các bạn làm tương tự như GET method. Còn nếu như các bạn muốn gửi kèm thêm dữ liệu vào trong POST request thì các bạn cần phải thực hiện thêm một cấu hình nữa làsetRequestHeadercho nó nữa. Thông thường thì chúng ta thường cấu hình dưới dạng ""application/x-www-form-urlencoded"".
+
+```js
+setRequestHeader
+```
+VD: Mình sẽ gửi một POST request như sau.
+
+```js
+var sendajax = function() {
+    //Khoi tao doi tuong
+    var xhttp = new XMLHttpRequest() || ActiveXObject();
+    //Bat su kien thay doi trang thai cuar request
+    xhttp.onreadystatechange = function() {
+            //Kiem tra neu nhu da gui request thanh cong
+            if (this.readyState == 4 && this.status == 200) {
+                //In ra data nhan duoc
+                addData(this.responseText)
+            }
+        }
+        //cau hinh request
+    xhttp.open('POST', 'description.php', true);
+    //cau hinh header cho request
+    xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    //gui request
+    xhttp.send('data=true');
+}
+
+var addData = function(data) {
+    document.getElementById('result').innerText = data;
+}
+```
+
+```js
+var sendajax = function() {
+    //Khoi tao doi tuong
+    var xhttp = new XMLHttpRequest() || ActiveXObject();
+    //Bat su kien thay doi trang thai cuar request
+    xhttp.onreadystatechange = function() {
+            //Kiem tra neu nhu da gui request thanh cong
+            if (this.readyState == 4 && this.status == 200) {
+                //In ra data nhan duoc
+                addData(this.responseText)
+            }
+        }
+        //cau hinh request
+    xhttp.open('POST', 'description.php', true);
+    //cau hinh header cho request
+    xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    //gui request
+    xhttp.send('data=true');
+}
+
+var addData = function(data) {
+    document.getElementById('result').innerText = data;
+}
+```
+Xem Kết Quả"
+7,Bài 29: Ajax trong javascript,Ajax với XML file.,"- Giả sử mình có một file XML (relationships.xml) chứa thông tin của các em gái như sau:
+
+```js
+<?xml version=""1.0"" encoding=""UTF-8""?>
+<relationship>
+    <sister>
+        <name>Nguyễn Khánh Linh</name>
+        <age>18</age>
+        <location>Ha Noi</location>
+    </sister>
+    <sister>
+        <name>Tình Tây</name>
+        <age>18</age>
+        <location>Bắc Giang</location>
+    </sister>
+    <sister>
+        <name>Như ý</name>
+        <age>18</age>
+        <location>Cà mau</location>
+    </sister>
+    <sister>
+        <name>Bella</name>
+        <age>20</age>
+        <location>Unknown</location>
+    </sister>
+
+</relationship>
+```
+
+```js
+<?xml version=""1.0"" encoding=""UTF-8""?>
+<relationship>
+    <sister>
+        <name>Nguyễn Khánh Linh</name>
+        <age>18</age>
+        <location>Ha Noi</location>
+    </sister>
+    <sister>
+        <name>Tình Tây</name>
+        <age>18</age>
+        <location>Bắc Giang</location>
+    </sister>
+    <sister>
+        <name>Như ý</name>
+        <age>18</age>
+        <location>Cà mau</location>
+    </sister>
+    <sister>
+        <name>Bella</name>
+        <age>20</age>
+        <location>Unknown</location>
+    </sister>
+
+</relationship>
+```
+Bây giờ mình sẽ viết code javascript để gửi request đến file xml này.
+
+```js
+var sendajax = function() {
+    //Khoi tao doi tuong
+    var xhttp = new XMLHttpRequest() || ActiveXObject();
+    //Bat su kien thay doi trang thai cuar request
+    xhttp.onreadystatechange = function() {
+            //Kiem tra neu nhu da gui request thanh cong
+            if (this.readyState == 4 && this.status == 200) {
+                //In ra data nhan duoc
+                addData(this.responseXML)
+            }
+        }
+        //cau hinh request
+    xhttp.open('GET', 'https://toidicode.com/live/php/relationships.xml', true);
+    //cau hinh header cho request
+    xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    //gui request
+    xhttp.send('data=true');
+}
+
+var addData = function(data) {
+    //Tao cau truc table
+    var table = '<table border=""1"" cellspacing=""5"" cellpadding=""5"" style=""border-collapse:collapse""><tr><th>ID</th><th>Name</th><th>Age</th><th>Location</th></tr>';
+    //Tim node sister trong xml tra ve
+    var sister = data.getElementsByTagName('sister');
+    //Lap het cac nde tim duoc
+    for (i = 0 ; i < sister.length ; i++) {
+        //Lay du lieu trong node
+        table += '<tr><td>'+ (i+1) +'</td>';
+        table += '<td>' + sister[i].getElementsByTagName('name')[0].childNodes[0].nodeValue + '</td>';
+      table += '<td>' + sister[i].getElementsByTagName('age')[0].childNodes[0].nodeValue + '</td>';
+        table += '<td>' + sister[i].getElementsByTagName('location')[0].childNodes[0].nodeValue + '</td></tr>'
+    }
+    document.getElementById('result').innerHTML = table;
+}
+```
+
+```js
+var sendajax = function() {
+    //Khoi tao doi tuong
+    var xhttp = new XMLHttpRequest() || ActiveXObject();
+    //Bat su kien thay doi trang thai cuar request
+    xhttp.onreadystatechange = function() {
+            //Kiem tra neu nhu da gui request thanh cong
+            if (this.readyState == 4 && this.status == 200) {
+                //In ra data nhan duoc
+                addData(this.responseXML)
+            }
+        }
+        //cau hinh request
+    xhttp.open('GET', 'https://toidicode.com/live/php/relationships.xml', true);
+    //cau hinh header cho request
+    xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    //gui request
+    xhttp.send('data=true');
+}
+
+var addData = function(data) {
+    //Tao cau truc table
+    var table = '<table border=""1"" cellspacing=""5"" cellpadding=""5"" style=""border-collapse:collapse""><tr><th>ID</th><th>Name</th><th>Age</th><th>Location</th></tr>';
+    //Tim node sister trong xml tra ve
+    var sister = data.getElementsByTagName('sister');
+    //Lap het cac nde tim duoc
+    for (i = 0 ; i < sister.length ; i++) {
+        //Lay du lieu trong node
+        table += '<tr><td>'+ (i+1) +'</td>';
+        table += '<td>' + sister[i].getElementsByTagName('name')[0].childNodes[0].nodeValue + '</td>';
+      table += '<td>' + sister[i].getElementsByTagName('age')[0].childNodes[0].nodeValue + '</td>';
+        table += '<td>' + sister[i].getElementsByTagName('location')[0].childNodes[0].nodeValue + '</td></tr>'
+    }
+    document.getElementById('result').innerHTML = table;
+}
+```
+Xem Kết Quả"
+8,Bài 29: Ajax trong javascript,"4, Lời kết.","-Như vậy phần này mình đã giới thiệu xong đến mọi người vềajax trong javascriptrồi. Bài này bình thường sẽ không có gì quan trọng nếu như bạn sử dụng được jquery, nhưng trong một số trường hợp mà chúng ta không sử dụng được jquery thì với biết được tác dụng của nó."
+9,Bài 25: Các hàm xử lý chuỗi trong Javascript,Giới thiệu,"Chuỗi - String là một thứ không thể thiếu trong một ngôn ngữ và đi kèm theo nó là hàng loạt các hàm xử lý chuỗi sẵn có, rất hữu dụng. Và đương nhiêntrong javascriptcũng thế."
+10,Bài 25: Các hàm xử lý chuỗi trong Javascript,"1, Khai báo chuỗi trong javascript.","-Mặc dù đã được học về khai báo chuỗi trong javascript rồi (xem lại). Nhưng thôi ở đây mình cứ nhắc lại, coi như chúng ta ôn lại bài cũ.
+-Để khai báo trong javascript chúng ta có có thể đặt trong dấu'hoặc"".
+
+```js
+'
+```
+
+```js
+""
+```
+VD:
+
+```js
+var a = 'toidicode.com';
+//Hoặc
+var b = ""toidicode.com"";
+```
+
+```js
+var a = 'toidicode.com';
+//Hoặc
+var b = ""toidicode.com"";
+```
+Và chúng ta cũng có thể sử dụng trích dẫn trong chuỗi, nhưng với điều kiện là không được trùng với ký tự bao ngoài nó.
+VD:
+
+```js
+var a = 'Học lập trình online miễn phí ""toidicode.com""';
+//hoặc
+var b = ""Học lập trình online miễn phí 'toidicode.com'"";
+```
+
+```js
+var a = 'Học lập trình online miễn phí ""toidicode.com""';
+//hoặc
+var b = ""Học lập trình online miễn phí 'toidicode.com'"";
+```
+-Nếu như trong trường hợp bắt buộc thì chúng ta cũng có thể sử dụng trùng ký tự nhưng phải đặt dấu\ở trước ký tự bến trong nó.
+
+```js
+\
+```
+VD:
+
+```js
+var a = 'học lập trình online \'toidicode.com\'';
+//Hoặc
+var b = ""học lập trình online \""toidicode.com\""""
+```
+
+```js
+var a = 'học lập trình online \'toidicode.com\'';
+//Hoặc
+var b = ""học lập trình online \""toidicode.com\""""
+```
+Xem Kết Quả"
+11,Bài 25: Các hàm xử lý chuỗi trong Javascript,length,"-Để lấy độ dài của chuỗi trong javascript chúng ta sử dụng thuộc tínhlength.
+
+```js
+length
+```
+Cú Pháp:
+
+```js
+string.length;
+```
+
+```js
+string.length;
+```
+Trong đó:stringlà tên biến chứa chuỗi.
+
+```js
+string
+```
+VD:
+
+```js
+var a = ""Học lập trình javascript online toidicode.com"";
+var count = a.length;
+document.write(count);
+```
+
+```js
+var a = ""Học lập trình javascript online toidicode.com"";
+var count = a.length;
+document.write(count);
+```
+Xem Kết Quả"
+12,Bài 25: Các hàm xử lý chuỗi trong Javascript,indexOf(),"-Phương thức này trả về vị trí của từ xuất hiện đầu tiên trong chuỗi, nếu trong chuỗi không có từ cần tìm thì nó sẽ trả về-1.
+
+```js
+-1
+```
+Cú Pháp:
+
+```js
+string.indexOf(keyword);
+```
+
+```js
+string.indexOf(keyword);
+```
+Trong đó:keywordlà từ khóa mà các bạn cần tìm trong chuỗi.
+
+```js
+keyword
+```
+VD:
+
+```js
+var des = ""toidicode là trang web chuyên chia sẻ các tutorials về lập trình toidicode"";
+var position = des.indexOf('toidicode');
+alert('Vị trí của chuỗi toidicode trong des là: ' + position);
+```
+
+```js
+var des = ""toidicode là trang web chuyên chia sẻ các tutorials về lập trình toidicode"";
+var position = des.indexOf('toidicode');
+alert('Vị trí của chuỗi toidicode trong des là: ' + position);
+```
+Xem Kết Quả"
+13,Bài 25: Các hàm xử lý chuỗi trong Javascript,lastIndexOf(),"-Phương thức này cũng giống với phương thức indexOf() là tìm kiếm vị trí của chuỗi, nhưng hàm này sẽ trả vềvị trí cuối cùng của chuỗi xuất hiệntrong chuỗi cần tìm.
+Cú Pháp:
+
+```js
+string.lastIndexOf(keyword);
+```
+
+```js
+string.lastIndexOf(keyword);
+```
+Trong đó:keywordlà từ khóa mà các bạn cần tìm trong chuỗi.
+
+```js
+keyword
+```
+VD:
+
+```js
+var des = ""toidicode là trang web chuyên chia sẻ các tutorials về lập trình toidicode"";
+var position = des.lastIndexOf('toidicode');
+alert('Vị trí của chuỗi toidicode trong des là: ' + position);
+```
+
+```js
+var des = ""toidicode là trang web chuyên chia sẻ các tutorials về lập trình toidicode"";
+var position = des.lastIndexOf('toidicode');
+alert('Vị trí của chuỗi toidicode trong des là: ' + position);
+```
+Xem Kết Quả"
+14,Bài 25: Các hàm xử lý chuỗi trong Javascript,Search(),-Hàm này giống như hàm indexOf nên mình sẽ không trình bày thêm.
+15,Bài 25: Các hàm xử lý chuỗi trong Javascript,slice(),"-Hàm này có tác dụng cắt ra một chuỗi con từ một chuỗi cha.
+Cú Pháp:
+
+```js
+string.slice(begin,end);
+```
+
+```js
+string.slice(begin,end);
+```
+Trong đó:
+
+```js
+begin
+```
+
+```js
+end
+```
+Chú ý: vị trí của chuỗi được tính từ 0.
+VD:
+
+```js
+var a = ""học lập trình online toidicode.com"";
+a.slice(21,34); //toidicode.com
+```
+
+```js
+var a = ""học lập trình online toidicode.com"";
+a.slice(21,34); //toidicode.com
+```
+Xem Kết Quả
+-Và đương nhiên bạn cũng có thể cắt chuỗi từ cuối về đầu. bằng việc thêm dấu trừ vào trước vị trí (tính từ cuối về đầu).
+VD:
+
+```js
+var a = ""học lập trình online toidicode.com"";
+a.slice(-13,34); //toidicode.com
+```
+
+```js
+var a = ""học lập trình online toidicode.com"";
+a.slice(-13,34); //toidicode.com
+```
+Xem Kết Quả
+VD: Cắt chuỗi từ vị trí bắt đầu đến hết chuỗi.
+
+```js
+var a = ""học lập trình online toidicode.com"";
+a.slice(21); //toidicode.com
+```
+
+```js
+var a = ""học lập trình online toidicode.com"";
+a.slice(21); //toidicode.com
+```"
+16,Bài 25: Các hàm xử lý chuỗi trong Javascript,substring(),"-Hàm này cũng tương tự như hàmsicle(), nhưng hàm này không cho phép truyền vào số âm.
+
+```js
+sicle()
+```
+Cú pháp:
+
+```js
+string.substring(begin,end);
+```
+
+```js
+string.substring(begin,end);
+```
+Trong đó:
+
+```js
+begin
+```
+
+```js
+end
+```
+Chú ý: vị trí của chuỗi được tính từ 0."
+17,Bài 25: Các hàm xử lý chuỗi trong Javascript,substr(),"-Phương thức này cũng có tác dụng là cắt chuỗi nhưng tham số thứ 2 của phương thức này có phần khác với 2 phương thức còn lại.
+Cú pháp:
+
+```js
+string.substr(begin,length);
+```
+
+```js
+string.substr(begin,length);
+```
+Trong đó:
+
+```js
+begin
+```
+
+```js
+length
+```
+Chú ý: vị trí của chuỗi được tính từ 0.
+VD:
+
+```js
+var a = ""học lập trình online toidicode.com"";
+a.substr(21,13); //toidicode.com
+```
+
+```js
+var a = ""học lập trình online toidicode.com"";
+a.substr(21,13); //toidicode.com
+```
+Xem Kết Quả"
+18,Bài 25: Các hàm xử lý chuỗi trong Javascript,replace(),"-Phương thức này cho phép chúng ta tìm kiếm và thay thế chuỗi.
+Cú Pháp:
+
+```js
+string.replace(chuoicantim,chuoithaythe);
+```
+
+```js
+string.replace(chuoicantim,chuoithaythe);
+```
+Trong đó:
+
+```js
+chuoicantim
+```
+
+```js
+chuoithaythe
+```
+VD:Thay thế chuỗi toidicode.com bằng https://toidicode.com
+
+```js
+var a = ""học lập trình online toidicode.com"";
+a.replace('toidicode.com','https://toidicode.com');
+```
+
+```js
+var a = ""học lập trình online toidicode.com"";
+a.replace('toidicode.com','https://toidicode.com');
+```
+Xem Kết Quả"
+19,Bài 25: Các hàm xử lý chuỗi trong Javascript,toUpperCase(),"-Phương thức này có tác dụng chuyển đổi chuỗi thành chữ in hoa.
+Cú Pháp:
+
+```js
+string.toUppercase();
+```
+
+```js
+string.toUppercase();
+```
+VD:
+
+```js
+var a = ""học lập trình online toidicode.com"";
+a.toUpperCase();
+```
+
+```js
+var a = ""học lập trình online toidicode.com"";
+a.toUpperCase();
+```
+Xem Kết Quả"
+20,Bài 25: Các hàm xử lý chuỗi trong Javascript,toLowerCase(),"-Phương thức này có tác dụng chuyển đổi chuỗi thành chuỗi thường.
+Cú Pháp:
+
+```js
+string.toLowerCase();
+```
+
+```js
+string.toLowerCase();
+```
+VD:
+
+```js
+var a = ""HỌC LẬP TRÌNH ONLINE TOIDICODE.COM"";
+a.toUpperCase();
+```
+
+```js
+var a = ""HỌC LẬP TRÌNH ONLINE TOIDICODE.COM"";
+a.toUpperCase();
+```
+Xem Kết Quả"
+21,Bài 25: Các hàm xử lý chuỗi trong Javascript,"3, Lời Kết.","-Như vậy qua phần này mình đã trình bày xong cơ bản vềchuỗi trong javascript rồi, các bạn chú ý ôn cho chắc phần này nhé. Bài tiếp theo chúng ta sẽ tìm hiểu vềSố - Numbers trong javascript."
+22,Bài 24: Đối tượng date trong javascript,Giới thiệu,"Bài này, chúng ta sẽ tìm hiểu về đối tượng date trong javascript. Một đối tượng được dùng rất là nhiều trên các trang web."
+23,Bài 24: Đối tượng date trong javascript,"1, Đối tượng date trong javascript.","-Đối tượng date trong javascript là nơi xử lý các vấn đề về thời gian.
+-Để khởi tạo đối tượng date trong javascript chúng ta có 4 cách:
++ Khởi tạo ngày giờ tại thời điểm hiện tại:
+
+```js
+new Date();
+```
+
+```js
+new Date();
+```
+Xem ví dụ
++Khởi tạo ngày giờ từ giá trị time millisecond:
+
+```js
+new Date(milliseconds);
+```
+
+```js
+new Date(milliseconds);
+```
+Trong đó: milliseconds là thời gian chúng ta muốn khởi tạo đơn vị mili giây.
+Xem ví dụ
++Khởi tạo ngày giờ từ một dateString:
+
+```js
+new Date(dateString);
+```
+
+```js
+new Date(dateString);
+```
+Trong đó: dateString có dạng ""tháng ngày, năm giờ:phút:giây"" trong đó tháng là tên tiếng anh. VD: April 06, 2017 12:00:00.
+Xem ví dụ
++Khởi tạo ngày giờ từ một date string dạng atrribute:
+
+```js
+new Date(year, month, day, hours, minutes, seconds, milliseconds)
+```
+
+```js
+new Date(year, month, day, hours, minutes, seconds, milliseconds)
+```
+Trong đó:
+Xem ví dụ"
+24,Bài 24: Đối tượng date trong javascript,Các phương thức get dữ liệu,"VD:
+
+```js
+function get() {
+    var date = new Date();
+    var data = 'Ngày trong tháng: ' + date.getDate() + '<br />';
+    data += 'Ngày trong tuần: ' + date.getDay() + '<br />';
+    data += 'Tháng trong năm: ' + date.getMonth() + '<br />';
+    data += 'Năm đầy đủ: ' + date.getFullYear() + '<br />';
+    data += 'Giờ: ' + date.getHours() + '<br />';
+    data += 'Phút: ' + date.getMinutes() + '<br />';
+    data += 'Giây: ' + date.getSeconds() + '<br />';
+    data += 'Mili Giây: ' + date.getMilliseconds() + '<br />';
+    data += 'Time dạng mili giây: ' + date.getTime() + '<br />';
+    document.getElementById('result').innerHTML = data;
+}
+```
+
+```js
+function get() {
+    var date = new Date();
+    var data = 'Ngày trong tháng: ' + date.getDate() + '<br />';
+    data += 'Ngày trong tuần: ' + date.getDay() + '<br />';
+    data += 'Tháng trong năm: ' + date.getMonth() + '<br />';
+    data += 'Năm đầy đủ: ' + date.getFullYear() + '<br />';
+    data += 'Giờ: ' + date.getHours() + '<br />';
+    data += 'Phút: ' + date.getMinutes() + '<br />';
+    data += 'Giây: ' + date.getSeconds() + '<br />';
+    data += 'Mili Giây: ' + date.getMilliseconds() + '<br />';
+    data += 'Time dạng mili giây: ' + date.getTime() + '<br />';
+    document.getElementById('result').innerHTML = data;
+}
+```
+Xem Kết Quả
+-Tương tự chúng ta cũng có các Hàm lấy ra thời gian dạng UTC.
+VD:
+
+```js
+function get() {
+    var date = new Date();
+    var data = 'Ngày trong tháng: ' + date.getUTCDate() + '<br />';
+    data += 'Ngày trong tuần: ' + date.getUTCDay() + '<br />';
+    data += 'Tháng trong năm: ' + date.getUTCMonth() + '<br />';
+    data += 'Năm đầy đủ: ' + date.getUTCFullYear() + '<br />';
+    data += 'Giờ: ' + date.getUTCHours() + '<br />';
+    data += 'Phút: ' + date.getUTCMinutes() + '<br />';
+    data += 'Giây: ' + date.getUTCSeconds() + '<br />';
+    data += 'Mili Giây: ' + date.getUTCMilliseconds() + '<br />';
+    document.getElementById('result').innerHTML = data;
+}
+```
+
+```js
+function get() {
+    var date = new Date();
+    var data = 'Ngày trong tháng: ' + date.getUTCDate() + '<br />';
+    data += 'Ngày trong tuần: ' + date.getUTCDay() + '<br />';
+    data += 'Tháng trong năm: ' + date.getUTCMonth() + '<br />';
+    data += 'Năm đầy đủ: ' + date.getUTCFullYear() + '<br />';
+    data += 'Giờ: ' + date.getUTCHours() + '<br />';
+    data += 'Phút: ' + date.getUTCMinutes() + '<br />';
+    data += 'Giây: ' + date.getUTCSeconds() + '<br />';
+    data += 'Mili Giây: ' + date.getUTCMilliseconds() + '<br />';
+    document.getElementById('result').innerHTML = data;
+}
+```
+Xem Kết Quả"
+25,Bài 24: Đối tượng date trong javascript,Các phương thức set,"VD:
+
+```js
+function set() {
+    var date = new Date();
+    date.setDate(06);
+    date.setMonth(04);
+    date.setFullYear(2017);
+    date.setHours(15);
+    date.setMinutes(05);
+    date.setSeconds(10)
+    date.setMilliseconds(120);
+}
+```
+
+```js
+function set() {
+    var date = new Date();
+    date.setDate(06);
+    date.setMonth(04);
+    date.setFullYear(2017);
+    date.setHours(15);
+    date.setMinutes(05);
+    date.setSeconds(10)
+    date.setMilliseconds(120);
+}
+```
+Xem Kết Quả
+-Và tương tự chúng ta cũng có các set dạng UTC.
+VD:
+
+```js
+function set() {
+    var date = new Date();
+    date.setUTCDate(06);
+    date.setUTCMonth(04);
+    date.setUTCFullYear(2017);
+    date.setUTCHours(15);
+    date.setUTCMinutes(05);
+    date.setUTCSeconds(5);
+    date.setUTCMilliseconds(120);
+}
+```
+
+```js
+function set() {
+    var date = new Date();
+    date.setUTCDate(06);
+    date.setUTCMonth(04);
+    date.setUTCFullYear(2017);
+    date.setUTCHours(15);
+    date.setUTCMinutes(05);
+    date.setUTCSeconds(5);
+    date.setUTCMilliseconds(120);
+}
+```
+Xem Kết Quả"
+26,Bài 24: Đối tượng date trong javascript,Các phương thức khác.,"-Bên cạnh các hàm get và set thì đối tượng date còn hỗ trợ chúng ta các phương thức:
+VD:
+
+```js
+function get() {
+    var date = new Date();
+    var data = 'toDateString(): ' + date.toDateString() + '<br />';
+    data += 'toISOString(): ' + date.toISOString() + '<br />';
+    data += 'toJSON(): ' + date.toJSON() + '<br />';
+    data += 'toLocaleDateString(): ' + date.toLocaleDateString() + '<br />';
+    data += 'toLocaleTimeString(): ' + date.toLocaleTimeString() + '<br />';
+    data += 'toString(): ' + date.toString() + '<br />';
+    data += 'valueOf(): ' + date.valueOf() + '<br />';
+    document.getElementById('result').innerHTML = data;
+}
+```
+
+```js
+function get() {
+    var date = new Date();
+    var data = 'toDateString(): ' + date.toDateString() + '<br />';
+    data += 'toISOString(): ' + date.toISOString() + '<br />';
+    data += 'toJSON(): ' + date.toJSON() + '<br />';
+    data += 'toLocaleDateString(): ' + date.toLocaleDateString() + '<br />';
+    data += 'toLocaleTimeString(): ' + date.toLocaleTimeString() + '<br />';
+    data += 'toString(): ' + date.toString() + '<br />';
+    data += 'valueOf(): ' + date.valueOf() + '<br />';
+    document.getElementById('result').innerHTML = data;
+}
+```
+Xem Kết Quả"
+27,Bài 24: Đối tượng date trong javascript,"3, Lời kết.",-Ngoài các phương thức trên thì có còn một số phương thức khác rất ít khi dùng mà mình không nhắc đến ở trên. Các bạn cần có thể tự tìm hiểu thêm nhé!
+28,Bài 27: Đối tượng Math trong Javascript,Giới thiệu,Trong các ngôn ngữ luôn luôn tồn tại một phần để xử lý tính toán và với Javascript cũng không ngoại lệ.
+29,Bài 27: Đối tượng Math trong Javascript,"1, Đối tượng Math trong javascript.","- Đối tượngMathtrong javascript chứa các thuộc tính, phương thức xử lý toán học. Chúng ta có thể gọi nó từ bất kỳ đâu mà không phải khởi tạo.
+
+```js
+Math
+```
+Cú Pháp:
+
+```js
+Math.property|method;
+```
+
+```js
+Math.property|method;
+```"
+30,Bài 27: Đối tượng Math trong Javascript,"2, Các thuộc tính trong đối tượng Math.","-Sau đây mình xin được liệt kê ra các thuộc tính trong đối tượngMathvà chức năng của nó.
+
+```js
+Math
+```
+VD:
+
+```js
+function showMath()
+{
+    var data = '';
+    data += 'E = ' + Math.E + '<br>';
+    data += 'LN2 = ' + Math.LN2 + '<br>';
+    data += 'LN10 = ' + Math.LN10 + '<br>';
+    data += 'LOG2E = ' + Math.LOG2E + '<br>';
+    data += 'LOG10E = ' + Math.LOG10E + '<br>';
+    data += 'PI = ' + Math.PI + '<br>';
+    data += 'SQRT1_2 = ' + Math.SQRT1_2 + '<br>';
+    data += 'SQRT2 = ' + Math.SQRT2 + '<br>';
+    document.getElementById('result').innerHTML = data;
+}
+```
+
+```js
+function showMath()
+{
+    var data = '';
+    data += 'E = ' + Math.E + '<br>';
+    data += 'LN2 = ' + Math.LN2 + '<br>';
+    data += 'LN10 = ' + Math.LN10 + '<br>';
+    data += 'LOG2E = ' + Math.LOG2E + '<br>';
+    data += 'LOG10E = ' + Math.LOG10E + '<br>';
+    data += 'PI = ' + Math.PI + '<br>';
+    data += 'SQRT1_2 = ' + Math.SQRT1_2 + '<br>';
+    data += 'SQRT2 = ' + Math.SQRT2 + '<br>';
+    document.getElementById('result').innerHTML = data;
+}
+```
+Xem Kết Quả"
+31,Bài 27: Đối tượng Math trong Javascript,"3, Các phương thức trong đối tượng Math.","-Trong đối tượng Math có hỗ trợ chúng ta 18 phương thức để xử lý tính toán như sau:
+Xem Kết Quả"
+32,Bài 27: Đối tượng Math trong Javascript,"3, Lời kết.","-Như vậy, mình đã giới thiệu xong đến mọi người vềđối tượng Math trong javascript. Đối tượng này sẽ được sử dụng rất nhiều khi các bạn làm game web."
+33,Bài 21: Đối tượng navigator trong javascript,Giới thiệu,"Bạn có bao giờ nghĩ bằng javascript các bạn có biết được các thông số của trình duyệt mà người dùng đang sử dụng như tên,version,.. không? Bài này chúng ta sẽ cùng giải quyết điều đó."
+34,Bài 21: Đối tượng navigator trong javascript,"1, Đối tượng navigator.","-Đối tượng navigator trong javascript là nơi lưu trữ tất cả các thông tin về trình duyệt mà người dùng đang sử dụng để truy cập vào website của chúng ta. Và đối tượng navigator này cũng thuộc nhómBOMtrong javascript.
+Cú Pháp:
+
+```js
+window.navigator;
+//hoặc
+navigator;
+```
+
+```js
+window.navigator;
+//hoặc
+navigator;
+```"
+35,Bài 21: Đối tượng navigator trong javascript,appCodeName,"-Thuộc tính này trả vềcode namecủa trình duyệt mà khách truy cập đang sủ dụng.
+Cú Pháp:
+
+```js
+navigator.appCodeName;
+```
+
+```js
+navigator.appCodeName;
+```
+Xem Kết Quả"
+36,Bài 21: Đối tượng navigator trong javascript,appName,"-Thuộc tính này trả về tên của trình duyệt mà khách truy cập đang sử dụng.
+Cú Pháp:
+
+```js
+navigator.appName;
+```
+
+```js
+navigator.appName;
+```
+Xem Kết Quả"
+37,Bài 21: Đối tượng navigator trong javascript,appVersion,"-Thuộc tính này trả về version của trình duyệt mà khách đang truy cập.
+Cú Pháp:
+
+```js
+navigator.appversion;
+```
+
+```js
+navigator.appversion;
+```
+Xem Kết Quả"
+38,Bài 21: Đối tượng navigator trong javascript,cookieEnabled,"-Thuộc tính này dùng để kiểm tra xem trình duyệt có bật cookie hay không. Nó sẽ trả về true nếu trình duyệt bật và ngược lại sẽ trả về false nếu không bật.
+VD:
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset=""utf-8"">
+	<title>Toidicode.com demo navigator</title>
+</head>
+<style type=""text/css"" media=""screen"">
+	p{
+		border:1px solid #dddddd;
+		background: #e1e1e1;
+		padding: 10px;
+	}
+</style>
+<body>
+	<div>Click vào button để xem kết quả</div>
+	<button type=""button"" onclick=""getInfo()"">Click</button>
+	<p id=""results""></p>
+	<script type=""text/javascript"">
+		function getInfo() {
+			var app = navigator.cookieEnabled;
+			if(app){
+				data = 'Trình duyệt có bật cookie';
+			} else {
+				data = 'Trình duyệt không bật cookie';
+			}
+			document.getElementById('results').innerHTML = data;
+		}
+	</script>
+</body>
+
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset=""utf-8"">
+	<title>Toidicode.com demo navigator</title>
+</head>
+<style type=""text/css"" media=""screen"">
+	p{
+		border:1px solid #dddddd;
+		background: #e1e1e1;
+		padding: 10px;
+	}
+</style>
+<body>
+	<div>Click vào button để xem kết quả</div>
+	<button type=""button"" onclick=""getInfo()"">Click</button>
+	<p id=""results""></p>
+	<script type=""text/javascript"">
+		function getInfo() {
+			var app = navigator.cookieEnabled;
+			if(app){
+				data = 'Trình duyệt có bật cookie';
+			} else {
+				data = 'Trình duyệt không bật cookie';
+			}
+			document.getElementById('results').innerHTML = data;
+		}
+	</script>
+</body>
+
+</html>
+```
+Xem Kết Quả"
+39,Bài 21: Đối tượng navigator trong javascript,language,"-Thuộc tính này trả về ngôn ngữ trình duyệt của client.
+Cú Pháp:
+
+```js
+navigator.language;
+```
+
+```js
+navigator.language;
+```
+Xem Kết Quả"
+40,Bài 21: Đối tượng navigator trong javascript,onLine,"-Thuộc tính này kiểm tra xem trình duyệt có đang trực tuyến hay không. Nó sẽ trả vềtruenếu có vàfalsenếu không.
+
+```js
+true
+```
+
+```js
+false
+```
+Cú pháp:
+
+```js
+navigator.onLine;
+```
+
+```js
+navigator.onLine;
+```
+Xem Kết Quả"
+41,Bài 21: Đối tượng navigator trong javascript,platform,"-Thuộc tính này trả về hệ điều hànhcủa trình duyệt.
+Cú Pháp:
+
+```js
+navigator.platform;
+```
+
+```js
+navigator.platform;
+```
+Xem Kết Quả"
+42,Bài 21: Đối tượng navigator trong javascript,product,"-Thuộc tính này trả về engine của trình duyệt mà người dùng đang sử dụng/
+
+```js
+navigator.product;
+```
+
+```js
+navigator.product;
+```
+Xem Kết Quả"
+43,Bài 21: Đối tượng navigator trong javascript,userAgent,"-Thuộc tính này trả về agent của trình duyệt.
+Cú Pháp:
+
+```js
+navigator.userAgent;
+```
+
+```js
+navigator.userAgent;
+```
+Xem Kết Quả"
+44,Bài 21: Đối tượng navigator trong javascript,JavaEnabled(),"-Phương thức này có tác dụng kiểm tra xem trình duyệt có đang bậtjava(không phải javascipt đâu nhé) không? Nó sẽ trả về true nếu có, và ngược lại flase nếu không.
+VD:
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset=""utf-8"">
+	<title>Toidicode.com demo navigator</title>
+</head>
+<style type=""text/css"" media=""screen"">
+	p{
+		border:1px solid #dddddd;
+		background: #e1e1e1;
+		padding: 10px;
+	}
+</style>
+<body>
+	<div>Click vào button để xem kết quả</div>
+	<button type=""button"" onclick=""getInfo()"">Click</button>
+	<p id=""results""></p>
+	<script type=""text/javascript"">
+		function getInfo() {
+			var app = navigator.javaEnabled();
+			if(app){
+				data = 'Trình duyệt có bật java';
+			} else {
+				data = 'Trình duyệt không bật java';
+			}
+			document.getElementById('results').innerHTML = data;
+		}
+	</script>
+</body>
+
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset=""utf-8"">
+	<title>Toidicode.com demo navigator</title>
+</head>
+<style type=""text/css"" media=""screen"">
+	p{
+		border:1px solid #dddddd;
+		background: #e1e1e1;
+		padding: 10px;
+	}
+</style>
+<body>
+	<div>Click vào button để xem kết quả</div>
+	<button type=""button"" onclick=""getInfo()"">Click</button>
+	<p id=""results""></p>
+	<script type=""text/javascript"">
+		function getInfo() {
+			var app = navigator.javaEnabled();
+			if(app){
+				data = 'Trình duyệt có bật java';
+			} else {
+				data = 'Trình duyệt không bật java';
+			}
+			document.getElementById('results').innerHTML = data;
+		}
+	</script>
+</body>
+
+</html>
+```
+Xem Kết Quả"
+45,Bài 21: Đối tượng navigator trong javascript,taintEnabled(),-Phương thức này kiểm tra xem trình duyệt có đang xóa dữ liệu không? Nhưng kể từ phiên bản JavaScript 1.2 đã không còn hỗ trợ phương thức này nữa.
+46,Bài 21: Đối tượng navigator trong javascript,"4, Lời kết.","-Phần trên mình đã giới thiệu với mọi người hầu như toàn bộ cácthuộc tính và phương thức trong đối tượng navigatorrồi. Chỉ còn duy nhất 1 đối tượng con bên trong đối tượng này làgeolocation, mình sẽ trình bày nó ở một bài riêng khác trong thời gian sắp tới. Chúc các bạn học tốt.
+
+```js
+geolocation
+```"
+47,Bài 22: Đối tượng screen trong Javascript,Giới thiệu,"Tiếp tục với series BOM, bài này chúng ta sẽ tìm hiểu về BOM cuối cùng trong javascript làscreen object."
+48,Bài 22: Đối tượng screen trong Javascript,"1, Đối tượng screen.","-Đối tượng screen trong javascript chứa các thông số về màn hình của người dùng.
+Cú Pháp:
+
+```js
+window.screen;
+//hoặc
+screen;
+```
+
+```js
+window.screen;
+//hoặc
+screen;
+```
+-Đối tượng này gồm có 6 thuộc tính với 6 chức năng khác nhau và bài này chúng ta sẽ tìm hiểu hết 6 thuộc tính đó."
+49,Bài 22: Đối tượng screen trong Javascript,width - height,"-Hai thuộc tính này trả về chiều rộng và chiều cao (Đơn vị pixel) của màn hình thiết bị mà người dùng đang sử dụng.
+Cú Pháp:
+
+```js
+//lấy chiều rộng
+screen.width;
+//Lấy chiều cao
+screen.height;
+```
+
+```js
+//lấy chiều rộng
+screen.width;
+//Lấy chiều cao
+screen.height;
+```
+VD:
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset=""utf-8"">
+    <title>Toidicode.com demo navigator</title>
+</head>
+<style type=""text/css"" media=""screen"">
+    p{
+        border:1px solid #dddddd;
+        background: #e1e1e1;
+        padding: 10px;
+    }
+</style>
+<body>
+    <div>Click vào button để xem kết quả</div>
+    <button type=""button"" onclick=""getInfo()"">Click</button>
+    <p id=""results""></p>
+    <script type=""text/javascript"">
+        function getInfo() {
+            var data = ""Màn hình của bạn <br>"";
+            data += ""rộng: "" + screen.width + ""<br>"";
+            data += ""Cao: "" + screen.height;
+            document.getElementById('results').innerHTML = data;
+        }
+    </script>
+</body>
+
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset=""utf-8"">
+    <title>Toidicode.com demo navigator</title>
+</head>
+<style type=""text/css"" media=""screen"">
+    p{
+        border:1px solid #dddddd;
+        background: #e1e1e1;
+        padding: 10px;
+    }
+</style>
+<body>
+    <div>Click vào button để xem kết quả</div>
+    <button type=""button"" onclick=""getInfo()"">Click</button>
+    <p id=""results""></p>
+    <script type=""text/javascript"">
+        function getInfo() {
+            var data = ""Màn hình của bạn <br>"";
+            data += ""rộng: "" + screen.width + ""<br>"";
+            data += ""Cao: "" + screen.height;
+            document.getElementById('results').innerHTML = data;
+        }
+    </script>
+</body>
+
+</html>
+```
+Xem Kết Quả"
+50,Bài 22: Đối tượng screen trong Javascript,availWidth - availHeight,"-Hai thuộc tính này cũng trả về chiều rộng và chiều cao của màn hình, nhưng đây làmàn hình của trình duyệt.
+
+Cú Pháp:
+
+```js
+//Lấy availWidth
+screen.availWidth;
+//Lấy availHeight
+screen.availHeight;
+```
+
+```js
+//Lấy availWidth
+screen.availWidth;
+//Lấy availHeight
+screen.availHeight;
+```
+VD:
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset=""utf-8"">
+	<title>Toidicode.com demo screen</title>
+</head>
+<style type=""text/css"" media=""screen"">
+	p{
+		border:1px solid #dddddd;
+		background: #e1e1e1;
+		padding: 10px;
+	}
+</style>
+<body>
+	<div>Click vào button để xem kết quả</div>
+	<button type=""button"" onclick=""getInfo()"">Click</button>
+	<p id=""results""></p>
+	<script type=""text/javascript"">
+		function getInfo() {
+			var data = ""Màn hình trình duyệt của bạn <br>"";
+			data += ""Rộng: "" + screen.availWidth + ""<br>"";
+			data += ""Cao: "" + screen.availHeight;
+			document.getElementById('results').innerHTML = data;
+		}
+	</script>
+</body>
+
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset=""utf-8"">
+	<title>Toidicode.com demo screen</title>
+</head>
+<style type=""text/css"" media=""screen"">
+	p{
+		border:1px solid #dddddd;
+		background: #e1e1e1;
+		padding: 10px;
+	}
+</style>
+<body>
+	<div>Click vào button để xem kết quả</div>
+	<button type=""button"" onclick=""getInfo()"">Click</button>
+	<p id=""results""></p>
+	<script type=""text/javascript"">
+		function getInfo() {
+			var data = ""Màn hình trình duyệt của bạn <br>"";
+			data += ""Rộng: "" + screen.availWidth + ""<br>"";
+			data += ""Cao: "" + screen.availHeight;
+			document.getElementById('results').innerHTML = data;
+		}
+	</script>
+</body>
+
+</html>
+```
+Xem Kết Quả"
+51,Bài 22: Đối tượng screen trong Javascript,colorDepth,"-Thuộc tính này trả về color Depth - số lượng màu sắc hiển thị được trên màn hình.
+Cú Pháp:
+
+```js
+screen.colorDepth;
+```
+
+```js
+screen.colorDepth;
+```
+VD:
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset=""utf-8"">
+	<title>Toidicode.com demo screen</title>
+</head>
+<style type=""text/css"" media=""screen"">
+	p{
+		border:1px solid #dddddd;
+		background: #e1e1e1;
+		padding: 10px;
+	}
+</style>
+<body>
+	<div>Click vào button để xem kết quả</div>
+	<button type=""button"" onclick=""getInfo()"">Click</button>
+	<p id=""results""></p>
+	<script type=""text/javascript"">
+		function getInfo() {
+			var data = ""Color Depth của màn hình: ""+ screen.colorDepth;
+			document.getElementById('results').innerHTML = data;
+		}
+	</script>
+</body>
+
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset=""utf-8"">
+	<title>Toidicode.com demo screen</title>
+</head>
+<style type=""text/css"" media=""screen"">
+	p{
+		border:1px solid #dddddd;
+		background: #e1e1e1;
+		padding: 10px;
+	}
+</style>
+<body>
+	<div>Click vào button để xem kết quả</div>
+	<button type=""button"" onclick=""getInfo()"">Click</button>
+	<p id=""results""></p>
+	<script type=""text/javascript"">
+		function getInfo() {
+			var data = ""Color Depth của màn hình: ""+ screen.colorDepth;
+			document.getElementById('results').innerHTML = data;
+		}
+	</script>
+</body>
+
+</html>
+```
+Xem Kết Quả"
+52,Bài 22: Đối tượng screen trong Javascript,pixelDpth,"-Thuộc tính này trả về pixel Depth của màn hình.
+Cú Pháp:
+
+```js
+screen.pixelDepth;
+```
+
+```js
+screen.pixelDepth;
+```
+VD:
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset=""utf-8"">
+	<title>Toidicode.com demo screen</title>
+</head>
+<style type=""text/css"" media=""screen"">
+	p{
+		border:1px solid #dddddd;
+		background: #e1e1e1;
+		padding: 10px;
+	}
+</style>
+<body>
+	<div>Click vào button để xem kết quả</div>
+	<button type=""button"" onclick=""getInfo()"">Click</button>
+	<p id=""results""></p>
+	<script type=""text/javascript"">
+		function getInfo() {
+			var data = ""Color Depth của màn hình: ""+ screen.pixelDepth;
+			document.getElementById('results').innerHTML = data;
+		}
+	</script>
+</body>
+
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset=""utf-8"">
+	<title>Toidicode.com demo screen</title>
+</head>
+<style type=""text/css"" media=""screen"">
+	p{
+		border:1px solid #dddddd;
+		background: #e1e1e1;
+		padding: 10px;
+	}
+</style>
+<body>
+	<div>Click vào button để xem kết quả</div>
+	<button type=""button"" onclick=""getInfo()"">Click</button>
+	<p id=""results""></p>
+	<script type=""text/javascript"">
+		function getInfo() {
+			var data = ""Color Depth của màn hình: ""+ screen.pixelDepth;
+			document.getElementById('results').innerHTML = data;
+		}
+	</script>
+</body>
+
+</html>
+```
+Xem Kết Quả"
+53,Bài 22: Đối tượng screen trong Javascript,"3, Lời kết.","-Qua phần này mình đã giới thiệu xong đến mọi người về screen trong javscript rồi, và đây cũng là bài cuối cùng trong series BOM Javascript. Bài tiếp theo chúng ta sẽ tìm hiểu vềtime events trong javascript."
+54,Bài 28: LocalStorage và sessionStorage,Giới thiệu,Như các bạn đã biết thì chúng ta có thể lưu trữ dữ liệu vào cơ sở dữ liệu qua các hệ quản trị cơ sở dữ liệu và ngoài ra chúng ta có thể lưu trữ dữ liệu thông quacookie hoặc session. Nhưng hôm nay mình sẽ giới thiệu với mọi người 2 cách lưu trữ dữ liệu nữa đó làlocalStorage và sessionStorage.
+55,Bài 28: LocalStorage và sessionStorage,"1, localStorage.","-localStoragedịch ra tiếng việt thì nhiều bạn chắc cũng đã hiểu tương đối về tác dụng của nó rồi đúng không? Ở đâylocalStoragelà một phần được tích hợp sẵn vào trong trình duyệt giúp cho chúng ta có thể lưu trữ và truy vấn dữ liệu vô thời hạn vào trong trình duyệt của người dùng (nó chỉ bị mất đi khi người dùng clear trình duyệt). Chúng ta có thể lưu trữ dữ liệu tương đối lớn (khoảng 5Mb).
+-Trước khi sử dụnglocalstoragethì các bạn cần lưu ý:localStoragechỉ hỗ trợ trên các trình duyệt có version như sau trở lên:
+-Và để kiểm tra xem trình duyệt có hỗ trợ localStorage hay không thì chúng ta dùngtypeof.
+
+```js
+typeof
+```
+
+```js
+if (typeof(Storage) !== 'undefined') {
+    //hỗ trợ
+} else {
+    // không hỗ trợ
+}
+```
+
+```js
+if (typeof(Storage) !== 'undefined') {
+    //hỗ trợ
+} else {
+    // không hỗ trợ
+}
+```
+Lưu ý: Vì client hay dùng phiên bản cũ nên mọi người cứ thêm đoạn này vào cho chắc để tránh xảy ra lỗi không mong muốn."
+56,Bài 28: LocalStorage và sessionStorage,Xem localStorage bằng trình duyệt,-Để xemlocalstoragebằng trình duyệt các bạn vào trang web cần xem (ở đây mình ví dụ luôn trang web toidicode.com) và sau đó các bạnấn F12(hoặc Ctrl + shift + i) sau đó làm theo như hình sau:
+57,Bài 28: LocalStorage và sessionStorage,Thêm mới một dữ liệu vào localStorage,"-Để thêm mới một dữ liệu vào localStorage chúng ta sử dụng phương thứcsetItem()với cú pháp:
+
+```js
+setItem()
+```
+
+```js
+localStorage.setItem($key, $value);
+```
+
+```js
+localStorage.setItem($key, $value);
+```
+Trong đó:
+
+```js
+$key
+```
+
+```js
+$value
+```
+
+```js
+$key
+```
+Lưu ý: Nếu như trong localStorage đã tồn tại key đó rồi thì nó sẽ nhận giá trị của lần set cuối cùng.
+VD: Thêm một localstorage có key là 'javascript'và giá trị là 'học tại toidicode.com'.
+
+```js
+if (typeof(Storage) !== 'undefined') {
+    localStorage.setItem('javascript', 'học tại toidicode.com');
+} else {
+    alert('Trình duyệt của bạn không hỗ trợ localStorage. Hãy nâng cấp trình duyệt để sử dụng!');
+}
+```
+
+```js
+if (typeof(Storage) !== 'undefined') {
+    localStorage.setItem('javascript', 'học tại toidicode.com');
+} else {
+    alert('Trình duyệt của bạn không hỗ trợ localStorage. Hãy nâng cấp trình duyệt để sử dụng!');
+}
+```
+Xem Kết Quả"
+58,Bài 28: LocalStorage và sessionStorage,Lấy một dữ liệu trong localStorage.,"-Để lấy một dữ liệu tronglocalStoragechúng ta sử dụng phương thứcgetItem()với cú pháp như sau:
+
+```js
+getItem()
+```
+
+```js
+localStorage.getItem($key);
+```
+
+```js
+localStorage.getItem($key);
+```
+Trong đó:$keylà tên key củalocalStoragemà các bạn muốn lấy ra.
+
+```js
+$key
+```
+VD: Mình muốn lấy giá trị của key có tên là javascript (ở ví dụ trên).
+
+```js
+if ( typeof(Storage) !== ""undefined"") {
+    var data = localStorage.getItem('javascript');
+    alert(data);
+} else {
+    alert('Trình duyệt của bạn đã quá cũ. Hãy nâng cấp trình duyệt ngay!');
+}
+```
+
+```js
+if ( typeof(Storage) !== ""undefined"") {
+    var data = localStorage.getItem('javascript');
+    alert(data);
+} else {
+    alert('Trình duyệt của bạn đã quá cũ. Hãy nâng cấp trình duyệt ngay!');
+}
+```
+Xem Kết Quả"
+59,Bài 28: LocalStorage và sessionStorage,Lấy số lương localStorage đã có trong trình duyệt.,"-Để lấy ra số lượng key đã có tronglocalStoragethì chúng ta sử dụng thuộc tínhlengthvới cú pháp sau:
+
+```js
+length
+```
+
+```js
+localStorage.length;
+```
+
+```js
+localStorage.length;
+```
+VD: Lấy ra số lượng localStorage mà mình đã lưu trữ vào trình duyệt của các bạn.
+
+```js
+if ( typeof(Storage) !== ""undefined"") {
+    var data = localStorage.length;
+    alert(data);
+} else {
+    alert('Trình duyệt của bạn đã quá cũ. Hãy nâng cấp trình duyệt ngay!');
+}
+```
+
+```js
+if ( typeof(Storage) !== ""undefined"") {
+    var data = localStorage.length;
+    alert(data);
+} else {
+    alert('Trình duyệt của bạn đã quá cũ. Hãy nâng cấp trình duyệt ngay!');
+}
+```
+Xem Kết Quả"
+60,Bài 28: LocalStorage và sessionStorage,Xóa một item trong localStorage.,"-Để xóa một item trong localStorage chúng ta sử dụng cú pháp:
+
+```js
+localStorage.removeItem($key);
+```
+
+```js
+localStorage.removeItem($key);
+```
+Trong đó:$keylà key mà các bạn muốn xóa.
+
+```js
+$key
+```
+VD: Mình sẽ xóa item có key là javascript trong localStorage của bạn.
+
+```js
+if ( typeof(Storage) !== ""undefined"") {
+    localStorage.removeItem('javascript')
+    alert('Xóa Thành công');
+} else {
+    alert('Trình duyệt của bạn đã quá cũ. Hãy nâng cấp trình duyệt ngay!');
+}
+```
+
+```js
+if ( typeof(Storage) !== ""undefined"") {
+    localStorage.removeItem('javascript')
+    alert('Xóa Thành công');
+} else {
+    alert('Trình duyệt của bạn đã quá cũ. Hãy nâng cấp trình duyệt ngay!');
+}
+```
+Xem Kết Quả"
+61,Bài 28: LocalStorage và sessionStorage,Xóa tất cả item trong localStorage,"-Để xóa tất cả item trong localStorage chúng ta sử dụng cú pháp sau:
+
+```js
+localStorage.clear()
+```
+
+```js
+localStorage.clear()
+```
+VD: Mình xóa hết dữ liệu localStorage mà mình đã lưu trên trình duyệt của các bạn.
+
+```js
+if ( typeof(Storage) !== ""undefined"") {
+    localStorage.clear();
+    alert('Xóa Thành công');
+} else {
+    alert('Trình duyệt của bạn đã quá cũ. Hãy nâng cấp trình duyệt ngay!');
+}
+```
+
+```js
+if ( typeof(Storage) !== ""undefined"") {
+    localStorage.clear();
+    alert('Xóa Thành công');
+} else {
+    alert('Trình duyệt của bạn đã quá cũ. Hãy nâng cấp trình duyệt ngay!');
+}
+```
+Xem Kết Quả"
+62,Bài 28: LocalStorage và sessionStorage,"2, sessionStorage.","- Cũng giống nhưlocalStoragethìsessionStoragecũng dùng để lưu trữ dữ liệu trên trình duyệt của khách truy cập (client). Nhưng dữ liệu được lưu trữ vàosessionStoragesẽ bị mất đi khi bạn đóng tab trình duyệt.
+-Trước khi sử dụngsessionStoragethì các bạn cũng cần lưu ý:sessionStoragechỉ hỗ trợ trên các trình duyệt có version như sau trở lên:
+- Và vìsessionStoragecũng nằm trong gói Storage nên các bạn cũng có thể sử dụng lại đoạn code kiểm tra trình duyệt có hỗ trợ Storage hay không ở phía trên. Ngoài ra thìsessionStorage cũng có cú pháp và cách sử dụn các thuộc tính, phương thức như localStorage.
+VD:
+
+```js
+if ( typeof(Storage) !== ""undefined"") {
+    //set sesionStorage
+    sessionStorage.setItem('toidicode','Học lập trình online');
+    //get sessionStorage
+    sessionStorage.getItem('toidicode');
+    //lấy ra số lượng session đã lưu trữ
+    sessionStorage.length;
+    //xóa 1 item localStorage
+    sessionStorage.removeItem('toidicode');
+    // xóa tất cả item trong sessionStorage
+} else {
+    alert('Trình duyệt của bạn đã quá cũ. Hãy nâng cấp trình duyệt ngay!');
+}
+```
+
+```js
+if ( typeof(Storage) !== ""undefined"") {
+    //set sesionStorage
+    sessionStorage.setItem('toidicode','Học lập trình online');
+    //get sessionStorage
+    sessionStorage.getItem('toidicode');
+    //lấy ra số lượng session đã lưu trữ
+    sessionStorage.length;
+    //xóa 1 item localStorage
+    sessionStorage.removeItem('toidicode');
+    // xóa tất cả item trong sessionStorage
+} else {
+    alert('Trình duyệt của bạn đã quá cũ. Hãy nâng cấp trình duyệt ngay!');
+}
+```"
+63,Bài 28: LocalStorage và sessionStorage,"3, Chú ý.","-Ngoài sử dụng gán và thêm dữ liệu cho localStorage và sessionStorage như các cách ở trên, thì chúng ta hoàn toàn có thể set,get trực tiếp như sau:
+
+```js
+//set dữ liệu
+localStorage.tenkey = value;
+//get dữ liệu
+localStorage.tenkey;
+```
+
+```js
+//set dữ liệu
+localStorage.tenkey = value;
+//get dữ liệu
+localStorage.tenkey;
+```
+VD: Thêm và lấy dữ liệu có keytoidicodetrong localStorage.
+
+```js
+if ( typeof(Storage) !== ""undefined"") {
+    localStorage.toidicode = 'học lập trình';
+    alert(localStorage.toidicode);
+} else {
+    alert('Trình duyệt của bạn đã quá cũ. Hãy nâng cấp trình duyệt ngay!');
+}
+```
+
+```js
+if ( typeof(Storage) !== ""undefined"") {
+    localStorage.toidicode = 'học lập trình';
+    alert(localStorage.toidicode);
+} else {
+    alert('Trình duyệt của bạn đã quá cũ. Hãy nâng cấp trình duyệt ngay!');
+}
+```
+Lưu ý: Đối với sessionStorage cũng làm tương tự.
+-Ngoài ra các bạn cũng cần phải lưu ý các điều sau:"
+64,Bài 28: LocalStorage và sessionStorage,"4, Lời kết.",-Như vậy mình đã giới thiệu xong đến mọi người về localStorage và sessionStorage rồi. Hai modules này thường được sử dụng khá là nhiều trong các game HTML5....
+65,Bài 26: Số và các hàm xử lý số trong javascript,Giới thiệu,"Ở bài trước chúng ta đã được tìm hiểu vềchuỗi và các hàm xử lý chuỗi trong javascriptrồi. Bài này chúng ta sẽ tiếp tục tìm hiểu về một thứ cũng không thể thiếu trong các trang web, đó là các con số và các hàm xử lý số trong javascript."
+66,Bài 26: Số và các hàm xử lý số trong javascript,"1, Khai báo số trong javascript.","-Mặc dù khai báo sỗ trong javascript chúng ta đã được tìm hiểu rồi, nhưng bài này mình vẫn nhắc lại cách khai báo số trong javascript(cho chắc). Để khai báo số trong javascript chúng ta sử dụng cú pháp:
+
+```js
+var name = value;
+//hoặc
+var name = new Number(value);
+```
+
+```js
+var name = value;
+//hoặc
+var name = new Number(value);
+```
+Trong đó:
+
+```js
+name
+```
+
+```js
+value
+```
+VD: Khai báo biến số theo các dạng.
+
+```js
+//Khai báo biến số dạng số nguyên
+var a = 5;
+//Khai báo biến số dạng số thực
+var b = 5.5;
+//Khai báo biến số dạng số mũ
+var c = 1e5 // 100000
+//Khai báo biến số dạng bát phân
+var d = 0123 //83
+//Khai báo biến số dạng thập lục phân
+var e = 0x1A; //26
+//Khai báo biến số dạng nhị phân
+var f = 0b11111111; //255
+```
+
+```js
+//Khai báo biến số dạng số nguyên
+var a = 5;
+//Khai báo biến số dạng số thực
+var b = 5.5;
+//Khai báo biến số dạng số mũ
+var c = 1e5 // 100000
+//Khai báo biến số dạng bát phân
+var d = 0123 //83
+//Khai báo biến số dạng thập lục phân
+var e = 0x1A; //26
+//Khai báo biến số dạng nhị phân
+var f = 0b11111111; //255
+```"
+67,Bài 26: Số và các hàm xử lý số trong javascript,toString(),"-Hàm này giúp chúng ta chuyển đổi số sang chuỗi.
+Cú Pháp:
+
+```js
+number.toString(type);
+```
+
+```js
+number.toString(type);
+```
+Trong đó:
+
+```js
+number
+```
+
+```js
+type
+```
+Chú ý: Nếu không truyền type vào trong hàm toString thì mặc định nó sẽ chuyển số về dạng thập phân.
+VD:
+
+```js
+var a = 125;
+//Chuyển về dạng nhị phân
+a.toString(2) //01111101
+//Chuyển về dạng bát phân
+a.toString(8) //175
+//Chuyển về dạng thập phân
+a.toString(10) //125
+//Chuyển về dạng thập lục phân
+a.toString(16) //7D
+```
+
+```js
+var a = 125;
+//Chuyển về dạng nhị phân
+a.toString(2) //01111101
+//Chuyển về dạng bát phân
+a.toString(8) //175
+//Chuyển về dạng thập phân
+a.toString(10) //125
+//Chuyển về dạng thập lục phân
+a.toString(16) //7D
+```"
+68,Bài 26: Số và các hàm xử lý số trong javascript,Infinity,"-Trước hết mình muốn nói đây không phải là một hàm.Ở đâyInfinitylà mộtkeywordtrong javascript, mà nếu như một biến mà có giá trị bằngInfinitythì tức là biến đó có giá nằm quá phạm vi cho phép của javascript hoặc biến đó không xác định được (VD: 2 / 0).
+
+```js
+Infinity
+```
+
+```js
+keyword
+```
+
+```js
+Infinity
+```
+Chú ý: Viết hoa chữ cái đầu 'Indinity'.
+Chúng ta cùng xem ví dụ sau:
+
+```js
+var a = 9999;
+var data = '';
+while(a != Infinity){
+    a = a*a;
+    data += a + '
+';
+}
+document.getElementById('result').innerHTML = data;
+```
+
+```js
+var a = 9999;
+var data = '';
+while(a != Infinity){
+    a = a*a;
+    data += a + '
+';
+}
+document.getElementById('result').innerHTML = data;
+```
+Xem Kết Quả
+-Như các bạn đã thấy thì sau 7 vòng lặp, khi con số trở lên quá lớn và nằm ngoài phạm vi lưu trữ của javascript thì ngay lập tức biến số đã truyển về giá trịInfinity.
+
+```js
+Infinity
+```"
+69,Bài 26: Số và các hàm xử lý số trong javascript,isNaN(),"-Hàm này có tác dụng kiểm tra một thành phần có phải là biến hay không. Nó sẽ trả vềtruenếu thành phần đó không phải là số và ngược lại trả vềfalsenếu là số.
+
+```js
+true
+```
+
+```js
+false
+```
+Cú pháp:
+
+```js
+isNaN(variable);
+```
+
+```js
+isNaN(variable);
+```
+Trong đó:variablelà thành phần cần kiểm tra.
+
+```js
+variable
+```
+VD:
+
+```js
+var a = 5;
+isNaN(a); //false
+var b = 5 / 'm';
+isNaN(b) //true
+var c = 'toidicode.com';
+isNaN(c)//true
+```
+
+```js
+var a = 5;
+isNaN(a); //false
+var b = 5 / 'm';
+isNaN(b) //true
+var c = 'toidicode.com';
+isNaN(c)//true
+```"
+70,Bài 26: Số và các hàm xử lý số trong javascript,toExponential(),"-Hàm này trả về chuỗi, với chuỗi được tạo là dạng số mũ và làm tròn của số.
+Cú Pháp:
+
+```js
+number.toExponential(n);
+```
+
+```js
+number.toExponential(n);
+```
+Trong đó:
+
+```js
+number
+```
+
+```js
+n
+```
+
+```js
+.
+```
+VD:
+
+```js
+var x = 2.5965;
+x.toExponential(2);     // 2.60e+0
+x.toExponential(4);     // 2.5965e+0
+x.toExponential(5);     // 2.59650e+0
+```
+
+```js
+var x = 2.5965;
+x.toExponential(2);     // 2.60e+0
+x.toExponential(4);     // 2.5965e+0
+x.toExponential(5);     // 2.59650e+0
+```"
+71,Bài 26: Số và các hàm xử lý số trong javascript,toFixed(),"-Hàm này có tác dụng làm tròn số đến n phần tử sau dấu.
+
+```js
+.
+```
+Cú Pháp:
+
+```js
+number.toFixed(n);
+```
+
+```js
+number.toFixed(n);
+```
+Trong đó:
+
+```js
+number
+```
+
+```js
+n
+```
+
+```js
+.
+```
+VD:
+
+```js
+var a = 5.989;
+a.toFixed(2) //5.99
+a.toFixed(6) //5.989000
+```
+
+```js
+var a = 5.989;
+a.toFixed(2) //5.99
+a.toFixed(6) //5.989000
+```"
+72,Bài 26: Số và các hàm xử lý số trong javascript,toPrecision(),"-Hàm này có tác dụng chuyển đổi số về một số có độ dài xác định.
+Cú Pháp:
+
+```js
+number.toPrecision(n);
+```
+
+```js
+number.toPrecision(n);
+```
+Trong đó:
+
+```js
+number
+```
+
+```js
+n
+```
+VD:
+
+```js
+var x = 5.5656;
+x.toPrecision();        // 5.5656
+x.toPrecision(2);       // 5.6
+x.toPrecision(1);       // 6
+x.toPrecision(3);       // 5.57
+```
+
+```js
+var x = 5.5656;
+x.toPrecision();        // 5.5656
+x.toPrecision(2);       // 5.6
+x.toPrecision(1);       // 6
+x.toPrecision(3);       // 5.57
+```"
+73,Bài 26: Số và các hàm xử lý số trong javascript,valueOf(),"-Hàm này trả về một số của một số. Và nó sinh ra với một ý nghĩa là làm tốn bộ nhớ :D.
+Cú Pháp:
+
+```js
+number.valueOf();
+```
+
+```js
+number.valueOf();
+```
+VD:
+
+```js
+var a = 125;
+a.valueOf(); //125
+var b = 125 + 5;
+b.valueOf(); //130
+```
+
+```js
+var a = 125;
+a.valueOf(); //125
+var b = 125 + 5;
+b.valueOf(); //130
+```
+Qua ví dụ trên các bạn có cảm thấy khả năng vô dụn của nó không :D."
+74,Bài 26: Số và các hàm xử lý số trong javascript,Number(),"-Hàm này có tác dụng chuyển tất cả các kiểu dữ liệu sang kiểu số, nếu như có trường hợp nào không chuyển được thì nó sẽ thành NaN.
+Cú Pháp:
+
+```js
+Number(x);
+```
+
+```js
+Number(x);
+```
+Trong đó:  x là số mà chúng ta muốn chuyển đổi.
+VD:
+
+```js
+var a = true;
+Number(a) // 1
+var b = false;
+Number(b) // 0
+var c = new Date();
+Number(c) // 1491817008635
+var d = ""12"";
+Number(d) // 12
+var e = ""12 20"";
+Number(e) // NaN
+```
+
+```js
+var a = true;
+Number(a) // 1
+var b = false;
+Number(b) // 0
+var c = new Date();
+Number(c) // 1491817008635
+var d = ""12"";
+Number(d) // 12
+var e = ""12 20"";
+Number(e) // NaN
+```"
+75,Bài 26: Số và các hàm xử lý số trong javascript,parseInt(),"-Hàm này có tác dụng chuyển một chuỗi sang dạng số nguyên. Nhưng nếu chuỗi cần chuyển có ký tự đầu tiên là chuỗi thì nó sẽ không chuyển được, còn ký tự đầu tiên là số thì vẫn chuyển được.
+Cú Pháp:
+
+```js
+parseInt(x);
+```
+
+```js
+parseInt(x);
+```
+Trong đó x là thành phần mà các bạn muốn chuyển.
+VD:
+
+```js
+parseInt(true) //NaN
+parseInt(flase)//NaN
+parseFloat(""12.33"")//12
+parseInt(""15"")//15
+parseInt(""5 10 15 20"")//5
+parseInt('23 năm')//23
+parseInt('năm 2017')//NaN
+```
+
+```js
+parseInt(true) //NaN
+parseInt(flase)//NaN
+parseFloat(""12.33"")//12
+parseInt(""15"")//15
+parseInt(""5 10 15 20"")//5
+parseInt('23 năm')//23
+parseInt('năm 2017')//NaN
+```"
+76,Bài 26: Số và các hàm xử lý số trong javascript,parseFloat(),"-Hàm này có tác dụng chuyển đổi chuỗi về dạng số thực. Và nó cũng tương tự nhưparseInt()nếu chuỗi cần chuyển có ký tự đầu tiên là chuỗi thì nó sẽ không chuyển được, còn ký tự đầu tiên là số thì vẫn chuyển được.
+
+```js
+parseInt()
+```
+Cú Pháp:
+
+```js
+parseFloat(x);
+```
+
+```js
+parseFloat(x);
+```
+Trong đó x là thành phần mà các bạn muốn chuyển.
+VD:
+
+```js
+parseFloat(true) //NaN
+parseFloat(flase)//NaN
+parseFloat(""12.33"")//12.33
+parseFloat(""15"")//15
+parseFloat(""5 10 15 20"")//5
+parseFloat('23 năm')//23
+parseFloat('năm 2017')//NaN
+```
+
+```js
+parseFloat(true) //NaN
+parseFloat(flase)//NaN
+parseFloat(""12.33"")//12.33
+parseFloat(""15"")//15
+parseFloat(""5 10 15 20"")//5
+parseFloat('23 năm')//23
+parseFloat('năm 2017')//NaN
+```"
+77,Bài 26: Số và các hàm xử lý số trong javascript,"3, Lời Kết.",-Như vậy mình đã giới thiệu xong đến mọi người về number trong javascript rồi. Các bạn chú ý phần này để hạn chế được các sai sót trong quá trình xây dựng dự án.
+78,Bài 23: Time events trong javascript,Giới thiệu,"Bài này mình sẽ giới thiệu với mọi người các hàm xử lý sự kiện theo khoảng thời gian trong javscript. Cụ thể chúng ta sẽ tìm hiểu về bốn hàmsetTimeout() - clearTimeout(), setIntelvar() - clearInterval()."
+79,Bài 23: Time events trong javascript,setTimeout(),"-Hàm setTimeout() có tác dụng thực thi hành động sau khoảng thời gian nào đó, và nó chỉ thực hiện đúng một lần.
+Cú Pháp:
+
+```js
+setTimeout(function, milliseconds);
+```
+
+```js
+setTimeout(function, milliseconds);
+```
+Trong đó:
+
+```js
+function
+```
+
+```js
+milliseconds
+```
+
+```js
+function
+```
+VD: Mình sẽ viết hàmsetTimout()sao cho khi bạn load trang web được 3 giây thì nó sẽ alert ra thông báo chào.
+
+```js
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com time events</title>
+</head>
+<body>
+    <div>Đợi 3 giây để xem kết quả</div>
+    <script type=""text/javascript"">
+        setTimeout(function(){
+            alert('Chào mừng bạn đã đến với website toidicode.com');
+        },3000);
+    </script>
+</body>
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com time events</title>
+</head>
+<body>
+    <div>Đợi 3 giây để xem kết quả</div>
+    <script type=""text/javascript"">
+        setTimeout(function(){
+            alert('Chào mừng bạn đã đến với website toidicode.com');
+        },3000);
+    </script>
+</body>
+</html>
+```
+Xem Kết Quả"
+80,Bài 23: Time events trong javascript,clearTimeout(),"-Hàm này sẽ có tác dụng hủy hành động của hàm  setTimeout().
+Cú Pháp:
+
+```js
+clearTimeout(timeout);
+```
+
+```js
+clearTimeout(timeout);
+```
+Trong đó:timeoutlà biến mà hàm setTimeout() được gán.
+
+```js
+timeout
+```
+VD: Mình sẽ hủy hàm setTimout() ở VD trên.
+
+```js
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com time events</title>
+</head>
+<body>
+    <div>Đợi 3 giây để xem kết quả</div>
+    <script type=""text/javascript"">
+        var timeout = setTimeout(function(){
+            alert('Chào mừng bạn đã đến với website toidicode.com');
+        },3000);
+        clearTimeout(timeout);
+    </script>
+</body>
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com time events</title>
+</head>
+<body>
+    <div>Đợi 3 giây để xem kết quả</div>
+    <script type=""text/javascript"">
+        var timeout = setTimeout(function(){
+            alert('Chào mừng bạn đã đến với website toidicode.com');
+        },3000);
+        clearTimeout(timeout);
+    </script>
+</body>
+</html>
+```"
+81,Bài 23: Time events trong javascript,setIntervar(),"-Hàm này cũng có chức năng là thực hiện hành động sau khoản thời gian bao nhiêu giây, nhưng nó sẽ thực hiện lại nhiều lần như một vòng lặp, cứ sau mỗi khoảng thởi gian mà chúng ta xác định nó sẽ lại thực hiện lại.
+Cú Pháp:
+
+```js
+setInterval(function, milliseconds);
+```
+
+```js
+setInterval(function, milliseconds);
+```
+Trong đó:
+
+```js
+function
+```
+
+```js
+milliseconds
+```
+
+```js
+function
+```
+VD: Mình sẽ viết hàmsetInterval()sao cho cứ 1 giây thì lại in ra số mới (số mới = số cũ +1).
+
+```js
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com time events</title>
+</head>
+<body>
+    <div>Đợi 1 giây để xem kết quả</div>
+    <p id=""result"">0</p>
+    <script type=""text/javascript"">
+        var result = document.getElementById('result');
+        var i = 1;
+        setInterval(function(){
+            result.innerText = i;
+            i++; 
+        },1000);
+    </script>
+</body>
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com time events</title>
+</head>
+<body>
+    <div>Đợi 1 giây để xem kết quả</div>
+    <p id=""result"">0</p>
+    <script type=""text/javascript"">
+        var result = document.getElementById('result');
+        var i = 1;
+        setInterval(function(){
+            result.innerText = i;
+            i++; 
+        },1000);
+    </script>
+</body>
+</html>
+```
+Xem Kết Quả"
+82,Bài 23: Time events trong javascript,clearIntelval(),"-Hàm này cũng giống như hàmclearTimeout()là có tác dụng hủy hành động của hàmsetInterval().
+
+```js
+clearTimeout()
+```
+
+```js
+setInterval()
+```
+Cú Pháp:
+
+```js
+clearInterval(interval);
+```
+
+```js
+clearInterval(interval);
+```
+Trong đó:intervallà tên biến chứa hàmsetIntervar()mà ta muốn hủy.
+
+```js
+interval
+```
+
+```js
+setIntervar()
+```
+VD: Mình sẽ hủy hàm setInterval() ở trên.
+
+```js
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com time events</title>
+</head>
+<body>
+    <div>Đợi 1 giây để xem kết quả</div>
+    <p id=""result"">0</p>
+    <script type=""text/javascript"">
+        var result = document.getElementById('result');
+        var i = 1;
+        var interval = setInterval(function(){
+            result.innerText = i;
+            i++; 
+        },1000);
+        clearInterval(interval);
+    </script>
+</body>
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com time events</title>
+</head>
+<body>
+    <div>Đợi 1 giây để xem kết quả</div>
+    <p id=""result"">0</p>
+    <script type=""text/javascript"">
+        var result = document.getElementById('result');
+        var i = 1;
+        var interval = setInterval(function(){
+            result.innerText = i;
+            i++; 
+        },1000);
+        clearInterval(interval);
+    </script>
+</body>
+</html>
+```"
+83,Bài 23: Time events trong javascript,"3, Lời kết.",-Qua phần này các bạn cần chú ý về sự khác nhau giữa 2 hàmsetInterVal()vàsetTimeout()là gì? Và nguyên tắc hoạt động của nó. Bài tiếp theo chúng ta sẽ tìm hiểu vềđối tượng date trong javascript.
+84,Bài 30: Use strict mode trong javascript,Giới thiệu,"Nếu như bạn là người hay làm việc trên các opensource javascript thì chắc chắn sẽ chẳng lạ gì với dòng này nữa, nhưng bạn đã hiểu về nó chưa? Nó có tác dụng gì? Hãy mình tìm hiểu nhé!"
+85,Bài 30: Use strict mode trong javascript,"1, Use strict là gì?","-Use strictdịch sang tiếng việt thì có nghĩa là sử dụng sự nghiêm ngặt. Khi một đoạn lệnh được khai báouse strictthì tất cả các dòng code ở phía dưới dòng khai báo use strict sẽ được quản lý một cách nghiêm ngặt hơn về cú pháp.
+
+```js
+Use strict
+```
+
+```js
+use strict
+```
+- Khi sử dụnguse strictmode thì những dòng code trước đây bạn có thể chạy bình thường có thể sẽ không chạy được nữa.
+
+```js
+use strict
+```
+VD:
+-Không khai báo sử dụng chế độstrict mode.
+
+```js
+for (i = 0; i <= 10; i++) {
+        document.write(i  + '<br />');
+    }
+```
+
+```js
+for (i = 0; i <= 10; i++) {
+        document.write(i  + '<br />');
+    }
+```
+-Đoạn code trên sẽ vẫn chạy và hoạt động bình thường.Nhưng, bây giờ mình sẽ khai báo sử dụngstrict modexem có chạy được không nhé!
+
+```js
+""use strict""
+for (i = 0; i <= 10; i++) {
+    document.write(i  + '<br />');
+}
+```
+
+```js
+""use strict""
+for (i = 0; i <= 10; i++) {
+    document.write(i  + '<br />');
+}
+```
+-Ngay lập tức các bạn sẽ nhận được dòng log báo lỗi như sau:
+
+```js
+index.html:12 Uncaught ReferenceError: i is not defined at index.html:12
+```
+
+```js
+index.html:12 Uncaught ReferenceError: i is not defined at index.html:12
+```"
+86,Bài 30: Use strict mode trong javascript,"2, Các nghiêm ngặt của strict mode.",-Khi sử dụng strict mode bạn sẽ không thể làm được những điều sau nữa:
+87,Bài 30: Use strict mode trong javascript,Gán giá trị cho biến chưa được khai báo.,"-Trong chế độ thường bạn có thể làm như này để gán giá trị cho một biến chưa khai báo:
+
+```js
+i = 'học lập trình online toidicode.com';
+alert(i);
+```
+
+```js
+i = 'học lập trình online toidicode.com';
+alert(i);
+```
+-Nhưngstrict modethì không thể:
+
+```js
+""use strict""
+i = 'học lập trình online toidicode.com';
+alert(i);
+```
+
+```js
+""use strict""
+i = 'học lập trình online toidicode.com';
+alert(i);
+```
+-Để khắc phục được điều trên thì bạn cần phải khai báo biến với từ khóavarhoặclet.
+
+```js
+var
+```
+
+```js
+let
+```
+
+```js
+""use strict""
+var i = 'học lập trình online toidicode.com';
+// or
+let i = 'học lập trình online toidicode.com';
+alert(i);
+```
+
+```js
+""use strict""
+var i = 'học lập trình online toidicode.com';
+// or
+let i = 'học lập trình online toidicode.com';
+alert(i);
+```"
+88,Bài 30: Use strict mode trong javascript,Báo lỗi khi sử dụng delete.,"- Nếu như ở chế độ thường thì bạn có thể xóa bất kỳ một thứ gì bằng từ khóa delete, mặc dù xóa được hay không nó cũng không báo lỗi. Nhưng khi sử dụng chế độstrict modethì những thứ không thể xóa được nó sẽ báo lỗi ngay.
+VD:
+-Chế độ thường:
+
+```js
+function getName (name)
+{
+    alert(name)
+}
+delete getName;
+//không có gì xảy ra mặc dù delete không xóa
+//được hàm
+```
+
+```js
+function getName (name)
+{
+    alert(name)
+}
+delete getName;
+//không có gì xảy ra mặc dù delete không xóa
+//được hàm
+```
+-Chế độ strict mode:
+
+```js
+""use strict""
+function getName (name)
+{
+    alert(name)
+}
+delete getName;
+//Uncaught SyntaxError: Delete of an unqualified 
+//identifier in strict mode.
+```
+
+```js
+""use strict""
+function getName (name)
+{
+    alert(name)
+}
+delete getName;
+//Uncaught SyntaxError: Delete of an unqualified 
+//identifier in strict mode.
+```"
+89,Bài 30: Use strict mode trong javascript,Các tham số của hàm không được trùng nhau,"-Nếu như chế độ thường bạn có thể khai báo các tham số truyền vào hàm được phép trùng nhau thì giờ đây khi sử dụng chế độ strict mode thì nó sẽ báo lỗi ngay lập tức.
+VD:
+-Chế độ thường:
+
+```js
+function getName (name, name, age)
+{
+    //code
+}
+//chạy bình thường.
+```
+
+```js
+function getName (name, name, age)
+{
+    //code
+}
+//chạy bình thường.
+```
+-Chế độ strict mode:
+
+```js
+""use strict""
+function getName (name, name, age)
+{
+    //code
+}
+//Uncaught SyntaxError: Duplicate parameter name not allowed in this context
+```
+
+```js
+""use strict""
+function getName (name, name, age)
+{
+    //code
+}
+//Uncaught SyntaxError: Duplicate parameter name not allowed in this context
+```"
+90,Bài 30: Use strict mode trong javascript,Không cho phép khai báo biến dưới dạng hệ nhị phân.,"-Các số khi khai báo dưới dạng như phân hay nói cách khác thì có tiền tố (prefix)0đằng trước thì sẽ không được chấp nhận
+
+```js
+0
+```
+VD:
+-Chế độ thường:
+
+```js
+var num = 01010;
+```
+
+```js
+var num = 01010;
+```
+-Chế độ strict mode:
+
+```js
+var num = 01010;
+//Uncaught SyntaxError: Octal literals are not allowed in strict mode.
+```
+
+```js
+var num = 01010;
+//Uncaught SyntaxError: Octal literals are not allowed in strict mode.
+```"
+91,Bài 30: Use strict mode trong javascript,Không được phép ghi đè lên thuộc tính chỉ được phép đọc.,"VD:
+-Chế độ thường:
+
+```js
+var obj = {};
+Object.defineProperty(obj, 'ver', {value: 1, writable: false});
+obj.ver = 10;
+//không có gì xảy ra
+```
+
+```js
+var obj = {};
+Object.defineProperty(obj, 'ver', {value: 1, writable: false});
+obj.ver = 10;
+//không có gì xảy ra
+```
+-Chế độ strict mode:
+
+```js
+""use strict""
+var obj = {};
+Object.defineProperty(obj, 'ver', {value: 1, writable: false});
+obj.ver = 10;
+```
+
+```js
+""use strict""
+var obj = {};
+Object.defineProperty(obj, 'ver', {value: 1, writable: false});
+obj.ver = 10;
+```"
+92,Bài 30: Use strict mode trong javascript,Không sử dụng được with,"VD:
+-Chế độ thường:
+
+```js
+var bar = 1;
+var foo = 2;
+with (bar){
+    console.log(foo);
+}
+//2
+```
+
+```js
+var bar = 1;
+var foo = 2;
+with (bar){
+    console.log(foo);
+}
+//2
+```
+-Chế độ strict mode:
+
+```js
+""use strict""
+var bar = 1;
+var foo = 2;
+with (bar){
+    console.log(foo);
+}
+//Uncaught SyntaxError: Strict mode code may not include a with statement
+```
+
+```js
+""use strict""
+var bar = 1;
+var foo = 2;
+with (bar){
+    console.log(foo);
+}
+//Uncaught SyntaxError: Strict mode code may not include a with statement
+```"
+93,Bài 30: Use strict mode trong javascript,Không cho phép khai báo biến trong eval,"-Vì lý do bảo mật nên khi sử dụng strict mode thì bạn sẽ không thể nào có thể khai báo được biến bên trong nó nữa.
+
+```js
+""use strict""
+eval (""var x = 4"");
+alert(x);
+//Uncaught ReferenceError: x is not defined
+```
+
+```js
+""use strict""
+eval (""var x = 4"");
+alert(x);
+//Uncaught ReferenceError: x is not defined
+```"
+94,Bài 30: Use strict mode trong javascript,Không chấp nhận khai báo các keyword,"-Ở chế độ strict mode thì các bạn sẽ không sử dụng được các từ khóa sau để khai báo làm tên biến, hằng,...
+VD:
+-Chế độ thường:
+
+```js
+var implements = 'Học Lập Trình Online tại Toidicode.com';
+alert(implements);
+//chạy bình thường.
+```
+
+```js
+var implements = 'Học Lập Trình Online tại Toidicode.com';
+alert(implements);
+//chạy bình thường.
+```
+-Chế độ strict mode:
+
+```js
+""use strict""
+var implements = 'Học Lập Trình Online tại Toidicode.com';
+alert(implements);
+//Uncaught SyntaxError: Unexpected strict mode reserved word
+```
+
+```js
+""use strict""
+var implements = 'Học Lập Trình Online tại Toidicode.com';
+alert(implements);
+//Uncaught SyntaxError: Unexpected strict mode reserved word
+```"
+95,Bài 30: Use strict mode trong javascript,"3, Lời kết.","-Đọc xong phần này mình hy vọng mọi người cũng có thể hiểu hơn về strict mode trong javascript và với quan điểm của cá nhân mình thì mình khuyên mọi người lên sử dụngstrict modetrong khi code.
+Tham khảo: w3schools.com"
+96,Bài 4: Câu lệnh điều kiện trong javascript,Giới thiệu,"Câu lệnh if-else trong javascript cũng giống như các ngôn ngữ khác, nếu điều kiện của mệnh đề đúng thì code phía trong sẽ được thực hiện, và ngược lại nếu sai thì nó sẽ không chạy code trong mệnh đề."
+97,Bài 4: Câu lệnh điều kiện trong javascript,If,"Cú Pháp:
+
+```js
+if (condition) {
+	//nếu điều kiện đúng thì thực hiện
+}
+```
+
+```js
+if (condition) {
+	//nếu điều kiện đúng thì thực hiện
+}
+```
+Trong đó:conditionlà một hoặc nhiều mệnh đề điều kiện có giá trị trả vềTRUE/FALSE.
+VD:
+
+```js
+var a = 5;
+var b = 6;
+if (a != b) {
+	//Vì a khác b nên code phía trong if sẽ được chạy
+	document.write('a khác b');
+}
+```
+
+```js
+var a = 5;
+var b = 6;
+if (a != b) {
+	//Vì a khác b nên code phía trong if sẽ được chạy
+	document.write('a khác b');
+}
+```
+Xem Kết Quả"
+98,Bài 4: Câu lệnh điều kiện trong javascript,Câu lệnh else.,"-Như ở phía trên mình có nói câu lệnhifthực hiện khi mệnh đề đi kèm nó đúng, và mệnh đề else sẽ thực hiện khi điều kiện của mệnh đề if không thỏa mãn.
+
+```js
+if
+```
+Cú Pháp:
+
+```js
+if (true) {
+	// nếu đúng thì chạy code trong này
+} else {
+	//nếu sai thì chạy code trong này
+}
+```
+
+```js
+if (true) {
+	// nếu đúng thì chạy code trong này
+} else {
+	//nếu sai thì chạy code trong này
+}
+```
+VD:
+
+```js
+var a = 5;
+var b = 5;
+if (a != b) {
+	document.write('a khác b');
+}
+else{
+	//Vì a bằng b nên code phía trong else sẽ được chạy
+	document.write('a bằng b');
+}
+```
+
+```js
+var a = 5;
+var b = 5;
+if (a != b) {
+	document.write('a khác b');
+}
+else{
+	//Vì a bằng b nên code phía trong else sẽ được chạy
+	document.write('a bằng b');
+}
+```
+Xem Kết Quả"
+99,Bài 4: Câu lệnh điều kiện trong javascript,Kết hợp else if.,"-Có đôi khi bạn muốn xử lý đa nhánh như làm bài toán phân loại học lực thì lúc này bạn lên dùng else if để xử lý các điều kiện khác với if.
+VD:
+
+```js
+var diem = 5;
+
+if (diem < 4) {
+    document.write('Học Lại');
+} else if (diem >= 4 && diem < 5.5) {
+    document.write(' Loại D');
+} else if (diem >= 5.5 && diem < 7) {
+    document.write('Loai C');
+} else if (diem >= 7 && diem < 8.5) {
+    document.write('Loại B');
+} else if (diem >= 8.5 && diem <= 10) {
+    document.write('Loai A');
+} else {
+    document.write('Điểm không hợp lệ');
+}
+```
+
+```js
+var diem = 5;
+
+if (diem < 4) {
+    document.write('Học Lại');
+} else if (diem >= 4 && diem < 5.5) {
+    document.write(' Loại D');
+} else if (diem >= 5.5 && diem < 7) {
+    document.write('Loai C');
+} else if (diem >= 7 && diem < 8.5) {
+    document.write('Loại B');
+} else if (diem >= 8.5 && diem <= 10) {
+    document.write('Loai A');
+} else {
+    document.write('Điểm không hợp lệ');
+}
+```
+Xem Kết Quả"
+100,Bài 4: Câu lệnh điều kiện trong javascript,if-else lồng nhau.,"-Cũng giống như bài toán ở phần 3 thì chúng ta có thể sử dụng if-else lồng nhau được.
+VD:
+
+```js
+var diem = 5;
+
+if (diem < 4) {
+    document.write('Học Lại');
+} else {
+    if (diem >= 4 && diem < 5.5) {
+        document.write(' Loại D');
+    } else {
+        if (diem >= 5.5 && diem < 7) {
+            document.write('Loai C');
+        } else {
+            if (diem >= 7 && diem < 8.5) {
+                document.write('Loại B');
+            } else {
+                if (diem >= 8.5 && diem <= 10) {
+                    document.write('Loai A');
+                } else {
+                    document.write('Điểm không hợp lệ');
+                }
+            }
+        }
+    }
+}
+```
+
+```js
+var diem = 5;
+
+if (diem < 4) {
+    document.write('Học Lại');
+} else {
+    if (diem >= 4 && diem < 5.5) {
+        document.write(' Loại D');
+    } else {
+        if (diem >= 5.5 && diem < 7) {
+            document.write('Loai C');
+        } else {
+            if (diem >= 7 && diem < 8.5) {
+                document.write('Loại B');
+            } else {
+                if (diem >= 8.5 && diem <= 10) {
+                    document.write('Loai A');
+                } else {
+                    document.write('Điểm không hợp lệ');
+                }
+            }
+        }
+    }
+}
+```
+Xem Kết Quả"
+101,Bài 4: Câu lệnh điều kiện trong javascript,if-else rút gọn.,"-Chúng ta cũng có thể rút gọn câu lệnh if-else với cú pháp như sau:
+
+```js
+(dieukien) ? (đúng) : (sai)
+```
+
+```js
+(dieukien) ? (đúng) : (sai)
+```
+Trong đó: Điều kiện là các biểu thức, mệnh đề trả về giá trị true false.
+VD:
+
+```js
+var diem = 5;
+diem == 5 ? document.write('Điểm Bằng 5') : document.write('Diểm khác 5');
+```
+
+```js
+var diem = 5;
+diem == 5 ? document.write('Điểm Bằng 5') : document.write('Diểm khác 5');
+```
+Xem Kết Quả"
+102,Bài 4: Câu lệnh điều kiện trong javascript,"2, Switch case.","-Đây là một loại câu lệnh rẽ nhánh( hay còn gọi là câu lệnh điều kiện) có đặc điểm là để giải quyết các bài toán mà có các nhánh là các điều kiện cố định.
+Cú Pháp:
+
+```js
+switch (condition) {
+    case value1:
+        //code
+        break;
+    case value2:
+        //code
+        break;
+    default:
+        //code
+        break;
+}
+```
+
+```js
+switch (condition) {
+    case value1:
+        //code
+        break;
+    case value2:
+        //code
+        break;
+    default:
+        //code
+        break;
+}
+```
+Trong đó:
+VD: Đọc số trong phạm vi từ 0 đến 5.
+
+```js
+var so = 5;
+
+switch (so) {
+    case 0:
+        document.write('không');
+        break;
+    case 1:
+        document.write('Một');
+        break;
+    case 2:
+        document.write('Hai');
+        break;
+    case 3:
+        document.write('Ba');
+        break;
+    case 4:
+        document.write('Bốn');
+        break;
+    case 5:
+        document.write('Năm');
+        break;
+    default:
+        document.write('Không thỏa mãn');
+        break;
+}
+```
+
+```js
+var so = 5;
+
+switch (so) {
+    case 0:
+        document.write('không');
+        break;
+    case 1:
+        document.write('Một');
+        break;
+    case 2:
+        document.write('Hai');
+        break;
+    case 3:
+        document.write('Ba');
+        break;
+    case 4:
+        document.write('Bốn');
+        break;
+    case 5:
+        document.write('Năm');
+        break;
+    default:
+        document.write('Không thỏa mãn');
+        break;
+}
+```
+Xem Kết Quả"
+103,Bài 4: Câu lệnh điều kiện trong javascript,"3, Lời kết.","-Như vậy qua phần này mình đã giới thiệu với mọi người về if-else, các dạng và cách sử dụng của nó rồi, bài tiếp theo chúng ta sẽ tìm hiểu vềvòng lặp trong Javascriptxem có gì không nhé."
+104,Bài 10: DOM Elements trong javascript,Giới thiệu,Tiếp tục với series bài này chúng ta sẽ đi tìm hiểu và tác động javascript đến trực tiếp các thẻ HTML trong chương trình.
+105,Bài 10: DOM Elements trong javascript,"1, DOM là gì?",-DOM là viết tắt của chữ Document Object Model (dịch ra tiếng việt thì không được hay cho lắm!). Khi mà chúng ta làm việt với DOM thì chúng ta có thể tác động đến các thẻ HTML và các thành phần của nó. Khá hay đúng không nào?
+106,Bài 10: DOM Elements trong javascript,"2, DOM elements trong javascript.","-Trong bài này chúng ta sẽ chỉ tìm hiểu cách truy xuất đến các thẻ HTML thông qua class,id và tag, còn các cách thay đổi nội dung chúng ta sẽ tìm hiểu trong các phần sau nhé!"
+107,Bài 10: DOM Elements trong javascript,Tìm thẻ HTML thông qua ID,"-Để tìm kiếm và truy xuất thông tin của một thẻ HTML theo ID của nó thì chúng ta sử dụng cú pháp:
+
+```js
+document.getElementById('idName');
+```
+
+```js
+document.getElementById('idName');
+```
+Trong đó:idNamelà id của thẻ HTML mà chúng ta cần truy xuất tới.
+VD: Truy xuất và thông báo ra nội dung của thẻ HTML có id làtoidicode.
+
+```js
+toidicode
+```
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+<div id=""hello"">Chào mừng các bạn đến với website học lập trình online</div>
+<div id=""toidicode"">TOIDICODE.COM</div>
+
+<script type=""text/javascript"">
+    var element = document.getElementById('toidicode');
+    var content = element.innerHTML;
+    alert(content);
+</script>
+</body>
+
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+<div id=""hello"">Chào mừng các bạn đến với website học lập trình online</div>
+<div id=""toidicode"">TOIDICODE.COM</div>
+
+<script type=""text/javascript"">
+    var element = document.getElementById('toidicode');
+    var content = element.innerHTML;
+    alert(content);
+</script>
+</body>
+
+</html>
+```
+Xem Kết Quả"
+108,Bài 10: DOM Elements trong javascript,Tìm thẻ HTML thông qua class,"-Để tìm thẻ html thông qua class của nó các bạn sử dụng cú pháp như sau:
+
+```js
+document.getElementsByClassName('className');
+```
+
+```js
+document.getElementsByClassName('className');
+```
+Trong đó:classNamelà tên class của thẻ HTML các bạn muốn tìm.
+VD: Tìm và lấy ra nội dung của thẻ HTML có class name làhello.
+
+```js
+hello
+```
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+<div class=""hello"">Chào mừng các bạn đến với website học lập trình online</div>
+<div class=""toidicode"">TOIDICODE.COM</div>
+
+<script type=""text/javascript"">
+    var element = document.getElementsByClassName('hello');
+    //Lấy ra nội dung của thẻ đầu tiên
+    var content = element[0].innerHTML;
+    alert(content);
+</script>
+</body>
+
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+<div class=""hello"">Chào mừng các bạn đến với website học lập trình online</div>
+<div class=""toidicode"">TOIDICODE.COM</div>
+
+<script type=""text/javascript"">
+    var element = document.getElementsByClassName('hello');
+    //Lấy ra nội dung của thẻ đầu tiên
+    var content = element[0].innerHTML;
+    alert(content);
+</script>
+</body>
+
+</html>
+```
+Xem Kết Quả
+Tìm thẻ HTML thông qua tagName.
+- Để tìm kiếm thẻ HTML có tagName theo ý bạn trong javascript thì các bạn sử dụng cú pháp:
+
+```js
+document.getElementsByTagName('tagName');
+```
+
+```js
+document.getElementsByTagName('tagName');
+```
+Trong đó:tagNamelà tag mà các bạn muốn tìm kiếm và truy xuất nó.
+VD:
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+<div class=""hello"">Chào mừng các bạn đến với website học lập trình online</div>
+<div class=""toidicode"">TOIDICODE.COM</div>
+
+<script type=""text/javascript"">
+    var element = document.getElementsByTagName('div');
+    //Lấy ra nội dung của thẻ đầu tiên
+    var content = element[0].innerHTML;
+    alert(content);
+</script>
+</body>
+
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+<div class=""hello"">Chào mừng các bạn đến với website học lập trình online</div>
+<div class=""toidicode"">TOIDICODE.COM</div>
+
+<script type=""text/javascript"">
+    var element = document.getElementsByTagName('div');
+    //Lấy ra nội dung của thẻ đầu tiên
+    var content = element[0].innerHTML;
+    alert(content);
+</script>
+</body>
+
+</html>
+```
+Xem Kết Quả"
+109,Bài 10: DOM Elements trong javascript,Chú ý,"-Đối với tìm thẻ HTML theo class và tag name thì nó sẽ trả về mảng đối tượng với số lượng phần tử bằng với số lượng các thẻ html thảo mãn điều kiện.
+VD:
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+<div id=""hello"">Chào mừng các bạn đến với website học lập trình online </div>
+<div class=""toidicode"">TOIDICODE.COM</div>
+<p class=""toidicode"">Bacsic to advance</p>
+<script type=""text/javascript"">
+    //chọn tất cả các phần tử có class là toidicode
+    var element = document.getElementsByClassName('toidicode');
+    //lấy ra số lượng phần tử tìm đc
+    var length = element.length;
+    alert('Số phần tử có class là toidicode = '+length);
+</script>
+</body>
+
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+<div id=""hello"">Chào mừng các bạn đến với website học lập trình online </div>
+<div class=""toidicode"">TOIDICODE.COM</div>
+<p class=""toidicode"">Bacsic to advance</p>
+<script type=""text/javascript"">
+    //chọn tất cả các phần tử có class là toidicode
+    var element = document.getElementsByClassName('toidicode');
+    //lấy ra số lượng phần tử tìm đc
+    var length = element.length;
+    alert('Số phần tử có class là toidicode = '+length);
+</script>
+</body>
+
+</html>
+```
+Xem Kết Quả
+-Dựa vào đó các bạn có thể duyệt mảng và truy xuất đến từng phần tử trong mảng."
+110,Bài 10: DOM Elements trong javascript,Tìm kiếm thành phần con trong thành phần.,"-Để truy xuất đến các thành phần con trong thành phần chúng ta có 2 cách:
+Cách 1: Sử dụng lồng giữa cácgetElement.
+
+```js
+getElement
+```
+VD:
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+<div id=""hello"">Chào mừng các bạn đến với website học lập trình online</div>
+<div class=""toidicode"">TOIDICODE.COM <p class=""toidicodes"">Bacsic to advance</p></div>
+
+<script type=""text/javascript"">
+    var element = document.getElementsByClassName('toidicode');
+    var element1 = element[0].getElementsByClassName('toidicodes');
+    alert(element1[0].innerText);
+</script>
+</body>
+
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+<div id=""hello"">Chào mừng các bạn đến với website học lập trình online</div>
+<div class=""toidicode"">TOIDICODE.COM <p class=""toidicodes"">Bacsic to advance</p></div>
+
+<script type=""text/javascript"">
+    var element = document.getElementsByClassName('toidicode');
+    var element1 = element[0].getElementsByClassName('toidicodes');
+    alert(element1[0].innerText);
+</script>
+</body>
+
+</html>
+```
+Xem Kết Quả
+Cách 2: Sử dụngquerySelectorAll().
+
+```js
+querySelectorAll()
+```
+Cú Pháp:
+
+```js
+document.querySelectorAll('select')
+```
+
+```js
+document.querySelectorAll('select')
+```
+Trong đó: select các bạn sử dụng cú pháp như css.
+VD:
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+<div id=""hello"">Chào mừng các bạn đến với website học lập trình online </div>
+<div class=""toidicode"">TOIDICODE.COM
+    <p class=""toidicodes"">Bacsic to advance</p>
+</div>
+
+<script type=""text/javascript"">
+    //
+    var element = document.querySelectorAll('div#hello');
+    //lấy ra nội dung của thẻ.
+    var content = element[0].innerText;
+    alert(content);
+</script>
+</body>
+
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+<div id=""hello"">Chào mừng các bạn đến với website học lập trình online </div>
+<div class=""toidicode"">TOIDICODE.COM
+    <p class=""toidicodes"">Bacsic to advance</p>
+</div>
+
+<script type=""text/javascript"">
+    //
+    var element = document.querySelectorAll('div#hello');
+    //lấy ra nội dung của thẻ.
+    var content = element[0].innerText;
+    alert(content);
+</script>
+</body>
+
+</html>
+```
+Xem Kết Quả"
+111,Bài 10: DOM Elements trong javascript,"3, Lời kết.","-Qua phần trên mình đã giới thiệu xong đến mọi người cơ bản vềDOM elements trong javascript rồi, phía trên mình có sử dụng hàminnerHTMLmà chưa giải thích, các bạn tạm thời cứ dùng như thế đã phần sau mình sẽ giải thích về nó.
+
+```js
+innerHTML
+```"
+112,Bài 11: DOM HTML trong javascript,Giới thiệu,Sau khi đã tìm kiếm được các thẻ HTML trong javascript thì giờ chúng ta sẽ cùng đi tìm hiểu các hàm tác động vào nó. Cụ thể bài này chúng ta sẽ tìm hiểu các hàm lấy ra giá trị của các thẻ HTML đó.
+113,Bài 11: DOM HTML trong javascript,Lấy nội dung,"-Để lấy nội dung bên trong thẻ HTMl chúng ta sử dụng cú pháp:
+
+```js
+element.innerHTML
+```
+
+```js
+element.innerHTML
+```
+-Trong đó:elementlà các đối tượng HTML (được gọi bằng các phương thức getElement...).
+VD:
+
+```js
+//lấy nội dung của thẻ có id = hello
+var content = document.getElementById('hello').innerHTML;
+//in ra nội dung của thẻ đó.
+alert(content);
+```
+
+```js
+//lấy nội dung của thẻ có id = hello
+var content = document.getElementById('hello').innerHTML;
+//in ra nội dung của thẻ đó.
+alert(content);
+```
+Xem Kết Quả"
+114,Bài 11: DOM HTML trong javascript,Thay đổi nội dung,"-Để thay đổi nội dung cho thẻ HTML đó thì các bạn chỉ sử dụng cú pháp:
+
+```js
+element.innerHTML = 'Giá trị mới';
+```
+
+```js
+element.innerHTML = 'Giá trị mới';
+```
+-Trong đó:elementlà các đối tượng HTML (được gọi bằng các phương thức getElement...).
+VD:
+
+```js
+//thay đổi nội dung của thẻ có id = hello
+document.getElementById('hello').innerHTML = 'Học javascript cơ bản';
+```
+
+```js
+//thay đổi nội dung của thẻ có id = hello
+document.getElementById('hello').innerHTML = 'Học javascript cơ bản';
+```
+Xem Kết Quả"
+115,Bài 11: DOM HTML trong javascript,Lấy và thay đổi nội dung dưới dạng văn bản.,"-Nếu như bạn muốn lấy nội dung text, hay thay đổi nội dung dưới dạng dữ liệu thô thì các bạn chỉ cần thay thuộc tínhinnerHTMLthànhinnerText.
+
+```js
+innerHTML
+```
+
+```js
+innerText
+```
+VD: Lấy nội dung text của thẻ HTML.
+
+```js
+//lấy nội dung của thẻ có id = hello
+var content = document.getElementById('hello').innerText;
+//in ra nội dung của thẻ đó.
+alert(content);
+```
+
+```js
+//lấy nội dung của thẻ có id = hello
+var content = document.getElementById('hello').innerText;
+//in ra nội dung của thẻ đó.
+alert(content);
+```
+Xem Kết Quả
+VD: Thay đổi nội dung của một thẻ HTML dưới dạng thô.
+
+```js
+//thay đổi nội dung của thẻ có id = hello
+var content = document.getElementById('hello').innerText = '<b>Học javascript cơ bản</b>';
+```
+
+```js
+//thay đổi nội dung của thẻ có id = hello
+var content = document.getElementById('hello').innerText = '<b>Học javascript cơ bản</b>';
+```
+Xem Kết Quả"
+116,Bài 11: DOM HTML trong javascript,Tạo ra các attribute cho thẻ HTML,"-Để tạo ra các attribute có các thẻ HTML chúng ta sử dụng cú pháp:
+
+```js
+element.setAttribute('attrName','attrValue');
+```
+
+```js
+element.setAttribute('attrName','attrValue');
+```
+Trong đó:
+VD:tạo ra attribute có tên là data-id và có giá trị = 5.
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+    <div id=""hello"" data-id='javascript'>  Chào mừng các bạn đến với <a href=""http://.com"">website học lập trình online</a> </div>
+    <div class=""toidicode"">TOIDICODE.COM 
+    </div>
+    
+    <script type=""text/javascript"">
+        //tạo ra data-id cho thẻ có id = hello
+        document.getElementById('hello').setAttribute('data-id','5');
+    </script>
+</body>
+
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+    <div id=""hello"" data-id='javascript'>  Chào mừng các bạn đến với <a href=""http://.com"">website học lập trình online</a> </div>
+    <div class=""toidicode"">TOIDICODE.COM 
+    </div>
+    
+    <script type=""text/javascript"">
+        //tạo ra data-id cho thẻ có id = hello
+        document.getElementById('hello').setAttribute('data-id','5');
+    </script>
+</body>
+
+</html>
+```
+Xem Kết Quả"
+117,Bài 11: DOM HTML trong javascript,Lấy ra giá trị của các attribute,"-Để lấy ra giá trị của các attribute trong thẻ HTML chúng ta sử dụng cú pháp:
+
+```js
+element.getAttribute('AttrName');
+```
+
+```js
+element.getAttribute('AttrName');
+```
+Trong đó:
+VD: lấy ra giá trị data-id của thẻ HTML có id= hello.
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+    <div id=""hello"" data-id='javascript'>  Chào mừng các bạn đến với <a href=""http://.com"">website học lập trình online</a> </div>
+    <div class=""toidicode"">TOIDICODE.COM 
+    </div>
+    
+    <script type=""text/javascript"">
+        //lấy nội dung data-id của thẻ có id = hello
+        var content = document.getElementById('hello').getAttribute('data-id');
+        //in ra thông nội dung lấy được.
+        alert(content);
+    </script>
+</body>
+
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+    <div id=""hello"" data-id='javascript'>  Chào mừng các bạn đến với <a href=""http://.com"">website học lập trình online</a> </div>
+    <div class=""toidicode"">TOIDICODE.COM 
+    </div>
+    
+    <script type=""text/javascript"">
+        //lấy nội dung data-id của thẻ có id = hello
+        var content = document.getElementById('hello').getAttribute('data-id');
+        //in ra thông nội dung lấy được.
+        alert(content);
+    </script>
+</body>
+
+</html>
+```
+Xem Kết Quả"
+118,Bài 11: DOM HTML trong javascript,"3, Lời Kết.","-Như vậy mình đã giới thiệu xong đến mọi người cơ bản vềDOM HTML trong javascript rồi, còn các vấn đề liên quan đến series thực hành mình sẽ nói sau.
+Chúc các bạn học tốt!"
+119,Bài 7: Hàm trong javascript,Giới thiệu,"Ở cách phần trước chúng ta đã được tìm hiểu qua các khái niệm và cách sử dụng cáccâu lệnh rẽ nhánh, vàvòng lặpBài hôm nay chúng ta sẽ tiếp tục đi tìm hiểu khái niệm hàm và cách sử dụng hàm trong javascript."
+120,Bài 7: Hàm trong javascript,"1, Hàm là gì?","-Hàm là một hoặc nhiều đoạn mã được viết ra để thực thi một hoặc nhiều hành động khi gọi nó, hàm có khả năng gọi đi gọi lại được. VD như thay vì tính tích của 2 số nhất định chúng ta có thể sử dụng hàm để tính tích của 2 số bất kỳ mà chúng ta muốn."
+121,Bài 7: Hàm trong javascript,"2, Cấu trúc của hàm.","-Hàm trong javascript khai báo cũng giống như trong javascript, là bắt đầu phải có từ khóafunctionvới các dạng như sau:
+
+```js
+function
+```"
+122,Bài 7: Hàm trong javascript,Hàm cơ bản,"-Đây là dạng cơ bản nhất của hàm trong javascript, có cú pháp như sau:
+
+```js
+function funName() {
+	//code
+}
+```
+
+```js
+function funName() {
+	//code
+}
+```
+Trong đó:funName là tên của hàm mà các bạn muốn đặt còn function là từ khóa bắt buộc.
+VD: Tạo hàm lấy tên website.
+
+```js
+function getWebsite() {
+    document.write('http://toidicode.com');
+}
+```
+
+```js
+function getWebsite() {
+    document.write('http://toidicode.com');
+}
+```"
+123,Bài 7: Hàm trong javascript,Hàm có tham số truyền vào,"-Đây là một dạng hàm rất hay được sử dụng trong dự án.
+Cú pháp:
+
+```js
+function funName(param_1, ..., pram_n) {
+	//code
+}
+```
+
+```js
+function funName(param_1, ..., pram_n) {
+	//code
+}
+```
+Trong đó:
+VD: Tạo hàm tính tổng của 2 số bất kì.
+
+```js
+function getSum(a, b) {
+	document.write('Tổng: ' + (a + b));
+}
+```
+
+```js
+function getSum(a, b) {
+	document.write('Tổng: ' + (a + b));
+}
+```"
+124,Bài 7: Hàm trong javascript,Hàm có tham số mặc định,"-Đây thực ra là dạng hàm có truyền tham số và đồng thời xét luôn giá trị mặc định cho các tham số đó.
+Cú pháp:
+
+```js
+function funName(param_1 = value_1, ..., pram_n = value_2) {
+	//code
+}
+```
+
+```js
+function funName(param_1 = value_1, ..., pram_n = value_2) {
+	//code
+}
+```
+Trong đó:
+VD: với hàmgetSumở trên mình sẽ xét tham số mặc định cho nó.
+
+```js
+function getSum(a = 1, b = 2) {
+	document.write('Tổng: ' + (a + b));
+}
+```
+
+```js
+function getSum(a = 1, b = 2) {
+	document.write('Tổng: ' + (a + b));
+}
+```"
+125,Bài 7: Hàm trong javascript,Hàm có giá trị trả về và không,"-Trong javascript có hai loại hàm,đó là hàm có giá trị trả về và hàm không có giá trị trả về.
+VD: khai báo hàm getSum ở trên là hàm có giá trị trả về.
+
+```js
+function getSum(a = 1, b = 2) {
+	return a + b;
+}
+```
+
+```js
+function getSum(a = 1, b = 2) {
+	return a + b;
+}
+```"
+126,Bài 7: Hàm trong javascript,"3, Gọi hàm.",-Sau khi đã tạo được hàm thì giờ các bạn chỉ cần gọi hàm thôi.
+127,Bài 7: Hàm trong javascript,Hàm cơ bản,"-Để gọi hàm này các bạn sử dụng cú pháp:
+
+```js
+funName();
+```
+
+```js
+funName();
+```
+Trong đó: funName là tên của hàm các bạn muốn gọi.
+VD: Gọi hàmgetWebsiteở trên.
+
+```js
+getWebsite
+```
+
+```js
+getWebsite();
+```
+
+```js
+getWebsite();
+```
+Xem Kết Quả"
+128,Bài 7: Hàm trong javascript,Hàm có tham số truyền vào,"-Để gọi dạng hàm này thì các bạn cũng dùng cú pháp như hàm cơ bản, nhưng đồng thời các bạn truyền thêm các param vào theo cú pháp:
+
+```js
+funName(param_1, ..., param_n);
+```
+
+```js
+funName(param_1, ..., param_n);
+```
+VD: Ta sẽ gọi hàmgetSumở trên.
+
+```js
+getSum
+```
+
+```js
+getSum(5, 6);
+```
+
+```js
+getSum(5, 6);
+```
+Xem Kết Quả"
+129,Bài 7: Hàm trong javascript,Hàm có tham số mặc định,"-Để gọi dạng hàm này chúng ta có thể sử dụng cách gọi hàm cơ bản nếu không muốn truyền tham số, và cách gọi hàm có tham số truyền vào nếu muốn truyền tham số cho hàm.
+VD: Mình sẽ gọi hàmgetSumtheo 2 cách.
+
+```js
+getSum
+```
+
+```js
+getSum();
+//tạo khoảng ngăn cách cho các bạn dễ nhìn
+document.write('<br>__________________________________<br>');
+getSum(4, 5);
+```
+
+```js
+getSum();
+//tạo khoảng ngăn cách cho các bạn dễ nhìn
+document.write('<br>__________________________________<br>');
+getSum(4, 5);
+```
+Xem Kết Quả"
+130,Bài 7: Hàm trong javascript,Hàm có giá trị trả về và không,"-Hàm này thì các bạn gọi như các ví dụ trên nhé.
+VD: Mình sẽ gọi hàmgetSumở trên.
+
+```js
+getSum
+```
+
+```js
+var kq1 = getSum();
+//in kết quả hàm trả về
+document.write(kq1);
+//tạo khoảng ngăn cách cho các bạn dễ nhìn
+document.write('<br>__________________________________<br>');
+var kq2 = getSum(4, 5);
+//in kết quả hàm trả về
+document.write(kq2);
+```
+
+```js
+var kq1 = getSum();
+//in kết quả hàm trả về
+document.write(kq1);
+//tạo khoảng ngăn cách cho các bạn dễ nhìn
+document.write('<br>__________________________________<br>');
+var kq2 = getSum(4, 5);
+//in kết quả hàm trả về
+document.write(kq2);
+```
+Xem Kết Quả"
+131,Bài 7: Hàm trong javascript,"4, Các ràng buộc của tên hàm.","-Javascript cũng giống như các ngôn ngữ khác nó cũng có các ràng buộc về tên hàm sau đây:
+
+```js
+_
+```
+
+```js
+_
+```"
+132,Bài 7: Hàm trong javascript,"5, Lời kết.","-Như vậy phần này mình đã giới thiệu với các bạn về hàm trong javascript rồi, phần tiếp theo mình sẽ giới thiệu với bạncác hàm xuất ra notification(thông báo) trên trình duyệt trong javascript."
+133,Bài 2: Hằng và biến trong Javascript,Giới thiệu,"Bài trướcchúng ta đã tìm hiểu qua về khái niệm, cách sử dụng và viết chương trình helloword bằng javascript rồi, bài này chúng ta tiếp tục tìm hiểu về hằng và biến trong javascript."
+134,Bài 2: Hằng và biến trong Javascript,"1, Hằng trong javascript.","-Để khai báohằngtrong javascript chúng ta sử dụng cú pháp:
+
+```js
+const tenHang = giatri;
+```
+
+```js
+const tenHang = giatri;
+```
+Trong đó:
+Chú ý:Tên Hằng phải được đặt theo quy tắc sau đây
+VD:
+
+```js
+const MyConst = 4; // đúng
+	const _MyConst = 4; // đúng
+	const __MyConst = 4; // đúng
+	const MyConst1 = 4; // đúng
+	const _MyConst1 = 4; // đúng
+	const __MyConst1 = 4; // đúng
+	const 90MyConst1 = 4; // sai
+	const -MyConst1 = 4; // sai
+```
+
+```js
+const MyConst = 4; // đúng
+	const _MyConst = 4; // đúng
+	const __MyConst = 4; // đúng
+	const MyConst1 = 4; // đúng
+	const _MyConst1 = 4; // đúng
+	const __MyConst1 = 4; // đúng
+	const 90MyConst1 = 4; // sai
+	const -MyConst1 = 4; // sai
+```"
+135,Bài 2: Hằng và biến trong Javascript,"2, Biến trong javascript.","-Trong javascript chúng ta có thể khai báo biến bằng các cách sau đây:
+Cách 1: Sử dụng từ khóa var.
+
+```js
+var tenBien = giaTri;
+```
+
+```js
+var tenBien = giaTri;
+```
+Cách 2: Không cần sử dụng từ khóa.
+
+```js
+tenBien = giaTri
+```
+
+```js
+tenBien = giaTri
+```
+Trong đó:
+Chú ý:Tên Biến phải được đặt theo quy tắc sau đây
+VD:
+
+```js
+var MyVariable = 4; // đúng
+	var _MyVariable = 4; // đúng
+	var __MyVariable = 4; // đúng
+	var MyVariable1 = 4; // đúng
+	var _MyVariable1 = 4; // đúng
+	var __MyVariable1 = 4; // đúng
+	var 90MyVariable1 = 4; // sai
+	var -MyVariable1 = 4; // sai
+```
+
+```js
+var MyVariable = 4; // đúng
+	var _MyVariable = 4; // đúng
+	var __MyVariable = 4; // đúng
+	var MyVariable1 = 4; // đúng
+	var _MyVariable1 = 4; // đúng
+	var __MyVariable1 = 4; // đúng
+	var 90MyVariable1 = 4; // sai
+	var -MyVariable1 = 4; // sai
+```"
+136,Bài 2: Hằng và biến trong Javascript,"3, Kiểu dữ liệu trong Javascript.","-Cũng giống như trongPHPbiến và hằng trong javascript cũng tự detect kiểu dữ liệu của biến và hằng.
+VD:
+
+```js
+var a = 5; //dữ liệu kiểu int
+var a = 5.65; //dữ liệu kiểu float
+var a = 'Toidicode'; //dữ liệu kiểu string
+var a = [1, 2, 3, 5, 9]; //dữ liệu kiểu array
+var a = new Array(1, 2, 3, 5, 9); //dữ liệu kiểu array
+var a = {'b': 4, 'c': 5}; //dữ liệu kiểu object
+```
+
+```js
+var a = 5; //dữ liệu kiểu int
+var a = 5.65; //dữ liệu kiểu float
+var a = 'Toidicode'; //dữ liệu kiểu string
+var a = [1, 2, 3, 5, 9]; //dữ liệu kiểu array
+var a = new Array(1, 2, 3, 5, 9); //dữ liệu kiểu array
+var a = {'b': 4, 'c': 5}; //dữ liệu kiểu object
+```"
+137,Bài 2: Hằng và biến trong Javascript,"4, Hiển thị nội dung ra trình duyệt.","-Trong javascript bạn có thể hiển thị nội dung ra trình duyệt bằng rất nhiều cách, nhưng trong phần này mình sẽ chỉ hướng dẫn mọi người 2 cách thông dụng nhất để các bạn có thể kiểm tra được dữ liệu.
+Cách 1: dùng document.write() hoặc document.writeln().
+
+```js
+var a = 'toidicode.com';
+document.write(a);
+```
+
+```js
+var a = 'toidicode.com';
+document.write(a);
+```
+Xem Kết Quả
+Chú ý: Cách này không thể in ra được thông tin của object.
+Cách 2: dùng console.log().
+
+```js
+var a = 'toidicode.com';
+	console.log(a);
+```
+
+```js
+var a = 'toidicode.com';
+	console.log(a);
+```
+Xem Kết Quả
+-Cách này có thể xuất được nội dung của tất cả các dạng dữ liệu và để xem được hiển thị của nó thì các bạn cần phải bật cửa sổ console của trình duyệt (thường ấn f12)."
+138,Bài 2: Hằng và biến trong Javascript,"5, Lời kết.","-Qua phần này mình đã giới thiệu với mọi người về hằng và biến trong javascript, tuy nó rất là basic nhưng mọi người cũng nên chú ý vì sau này phải sử dụng nó rất là nhiều đấy."
+139,Bài 8: Hiển thị thông báo ra màn hình trong javascript,Giới thiệu,"Đúng như tiêu đề thì bài này chúng ta sẽ tìm hiểu về các hàm hiển thị thông báo ra màn hình trong javascript. Cụ thể là ba hàm alert(), confirm(), prompt()."
+140,Bài 8: Hiển thị thông báo ra màn hình trong javascript,"1, Hàm alert().","-Hàm alert() trong javascript có nhiệm vụ hiển thị ra màn hình một hộp thoại kèm theo nội dung do chúng ta setup.
+
+Cú pháp:
+
+```js
+alert(content);
+```
+
+```js
+alert(content);
+```
+Trong đó:contentlà nội dung mà các bạn muốn hiển thị ra ngoài màn hình, có thể là biến, hằng,...
+VD: Thông báo ra màn hình chữ: 'học lập trình online toidicode.com'.
+
+```js
+alert('học lập trình online toidicode.com');
+```
+
+```js
+alert('học lập trình online toidicode.com');
+```
+Xem Kết Quả"
+141,Bài 8: Hiển thị thông báo ra màn hình trong javascript,"2, Hàm Confirm().","-Hàm này cũng có tác dụng tạo ta các thông báo trên màn hình như hàmalert()và đồng thời kèm theo 2 button OK, hủy(tùy theo ngôn ngữ của trình duyệt có thể sẽ khác). Khi của sổ hiện nên nếu như người dùng chọn OK thì nó sẽ trả về TRUE và ngược lại thì nó sẽ trả về FALSE.
+
+```js
+alert()
+```
+
+Cú pháp:
+
+```js
+confirm(content);
+```
+
+```js
+confirm(content);
+```
+Trong đó:contentlà nội dung mà các bạn muốn hiển thị ra ngoài màn hình, có thể là biến, hằng,...
+VD: Hiển thị ra màn hình đoạn text 'Bạn có phải là fan của toidicode.com không?' và kiểm tra nếu như người dùng chọn Ok thì in ra chữ'Cảm ơn bạn rất nhiều!' còn chọn hủy thì in ra chữ 'Sao thế bạn?'
+
+```js
+if (confirm('Bạn có phải là fan của toidicode.com không?')) {
+    document.write('Cảm ơn bạn rất nhiều!');
+} else {
+    document.write('Sao thế bạn?');
+}
+```
+
+```js
+if (confirm('Bạn có phải là fan của toidicode.com không?')) {
+    document.write('Cảm ơn bạn rất nhiều!');
+} else {
+    document.write('Sao thế bạn?');
+}
+```
+Xem Kết Quả"
+142,Bài 8: Hiển thị thông báo ra màn hình trong javascript,"3, Hàm Prompt().","-Hàm này sẽ hiển thị ra màn hình một thông báo kèm theo một ô input cho chúng ta nhập vào nội dung. Nếu người dùng chọn hủy thì nó sẽ trả về FALSE, nếu người dùng nhập nội dung và ấn ok thì nó sẽ trả về nội dung đó.
+
+Cú pháp:
+
+```js
+prompt(content);
+```
+
+```js
+prompt(content);
+```
+Trong đó:contentlà nội dung mà các bạn muốn hiển thị ra ngoài màn hình, có thể là biến, hằng,...
+VD: Hiển thị ra màn hình một prompt kèm thông báo 'Chào bạn, năm nay bạn bao nhiêu tuổi?' nếu người dùng ấn hủy thì sẽ in ra dòng chữ 'Sao không trả lời à bạn?' còn nếu người dùng nhập nội dung và ấn ok thì sẽ in ra nội dung mà người dùng vừa nhập.
+
+```js
+if (result = prompt('Chào bạn, năm nay bạn bao nhiêu tuổi?')) {
+    document.write(result);
+} else {
+    document.write('Sao không trả lời à bạn?');
+}
+```
+
+```js
+if (result = prompt('Chào bạn, năm nay bạn bao nhiêu tuổi?')) {
+    document.write(result);
+} else {
+    document.write('Sao không trả lời à bạn?');
+}
+```
+Xem Kết Quả"
+143,Bài 8: Hiển thị thông báo ra màn hình trong javascript,"4, Lời kết.",-Như vậy qua phần này mình đã giới thiệu với các bạn ba hàm hiển thị thông báo ra trình duyệt trong javascript rồi. Phần tiếp theo chúng ta sẽ tìm hiểu về mảng trong javascript.
+144,"Bài 6: Lệnh break, continue trong javascript",Giới thiệu,"Trong thực tế chương trình của chúng ta sẽ không được chơn chu như mình thường mà đôi khi chúng ta sẽ cần phải dừng chương trình hay chuyển tới một đoạn nào đó, và bài hôm nay chúng ta sẽ tìm hiểu về lệnh break,continue để giải quyết vấn đề trên."
+145,"Bài 6: Lệnh break, continue trong javascript","1, Break.","-Lệnh break trong javascript sẽ có tác dụng dừng vòng lặp trong chương trình.
+VD: Dùng break để dừng vòng lặp.
+
+```js
+//khởi tạo vòng lặp chạy từ 0 đến 10
+for (var i = 0; i <= 10; i++) {
+    //in ra i hiện tại
+    document.write(i);
+    //nếu i = 5 thì dừng vòng lặp
+    if (i == 5) {
+        break;
+    }
+}
+```
+
+```js
+//khởi tạo vòng lặp chạy từ 0 đến 10
+for (var i = 0; i <= 10; i++) {
+    //in ra i hiện tại
+    document.write(i);
+    //nếu i = 5 thì dừng vòng lặp
+    if (i == 5) {
+        break;
+    }
+}
+```
+Xem Kết Quả"
+146,"Bài 6: Lệnh break, continue trong javascript","2, Continue.","-Continue trong javascript có tác dụng bỏ qua các dòng lệnh phía sau nó và nhảy qua tiến trình lặp tiếp theo.
+
+```js
+//khởi tạo vòng lặp chạy từ 0 đến 10
+for (var i = 0; i <= 10; i++) {
+    //nếu i = 5 thì bỏ qua vòng lặp
+    if (i == 5) {
+        continue;
+    }
+    //in ra i hiện tại
+    document.write(i + '<br>');
+}
+```
+
+```js
+//khởi tạo vòng lặp chạy từ 0 đến 10
+for (var i = 0; i <= 10; i++) {
+    //nếu i = 5 thì bỏ qua vòng lặp
+    if (i == 5) {
+        continue;
+    }
+    //in ra i hiện tại
+    document.write(i + '<br>');
+}
+```
+Xem Kết Quả
+-Các bạn xem kết quả và cảm nhận nhé!"
+147,"Bài 6: Lệnh break, continue trong javascript","3, Lời Kết.","-Sau phần này mình hi vọng các bạn sẽ hiểu thêm về lệnh break,continue trong javascript. Bài tiếp theo chúng ta sẽ tìm hiểu về hàm trong javascript."
+148,Bài 9: Mảng trong javascript,Giới thiệu,"Ở phầnhằng và biến trong javascriptmình cũng có nói qua về cách khai báo mảng trong javascript rồi. Nhưng đó mới chỉ là mức độ khai báo còn sử dụng thì mình chưa nói, nên bài này mình sẽ giới thiệu lại với mọi người về mảng trong javascript một cách chi tiết hơn."
+149,Bài 9: Mảng trong javascript,"1, Khai báo mảng.",-Ở trong javascript chúng ta có thể khai báo mảng bằng 2 cách sau đây:
+150,Bài 9: Mảng trong javascript,Khai báo bằng dấu [],"-Đối với cách này các bạn khai báo theo cú pháp sau:
+
+```js
+var arr = [value1, value2, ..., valuen];
+```
+
+```js
+var arr = [value1, value2, ..., valuen];
+```
+Trong đó:
+VD: Khai báo mảng arr gồm các số: 1,2,4,5,9,6 bằng dấu[].
+
+```js
+[]
+```
+
+```js
+var arr = [1, 2, 4, 5, 9, 6];
+```
+
+```js
+var arr = [1, 2, 4, 5, 9, 6];
+```"
+151,Bài 9: Mảng trong javascript,Khai báo bằng new Array(),"-Đối với cách này các bạn khai báo với cú pháp như sau:
+
+```js
+var arr = new Array(value1, value2, ..., valuen);
+```
+
+```js
+var arr = new Array(value1, value2, ..., valuen);
+```
+Trong đó:
+VD: Khai báo mảng arr gồm các số: 1,2,4,5,9,6 bằng từ khóanew Arrray().
+
+```js
+new Arrray()
+```
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+```
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+```"
+152,Bài 9: Mảng trong javascript,"2, Truy xuất mảng.","-Sau khi đã tạo được mảng rồi thì chúng ta cần phải truy xuất thông tin của mảng. Để có thể lấy ra giá trị của một thành phần trong mảng thì chúng ta sử dụng cú pháp sau:
+
+```js
+arr[index];
+```
+
+```js
+arr[index];
+```
+Trong đó: arrlà tên biến mảng,indexlà vị trí của mảng(bắt đầu từ 0).
+VD:
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+alert(arr[1]);
+//result: 2
+```
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+alert(arr[1]);
+//result: 2
+```
+Xem Kết Quả"
+153,Bài 9: Mảng trong javascript,"3, Các hàm xử lý mảng.",-Sau đây mình xin tổng hợp lại các hàm xử lý mảng mà javascript đã tích hợp sẵn cho chúng ta.
+154,Bài 9: Mảng trong javascript,Length,"-Đây là mộtthuộc tínhtrong mảng, trả về số lượng phần tử đang có trong mảng.
+Cú pháp:
+
+```js
+arr.length;
+```
+
+```js
+arr.length;
+```
+Trong đó:arr là tên của biến mảng.
+VD:
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+alert(arr.length);
+```
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+alert(arr.length);
+```
+Xem Kết Quả"
+155,Bài 9: Mảng trong javascript,Hàm join(),"-Hàm này có tác dụng gộp tất cả các phần tử có trong mảng thành một chuỗi.
+Cú Pháp:
+
+```js
+arr.join(string);
+```
+
+```js
+arr.join(string);
+```
+Trong đó:
+
+```js
+,
+```
+VD:
+
+```js
+//gộp mảng mặc định
+document.write(arr.join() + '<br>');
+//result: 1,2,4,5,9,6
+//gộp mảng ngăn cách nhau bằng -
+document.write(arr.join('-') + '<br>');
+//result: 1-2-4-5-9-6
+```
+
+```js
+//gộp mảng mặc định
+document.write(arr.join() + '<br>');
+//result: 1,2,4,5,9,6
+//gộp mảng ngăn cách nhau bằng -
+document.write(arr.join('-') + '<br>');
+//result: 1-2-4-5-9-6
+```
+Xem Kết Quả"
+156,Bài 9: Mảng trong javascript,Hàm valueOf(),"-Hàm này tương tự như hàmjoin(), nhưng chỉ có thể nối các phần tử trong mảng bằng dấy,thôi.
+
+```js
+join()
+```
+
+```js
+,
+```"
+157,Bài 9: Mảng trong javascript,Hàm push(),"-Hàm này có tác dụng thêmmột hoặc nhiềuphần tử vào cuối mảng.
+VD:
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//thêm 7 vào mảng
+arr.push(7);
+document.write(arr.join() + '<br>');
+//thêm 3,8 vào mảng
+arr.push(3,8);
+document.write(arr.join() + '<br>');
+```
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//thêm 7 vào mảng
+arr.push(7);
+document.write(arr.join() + '<br>');
+//thêm 3,8 vào mảng
+arr.push(3,8);
+document.write(arr.join() + '<br>');
+```
+Xem Kết Quả"
+158,Bài 9: Mảng trong javascript,Hàm pop(),"-Hàm này có tác dụng xóa phần tử cuối cùng trong mảng.
+VD:
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//xóa phần tử cuối
+arr.pop();
+document.write(arr.join() + '<br>');
+```
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//xóa phần tử cuối
+arr.pop();
+document.write(arr.join() + '<br>');
+```
+Xem Kết Quả"
+159,Bài 9: Mảng trong javascript,Hàm unshift(),"-Hàm này có tác dụng thêmmột hoặc nhiều phần tửvào đầu mảng.
+VD:
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//thêm 7 vào mảng
+arr.unshift(7);
+document.write(arr.join() + '<br>');
+//thêm 3,8 vào mảng
+arr.unshift(3, 8);
+document.write(arr.join() + '<br>');
+```
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//thêm 7 vào mảng
+arr.unshift(7);
+document.write(arr.join() + '<br>');
+//thêm 3,8 vào mảng
+arr.unshift(3, 8);
+document.write(arr.join() + '<br>');
+```
+Xem Kết Quả"
+160,Bài 9: Mảng trong javascript,Hàm shift(),"-Hàm này có tác dụng xóa phần tử đầu tiên của mảng.
+VD:
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//xóa phần tử đầu
+arr.shift();
+document.write(arr.join() + '<br>');
+```
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//xóa phần tử đầu
+arr.shift();
+document.write(arr.join() + '<br>');
+```
+Xem Kết Quả"
+161,Bài 9: Mảng trong javascript,Hàm splice(),"-Hàm này có tác dụng thêm phần tử vào mảng theo một vị trí xác định.
+Cú pháp:
+
+```js
+arr.splice(index, howmany, item1, ....., itemX)
+```
+
+```js
+arr.splice(index, howmany, item1, ....., itemX)
+```
+Trong đó:
+VD:
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//thêm 2 phần tử vào vị trí thứ 1 và 0 xóa phần tử nào
+arr.splice(1, 0, 3, 8);
+document.write(arr.join() + '<br>');
+```
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//thêm 2 phần tử vào vị trí thứ 1 và 0 xóa phần tử nào
+arr.splice(1, 0, 3, 8);
+document.write(arr.join() + '<br>');
+```
+Xem Kết Quả"
+162,Bài 9: Mảng trong javascript,Hàm concat(),"-Hàm này có tác dụng ghép 2 mảng lại với nhau.
+VD:
+
+```js
+var arr1 = new Array(1, 2, 4, 5, 9, 6);
+var arr2 = new Array(3, 8, 7);
+document.write(arr1.concat(arr2) + '<br>');
+```
+
+```js
+var arr1 = new Array(1, 2, 4, 5, 9, 6);
+var arr2 = new Array(3, 8, 7);
+document.write(arr1.concat(arr2) + '<br>');
+```
+Xem Kết Quả"
+163,Bài 9: Mảng trong javascript,Hàm slice(),"-Hàm này có tác dụng lấy ra một hoặc một số phần tử trong mảng.
+Cú pháp:
+
+```js
+arr.slice(begin,end);
+```
+
+```js
+arr.slice(begin,end);
+```
+Trong đó:
+VD:
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//cắt mảng từ vị trí thứ 3 đến hết
+document.write(arr.slice(3) + '<br>');
+```
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//cắt mảng từ vị trí thứ 3 đến hết
+document.write(arr.slice(3) + '<br>');
+```
+Xem Kết Quả"
+164,Bài 9: Mảng trong javascript,Hàm sort(),"-Hàm này có tác dụng sắp xếp lại mảng theo chiều tăng dần, nếu là số thì từ bé đến lớn, chữ thì sắp xếp theo alpha(a-z).
+VD:
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//sắp xếp lại mảng
+document.write(arr.sort() + '<br>');
+```
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//sắp xếp lại mảng
+document.write(arr.sort() + '<br>');
+```
+Xem Kết Quả"
+165,Bài 9: Mảng trong javascript,Hàm reverse(),"-Hàm này có tác dụng đảo ngược vị trí các phần tử của mảng.
+VD:
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//cắt mảng từ vị trí thứ 3 đến hết
+document.write(arr.reverse() + '<br>');
+```
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//cắt mảng từ vị trí thứ 3 đến hết
+document.write(arr.reverse() + '<br>');
+```
+Xem Kết Quả"
+166,Bài 9: Mảng trong javascript,"3, Lời kết.","-Như vậy mình đã giới thiệu xong đến mọi người về mảng trong javascript rồi, phần sau chúng ta sẽ bắt đầu chuyển qua tìm hiểu về object trong javascript."
+167,Bài 3: Toán tử trong Javascript,Giới thiệu,Tiếp tục series bài hôm nay chúng ta sẽ tìm hiểu về toán tử và các biểu thức trong Javascript.
+168,Bài 3: Toán tử trong Javascript,Toán tử gán.,"-Toán tử gán thực ra là các bạn đã dùng qua ở bài trước rồi nhưng các bạn chưa biết tên gọi của nó thôi. Trong Javascript để gán giá trị cho biến hoặc hằng,.. chúng ta sử dụng dấu=
+
+```js
+=
+```
+Cú pháp:
+
+```js
+var bien = giatri;
+```
+
+```js
+var bien = giatri;
+```
+VD:
+
+```js
+var a = 1996
+```
+
+```js
+var a = 1996
+```"
+169,Bài 3: Toán tử trong Javascript,Toán tử số học,"-Toán tử số học thực ra là các dạng tính toán như cộng, trừ, nhân, chia ,... mà các bạn đã được học từ bé và đây là danh sách các toán tử số học trong javascript hỗ trợ.
+-Phép cộng sẽ cộng 2 con số lại nếu nó là số, và sẽ nối chuỗi lại nếu là chuỗi.
+VD:
+
+```js
+var a = 6;
+var b = 5;
+var c = 'vu thanh ';
+var d ='tai';
+document.write(a + b); // 11
+document.write('<br/>'); // xuống dòng cho dễ đọc
+document.write(c + d); // vu thanh tai
+```
+
+```js
+var a = 6;
+var b = 5;
+var c = 'vu thanh ';
+var d ='tai';
+document.write(a + b); // 11
+document.write('<br/>'); // xuống dòng cho dễ đọc
+document.write(c + d); // vu thanh tai
+```
+-Phép trừ chỉ dùng được với số
+VD:
+
+```js
+var a = 6;
+var b = 5;
+document.write(a - b); // 1
+```
+
+```js
+var a = 6;
+var b = 5;
+document.write(a - b); // 1
+```
+-Phép nhân cũng chỉ dùng được với số.
+VD:
+
+```js
+var a = 6;
+var b = 5;
+document.write(a * b); // 30
+```
+
+```js
+var a = 6;
+var b = 5;
+document.write(a * b); // 30
+```
+-Phép chia dùng được với số.
+VD:
+
+```js
+var a = 10;
+var b = 5;
+document.write(a / b); // 2
+```
+
+```js
+var a = 10;
+var b = 5;
+document.write(a / b); // 2
+```
+-Phép chia này sẽ lấy phần dư của phép chia
+VD:
+
+```js
+var a = 6;
+var b = 5;
+document.write(a % b); // 1
+```
+
+```js
+var a = 6;
+var b = 5;
+document.write(a % b); // 1
+```
+Xem Kết Quả"
+170,Bài 3: Toán tử trong Javascript,"2, Toán Tử Kết Hợp",-Toán tử kết hợp  thực ra là một cách rút gọn của các toán tử số học.
+171,Bài 3: Toán tử trong Javascript,"3,Toán Tử Quan Hệ","-Đây là một dạng toán tử sẽ phải sử dụng rất nhiều trong khi lập trình, mà theo như bên toán học thì đây là toán so sánh. Kết quả trả về của toán tử này sẽ là kiểu boolean (TRUE FALSE).
+-Chú ý: Các toán tử có từ 2 ký tự trở lên như <=,>= phải viết liền không được chứa khoảng trắng ở giữa."
+172,Bài 3: Toán tử trong Javascript,"4, Toán tử logic.","-Đây là một dạng toán tử kết hợp giữa hai hoặc nhiều giá trịbooleanhay nói cách khác là kết hợp của hai hay nhiều toán tử quan hệ lại và nó cũngtrả về dữ liệu dạng True False.
+Bảng Logic"
+173,Bài 3: Toán tử trong Javascript,"5, Lời kết.","-Phần hôm nay chúng ta dùng ở đây thôi, các bạn cố gắng ôn tập nhiều về phần này nhé, Bài tiếp theo chúng ta sẽ tìm hiểu về câu lệnh rẽ nhánh trong javascript."
+174,Bài 5: Vòng lặp trong javascript,Giới thiệu,Sau khi đã học xong câu lệnhrẽ nhánh trong javascriptthì phần tiếp theo không thể thiếu trong lập trình nói chung và với Javascript nói riêng sẽ là vòng lặp. Và đương nhiên chúng ta cần biết vòng lặp nó là cái quái gì?
+175,Bài 5: Vòng lặp trong javascript,"1, Vòng lặp là gì.","-Vòng lặp là một chuỗi sự kiện, hành động được lặp đi lặp lại theo một nguyên tắc nhất định. Ví dụ như vong lặp của con người: sinh-lão-bệnh-tử.
+-Và đối với Javascript nó hỗ trợ chúng ta 3 kiểu vòng lặp(loop) làfor,forEach(cái này mình sẽ nói sau)whilevàdo-while."
+176,Bài 5: Vòng lặp trong javascript,"2, Vòng lặp for.","-Vòng lặp for trong javascript hoạt động cũng giống như các ngôn ngữ khác.
+Cú Pháp:
+
+```js
+for (bienkhoitao; dieukienthucthi ; buocnhay) { 
+	# code...
+}
+```
+
+```js
+for (bienkhoitao; dieukienthucthi ; buocnhay) { 
+	# code...
+}
+```
+Trong đó:
+VD:
+
+```js
+for (var i = 1; i <= 10; i++) {
+    document.write('Dòng số: ' + i + '<br/>');
+}
+```
+
+```js
+for (var i = 1; i <= 10; i++) {
+    document.write('Dòng số: ' + i + '<br/>');
+}
+```
+Xem Kết Quả"
+177,Bài 5: Vòng lặp trong javascript,Vòng lặp for vô tận,"-Để có thể làm vòng lặp for trở thành vòng lặp vô tận thì bạn chỉ cần để trống biểu thức điều kiện thứ 2 trong vòng lặp for.
+VD:
+
+```js
+for (var i = 0; ; i++) {
+    //code
+}
+```
+
+```js
+for (var i = 0; ; i++) {
+    //code
+}
+```"
+178,Bài 5: Vòng lặp trong javascript,"3, Vòng lặp do-while.","-Đây là một dạng vòng lặp cũng khá phổ biến trong javascript, đặc trưng của vòng lặp này là để lặp các dữ liệu mà không xác đinh được điều kiện dừng chính xác hoặc điều kiện dừng phức tạp và nóthực thi câu lệnh trước rồi mới kiểm tra điều kiện.
+Cú Pháp:
+
+```js
+do {
+    // code
+} while (condition);
+```
+
+```js
+do {
+    // code
+} while (condition);
+```
+Trong đó:conditionlà điều kiện để dừng vòng lặp, nếu bằng false thì vòng lặp sẽ dừng và ngược lại true vòng lặp sẽ chạy tiếp.
+VD: Phía trên mình có nói là vòng lặp do-while thực thi câu lệnh trước rồi mới kiểm tra. và đây là ví dụ chứng minh cho câu nói đó.
+
+```js
+do {
+	document.write(1);
+} while(false);
+```
+
+```js
+do {
+	document.write(1);
+} while(false);
+```
+Xem Kết Quả
+VD: Thực hiện in ra các số từ 1 đến 10 bằng vòng lặp do-while.
+
+```js
+//khởi tạo biến i bằng 1
+var i = 1;
+do {
+    //in ra i hiện tại
+	document.write(i+ '<br>');
+    //tiến hành cộng i thêm 1 đơn vị
+	i++;
+//xét điều kiện i>10 thì sẽ dừng 
+} while(i <= 10);
+```
+
+```js
+//khởi tạo biến i bằng 1
+var i = 1;
+do {
+    //in ra i hiện tại
+	document.write(i+ '<br>');
+    //tiến hành cộng i thêm 1 đơn vị
+	i++;
+//xét điều kiện i>10 thì sẽ dừng 
+} while(i <= 10);
+```
+Xem Kết Quả"
+179,Bài 5: Vòng lặp trong javascript,"4, Vòng lặp while.","-Vòng lặp while cũng giống như vòng lặp do-while là dùng để lặp các dữ liệu không biết chính xác điều kiện dừng hoặc điều kiện dừng phức tạp. Và vòng lặp while khác với vòng lặp do-while là nó sẽ tiến hành kiểm tra điều kiện xong rồi mới tiến hành lặp.
+Cú Pháp:
+
+```js
+while (condition) {
+		//code
+	}
+```
+
+```js
+while (condition) {
+		//code
+	}
+```
+Trong đó:conditionlà điều kiện để dừng vòng lặp, nếu bằng false thì vòng lặp sẽ dừng và ngược lại true vòng lặp sẽ chạy tiếp.
+VD: Thực hiện in ra các số từ 1 đến 10 bằng vòng lặp while.
+
+```js
+//khởi tạo biến i=1
+var i = 1;
+//xác định điều kiện i>10 thì sẽ dừng vòng lặp
+while(i <= 10){
+	document.write(i);
+	//tiến hành tăng i thêm 1 đơn vị
+	i++;
+}
+```
+
+```js
+//khởi tạo biến i=1
+var i = 1;
+//xác định điều kiện i>10 thì sẽ dừng vòng lặp
+while(i <= 10){
+	document.write(i);
+	//tiến hành tăng i thêm 1 đơn vị
+	i++;
+}
+```
+Xem Kết Quả"
+180,Bài 5: Vòng lặp trong javascript,"5, Vòng lặp lồng nhau.","-Cũng giống nhưcâu lệnh điều kiệnthì voàng lặp cũng hoàn toàn có thể lồng nhau.
+VD: Vòng lặp for lồng nhau.
+
+```js
+for(i = 0; i <= 10; i++) {
+	for(j = i ; j <= 10; j++) {
+		document.write('*');
+	}
+	document.write('<br>');
+}
+```
+
+```js
+for(i = 0; i <= 10; i++) {
+	for(j = i ; j <= 10; j++) {
+		document.write('*');
+	}
+	document.write('<br>');
+}
+```
+Xem Kết Quả
+VD: Vòng lặp do-while lồng nhau.
+
+```js
+var i = 0;
+do {
+    var j = i;
+    do {
+        document.write('*');
+        j++;
+    } while (j <= 10);
+    document.write('<br>');
+    i++;
+} while (i <= 10);
+```
+
+```js
+var i = 0;
+do {
+    var j = i;
+    do {
+        document.write('*');
+        j++;
+    } while (j <= 10);
+    document.write('<br>');
+    i++;
+} while (i <= 10);
+```
+Xem Kết Quả
+VD: Vòng lặp while lồng nhau.
+
+```js
+var i = 0;
+while (i <= 10) {
+    var j = i;
+    while (j <= 10) {
+        document.write('*');
+        j++;
+    }
+    document.write('<br>');
+    i++;
+}
+```
+
+```js
+var i = 0;
+while (i <= 10) {
+    var j = i;
+    while (j <= 10) {
+        document.write('*');
+        j++;
+    }
+    document.write('<br>');
+    i++;
+}
+```
+Xem Kết Quả"
+181,Bài 5: Vòng lặp trong javascript,"6, Lời kết.","-Như vậy phần trên mình đã giới thiệu với mọi người về vòng lặp trong javascript rồi, bài tiếp theo chúng ta sẽ đi tìm hiểu về hàm trong javascript."
+182,Bài 4: Câu lệnh điều kiện trong javascript,Giới thiệu,"Câu lệnh if-else trong javascript cũng giống như các ngôn ngữ khác, nếu điều kiện của mệnh đề đúng thì code phía trong sẽ được thực hiện, và ngược lại nếu sai thì nó sẽ không chạy code trong mệnh đề."
+183,Bài 4: Câu lệnh điều kiện trong javascript,If,"Cú Pháp:
+
+```js
+if (condition) {
+	//nếu điều kiện đúng thì thực hiện
+}
+```
+
+```js
+if (condition) {
+	//nếu điều kiện đúng thì thực hiện
+}
+```
+Trong đó:conditionlà một hoặc nhiều mệnh đề điều kiện có giá trị trả vềTRUE/FALSE.
+VD:
+
+```js
+var a = 5;
+var b = 6;
+if (a != b) {
+	//Vì a khác b nên code phía trong if sẽ được chạy
+	document.write('a khác b');
+}
+```
+
+```js
+var a = 5;
+var b = 6;
+if (a != b) {
+	//Vì a khác b nên code phía trong if sẽ được chạy
+	document.write('a khác b');
+}
+```
+Xem Kết Quả"
+184,Bài 4: Câu lệnh điều kiện trong javascript,Câu lệnh else.,"-Như ở phía trên mình có nói câu lệnhifthực hiện khi mệnh đề đi kèm nó đúng, và mệnh đề else sẽ thực hiện khi điều kiện của mệnh đề if không thỏa mãn.
+
+```js
+if
+```
+Cú Pháp:
+
+```js
+if (true) {
+	// nếu đúng thì chạy code trong này
+} else {
+	//nếu sai thì chạy code trong này
+}
+```
+
+```js
+if (true) {
+	// nếu đúng thì chạy code trong này
+} else {
+	//nếu sai thì chạy code trong này
+}
+```
+VD:
+
+```js
+var a = 5;
+var b = 5;
+if (a != b) {
+	document.write('a khác b');
+}
+else{
+	//Vì a bằng b nên code phía trong else sẽ được chạy
+	document.write('a bằng b');
+}
+```
+
+```js
+var a = 5;
+var b = 5;
+if (a != b) {
+	document.write('a khác b');
+}
+else{
+	//Vì a bằng b nên code phía trong else sẽ được chạy
+	document.write('a bằng b');
+}
+```
+Xem Kết Quả"
+185,Bài 4: Câu lệnh điều kiện trong javascript,Kết hợp else if.,"-Có đôi khi bạn muốn xử lý đa nhánh như làm bài toán phân loại học lực thì lúc này bạn lên dùng else if để xử lý các điều kiện khác với if.
+VD:
+
+```js
+var diem = 5;
+
+if (diem < 4) {
+    document.write('Học Lại');
+} else if (diem >= 4 && diem < 5.5) {
+    document.write(' Loại D');
+} else if (diem >= 5.5 && diem < 7) {
+    document.write('Loai C');
+} else if (diem >= 7 && diem < 8.5) {
+    document.write('Loại B');
+} else if (diem >= 8.5 && diem <= 10) {
+    document.write('Loai A');
+} else {
+    document.write('Điểm không hợp lệ');
+}
+```
+
+```js
+var diem = 5;
+
+if (diem < 4) {
+    document.write('Học Lại');
+} else if (diem >= 4 && diem < 5.5) {
+    document.write(' Loại D');
+} else if (diem >= 5.5 && diem < 7) {
+    document.write('Loai C');
+} else if (diem >= 7 && diem < 8.5) {
+    document.write('Loại B');
+} else if (diem >= 8.5 && diem <= 10) {
+    document.write('Loai A');
+} else {
+    document.write('Điểm không hợp lệ');
+}
+```
+Xem Kết Quả"
+186,Bài 4: Câu lệnh điều kiện trong javascript,if-else lồng nhau.,"-Cũng giống như bài toán ở phần 3 thì chúng ta có thể sử dụng if-else lồng nhau được.
+VD:
+
+```js
+var diem = 5;
+
+if (diem < 4) {
+    document.write('Học Lại');
+} else {
+    if (diem >= 4 && diem < 5.5) {
+        document.write(' Loại D');
+    } else {
+        if (diem >= 5.5 && diem < 7) {
+            document.write('Loai C');
+        } else {
+            if (diem >= 7 && diem < 8.5) {
+                document.write('Loại B');
+            } else {
+                if (diem >= 8.5 && diem <= 10) {
+                    document.write('Loai A');
+                } else {
+                    document.write('Điểm không hợp lệ');
+                }
+            }
+        }
+    }
+}
+```
+
+```js
+var diem = 5;
+
+if (diem < 4) {
+    document.write('Học Lại');
+} else {
+    if (diem >= 4 && diem < 5.5) {
+        document.write(' Loại D');
+    } else {
+        if (diem >= 5.5 && diem < 7) {
+            document.write('Loai C');
+        } else {
+            if (diem >= 7 && diem < 8.5) {
+                document.write('Loại B');
+            } else {
+                if (diem >= 8.5 && diem <= 10) {
+                    document.write('Loai A');
+                } else {
+                    document.write('Điểm không hợp lệ');
+                }
+            }
+        }
+    }
+}
+```
+Xem Kết Quả"
+187,Bài 4: Câu lệnh điều kiện trong javascript,if-else rút gọn.,"-Chúng ta cũng có thể rút gọn câu lệnh if-else với cú pháp như sau:
+
+```js
+(dieukien) ? (đúng) : (sai)
+```
+
+```js
+(dieukien) ? (đúng) : (sai)
+```
+Trong đó: Điều kiện là các biểu thức, mệnh đề trả về giá trị true false.
+VD:
+
+```js
+var diem = 5;
+diem == 5 ? document.write('Điểm Bằng 5') : document.write('Diểm khác 5');
+```
+
+```js
+var diem = 5;
+diem == 5 ? document.write('Điểm Bằng 5') : document.write('Diểm khác 5');
+```
+Xem Kết Quả"
+188,Bài 4: Câu lệnh điều kiện trong javascript,"2, Switch case.","-Đây là một loại câu lệnh rẽ nhánh( hay còn gọi là câu lệnh điều kiện) có đặc điểm là để giải quyết các bài toán mà có các nhánh là các điều kiện cố định.
+Cú Pháp:
+
+```js
+switch (condition) {
+    case value1:
+        //code
+        break;
+    case value2:
+        //code
+        break;
+    default:
+        //code
+        break;
+}
+```
+
+```js
+switch (condition) {
+    case value1:
+        //code
+        break;
+    case value2:
+        //code
+        break;
+    default:
+        //code
+        break;
+}
+```
+Trong đó:
+VD: Đọc số trong phạm vi từ 0 đến 5.
+
+```js
+var so = 5;
+
+switch (so) {
+    case 0:
+        document.write('không');
+        break;
+    case 1:
+        document.write('Một');
+        break;
+    case 2:
+        document.write('Hai');
+        break;
+    case 3:
+        document.write('Ba');
+        break;
+    case 4:
+        document.write('Bốn');
+        break;
+    case 5:
+        document.write('Năm');
+        break;
+    default:
+        document.write('Không thỏa mãn');
+        break;
+}
+```
+
+```js
+var so = 5;
+
+switch (so) {
+    case 0:
+        document.write('không');
+        break;
+    case 1:
+        document.write('Một');
+        break;
+    case 2:
+        document.write('Hai');
+        break;
+    case 3:
+        document.write('Ba');
+        break;
+    case 4:
+        document.write('Bốn');
+        break;
+    case 5:
+        document.write('Năm');
+        break;
+    default:
+        document.write('Không thỏa mãn');
+        break;
+}
+```
+Xem Kết Quả"
+189,Bài 4: Câu lệnh điều kiện trong javascript,"3, Lời kết.","-Như vậy qua phần này mình đã giới thiệu với mọi người về if-else, các dạng và cách sử dụng của nó rồi, bài tiếp theo chúng ta sẽ tìm hiểu vềvòng lặp trong Javascriptxem có gì không nhé."
+190,Bài 10: DOM Elements trong javascript,Giới thiệu,Tiếp tục với series bài này chúng ta sẽ đi tìm hiểu và tác động javascript đến trực tiếp các thẻ HTML trong chương trình.
+191,Bài 10: DOM Elements trong javascript,"1, DOM là gì?",-DOM là viết tắt của chữ Document Object Model (dịch ra tiếng việt thì không được hay cho lắm!). Khi mà chúng ta làm việt với DOM thì chúng ta có thể tác động đến các thẻ HTML và các thành phần của nó. Khá hay đúng không nào?
+192,Bài 10: DOM Elements trong javascript,"2, DOM elements trong javascript.","-Trong bài này chúng ta sẽ chỉ tìm hiểu cách truy xuất đến các thẻ HTML thông qua class,id và tag, còn các cách thay đổi nội dung chúng ta sẽ tìm hiểu trong các phần sau nhé!"
+193,Bài 10: DOM Elements trong javascript,Tìm thẻ HTML thông qua ID,"-Để tìm kiếm và truy xuất thông tin của một thẻ HTML theo ID của nó thì chúng ta sử dụng cú pháp:
+
+```js
+document.getElementById('idName');
+```
+
+```js
+document.getElementById('idName');
+```
+Trong đó:idNamelà id của thẻ HTML mà chúng ta cần truy xuất tới.
+VD: Truy xuất và thông báo ra nội dung của thẻ HTML có id làtoidicode.
+
+```js
+toidicode
+```
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+<div id=""hello"">Chào mừng các bạn đến với website học lập trình online</div>
+<div id=""toidicode"">TOIDICODE.COM</div>
+
+<script type=""text/javascript"">
+    var element = document.getElementById('toidicode');
+    var content = element.innerHTML;
+    alert(content);
+</script>
+</body>
+
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+<div id=""hello"">Chào mừng các bạn đến với website học lập trình online</div>
+<div id=""toidicode"">TOIDICODE.COM</div>
+
+<script type=""text/javascript"">
+    var element = document.getElementById('toidicode');
+    var content = element.innerHTML;
+    alert(content);
+</script>
+</body>
+
+</html>
+```
+Xem Kết Quả"
+194,Bài 10: DOM Elements trong javascript,Tìm thẻ HTML thông qua class,"-Để tìm thẻ html thông qua class của nó các bạn sử dụng cú pháp như sau:
+
+```js
+document.getElementsByClassName('className');
+```
+
+```js
+document.getElementsByClassName('className');
+```
+Trong đó:classNamelà tên class của thẻ HTML các bạn muốn tìm.
+VD: Tìm và lấy ra nội dung của thẻ HTML có class name làhello.
+
+```js
+hello
+```
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+<div class=""hello"">Chào mừng các bạn đến với website học lập trình online</div>
+<div class=""toidicode"">TOIDICODE.COM</div>
+
+<script type=""text/javascript"">
+    var element = document.getElementsByClassName('hello');
+    //Lấy ra nội dung của thẻ đầu tiên
+    var content = element[0].innerHTML;
+    alert(content);
+</script>
+</body>
+
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+<div class=""hello"">Chào mừng các bạn đến với website học lập trình online</div>
+<div class=""toidicode"">TOIDICODE.COM</div>
+
+<script type=""text/javascript"">
+    var element = document.getElementsByClassName('hello');
+    //Lấy ra nội dung của thẻ đầu tiên
+    var content = element[0].innerHTML;
+    alert(content);
+</script>
+</body>
+
+</html>
+```
+Xem Kết Quả
+Tìm thẻ HTML thông qua tagName.
+- Để tìm kiếm thẻ HTML có tagName theo ý bạn trong javascript thì các bạn sử dụng cú pháp:
+
+```js
+document.getElementsByTagName('tagName');
+```
+
+```js
+document.getElementsByTagName('tagName');
+```
+Trong đó:tagNamelà tag mà các bạn muốn tìm kiếm và truy xuất nó.
+VD:
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+<div class=""hello"">Chào mừng các bạn đến với website học lập trình online</div>
+<div class=""toidicode"">TOIDICODE.COM</div>
+
+<script type=""text/javascript"">
+    var element = document.getElementsByTagName('div');
+    //Lấy ra nội dung của thẻ đầu tiên
+    var content = element[0].innerHTML;
+    alert(content);
+</script>
+</body>
+
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+<div class=""hello"">Chào mừng các bạn đến với website học lập trình online</div>
+<div class=""toidicode"">TOIDICODE.COM</div>
+
+<script type=""text/javascript"">
+    var element = document.getElementsByTagName('div');
+    //Lấy ra nội dung của thẻ đầu tiên
+    var content = element[0].innerHTML;
+    alert(content);
+</script>
+</body>
+
+</html>
+```
+Xem Kết Quả"
+195,Bài 10: DOM Elements trong javascript,Chú ý,"-Đối với tìm thẻ HTML theo class và tag name thì nó sẽ trả về mảng đối tượng với số lượng phần tử bằng với số lượng các thẻ html thảo mãn điều kiện.
+VD:
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+<div id=""hello"">Chào mừng các bạn đến với website học lập trình online </div>
+<div class=""toidicode"">TOIDICODE.COM</div>
+<p class=""toidicode"">Bacsic to advance</p>
+<script type=""text/javascript"">
+    //chọn tất cả các phần tử có class là toidicode
+    var element = document.getElementsByClassName('toidicode');
+    //lấy ra số lượng phần tử tìm đc
+    var length = element.length;
+    alert('Số phần tử có class là toidicode = '+length);
+</script>
+</body>
+
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+<div id=""hello"">Chào mừng các bạn đến với website học lập trình online </div>
+<div class=""toidicode"">TOIDICODE.COM</div>
+<p class=""toidicode"">Bacsic to advance</p>
+<script type=""text/javascript"">
+    //chọn tất cả các phần tử có class là toidicode
+    var element = document.getElementsByClassName('toidicode');
+    //lấy ra số lượng phần tử tìm đc
+    var length = element.length;
+    alert('Số phần tử có class là toidicode = '+length);
+</script>
+</body>
+
+</html>
+```
+Xem Kết Quả
+-Dựa vào đó các bạn có thể duyệt mảng và truy xuất đến từng phần tử trong mảng."
+196,Bài 10: DOM Elements trong javascript,Tìm kiếm thành phần con trong thành phần.,"-Để truy xuất đến các thành phần con trong thành phần chúng ta có 2 cách:
+Cách 1: Sử dụng lồng giữa cácgetElement.
+
+```js
+getElement
+```
+VD:
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+<div id=""hello"">Chào mừng các bạn đến với website học lập trình online</div>
+<div class=""toidicode"">TOIDICODE.COM <p class=""toidicodes"">Bacsic to advance</p></div>
+
+<script type=""text/javascript"">
+    var element = document.getElementsByClassName('toidicode');
+    var element1 = element[0].getElementsByClassName('toidicodes');
+    alert(element1[0].innerText);
+</script>
+</body>
+
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+<div id=""hello"">Chào mừng các bạn đến với website học lập trình online</div>
+<div class=""toidicode"">TOIDICODE.COM <p class=""toidicodes"">Bacsic to advance</p></div>
+
+<script type=""text/javascript"">
+    var element = document.getElementsByClassName('toidicode');
+    var element1 = element[0].getElementsByClassName('toidicodes');
+    alert(element1[0].innerText);
+</script>
+</body>
+
+</html>
+```
+Xem Kết Quả
+Cách 2: Sử dụngquerySelectorAll().
+
+```js
+querySelectorAll()
+```
+Cú Pháp:
+
+```js
+document.querySelectorAll('select')
+```
+
+```js
+document.querySelectorAll('select')
+```
+Trong đó: select các bạn sử dụng cú pháp như css.
+VD:
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+<div id=""hello"">Chào mừng các bạn đến với website học lập trình online </div>
+<div class=""toidicode"">TOIDICODE.COM
+    <p class=""toidicodes"">Bacsic to advance</p>
+</div>
+
+<script type=""text/javascript"">
+    //
+    var element = document.querySelectorAll('div#hello');
+    //lấy ra nội dung của thẻ.
+    var content = element[0].innerText;
+    alert(content);
+</script>
+</body>
+
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+<div id=""hello"">Chào mừng các bạn đến với website học lập trình online </div>
+<div class=""toidicode"">TOIDICODE.COM
+    <p class=""toidicodes"">Bacsic to advance</p>
+</div>
+
+<script type=""text/javascript"">
+    //
+    var element = document.querySelectorAll('div#hello');
+    //lấy ra nội dung của thẻ.
+    var content = element[0].innerText;
+    alert(content);
+</script>
+</body>
+
+</html>
+```
+Xem Kết Quả"
+197,Bài 10: DOM Elements trong javascript,"3, Lời kết.","-Qua phần trên mình đã giới thiệu xong đến mọi người cơ bản vềDOM elements trong javascript rồi, phía trên mình có sử dụng hàminnerHTMLmà chưa giải thích, các bạn tạm thời cứ dùng như thế đã phần sau mình sẽ giải thích về nó.
+
+```js
+innerHTML
+```"
+198,Bài 11: DOM HTML trong javascript,Giới thiệu,Sau khi đã tìm kiếm được các thẻ HTML trong javascript thì giờ chúng ta sẽ cùng đi tìm hiểu các hàm tác động vào nó. Cụ thể bài này chúng ta sẽ tìm hiểu các hàm lấy ra giá trị của các thẻ HTML đó.
+199,Bài 11: DOM HTML trong javascript,Lấy nội dung,"-Để lấy nội dung bên trong thẻ HTMl chúng ta sử dụng cú pháp:
+
+```js
+element.innerHTML
+```
+
+```js
+element.innerHTML
+```
+-Trong đó:elementlà các đối tượng HTML (được gọi bằng các phương thức getElement...).
+VD:
+
+```js
+//lấy nội dung của thẻ có id = hello
+var content = document.getElementById('hello').innerHTML;
+//in ra nội dung của thẻ đó.
+alert(content);
+```
+
+```js
+//lấy nội dung của thẻ có id = hello
+var content = document.getElementById('hello').innerHTML;
+//in ra nội dung của thẻ đó.
+alert(content);
+```
+Xem Kết Quả"
+200,Bài 11: DOM HTML trong javascript,Thay đổi nội dung,"-Để thay đổi nội dung cho thẻ HTML đó thì các bạn chỉ sử dụng cú pháp:
+
+```js
+element.innerHTML = 'Giá trị mới';
+```
+
+```js
+element.innerHTML = 'Giá trị mới';
+```
+-Trong đó:elementlà các đối tượng HTML (được gọi bằng các phương thức getElement...).
+VD:
+
+```js
+//thay đổi nội dung của thẻ có id = hello
+document.getElementById('hello').innerHTML = 'Học javascript cơ bản';
+```
+
+```js
+//thay đổi nội dung của thẻ có id = hello
+document.getElementById('hello').innerHTML = 'Học javascript cơ bản';
+```
+Xem Kết Quả"
+201,Bài 11: DOM HTML trong javascript,Lấy và thay đổi nội dung dưới dạng văn bản.,"-Nếu như bạn muốn lấy nội dung text, hay thay đổi nội dung dưới dạng dữ liệu thô thì các bạn chỉ cần thay thuộc tínhinnerHTMLthànhinnerText.
+
+```js
+innerHTML
+```
+
+```js
+innerText
+```
+VD: Lấy nội dung text của thẻ HTML.
+
+```js
+//lấy nội dung của thẻ có id = hello
+var content = document.getElementById('hello').innerText;
+//in ra nội dung của thẻ đó.
+alert(content);
+```
+
+```js
+//lấy nội dung của thẻ có id = hello
+var content = document.getElementById('hello').innerText;
+//in ra nội dung của thẻ đó.
+alert(content);
+```
+Xem Kết Quả
+VD: Thay đổi nội dung của một thẻ HTML dưới dạng thô.
+
+```js
+//thay đổi nội dung của thẻ có id = hello
+var content = document.getElementById('hello').innerText = '<b>Học javascript cơ bản</b>';
+```
+
+```js
+//thay đổi nội dung của thẻ có id = hello
+var content = document.getElementById('hello').innerText = '<b>Học javascript cơ bản</b>';
+```
+Xem Kết Quả"
+202,Bài 11: DOM HTML trong javascript,Tạo ra các attribute cho thẻ HTML,"-Để tạo ra các attribute có các thẻ HTML chúng ta sử dụng cú pháp:
+
+```js
+element.setAttribute('attrName','attrValue');
+```
+
+```js
+element.setAttribute('attrName','attrValue');
+```
+Trong đó:
+VD:tạo ra attribute có tên là data-id và có giá trị = 5.
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+    <div id=""hello"" data-id='javascript'>  Chào mừng các bạn đến với <a href=""http://.com"">website học lập trình online</a> </div>
+    <div class=""toidicode"">TOIDICODE.COM 
+    </div>
+    
+    <script type=""text/javascript"">
+        //tạo ra data-id cho thẻ có id = hello
+        document.getElementById('hello').setAttribute('data-id','5');
+    </script>
+</body>
+
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+    <div id=""hello"" data-id='javascript'>  Chào mừng các bạn đến với <a href=""http://.com"">website học lập trình online</a> </div>
+    <div class=""toidicode"">TOIDICODE.COM 
+    </div>
+    
+    <script type=""text/javascript"">
+        //tạo ra data-id cho thẻ có id = hello
+        document.getElementById('hello').setAttribute('data-id','5');
+    </script>
+</body>
+
+</html>
+```
+Xem Kết Quả"
+203,Bài 11: DOM HTML trong javascript,Lấy ra giá trị của các attribute,"-Để lấy ra giá trị của các attribute trong thẻ HTML chúng ta sử dụng cú pháp:
+
+```js
+element.getAttribute('AttrName');
+```
+
+```js
+element.getAttribute('AttrName');
+```
+Trong đó:
+VD: lấy ra giá trị data-id của thẻ HTML có id= hello.
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+    <div id=""hello"" data-id='javascript'>  Chào mừng các bạn đến với <a href=""http://.com"">website học lập trình online</a> </div>
+    <div class=""toidicode"">TOIDICODE.COM 
+    </div>
+    
+    <script type=""text/javascript"">
+        //lấy nội dung data-id của thẻ có id = hello
+        var content = document.getElementById('hello').getAttribute('data-id');
+        //in ra thông nội dung lấy được.
+        alert(content);
+    </script>
+</body>
+
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+    <title>Toidicode.com javascript</title>
+</head>
+
+<body>
+    <div id=""hello"" data-id='javascript'>  Chào mừng các bạn đến với <a href=""http://.com"">website học lập trình online</a> </div>
+    <div class=""toidicode"">TOIDICODE.COM 
+    </div>
+    
+    <script type=""text/javascript"">
+        //lấy nội dung data-id của thẻ có id = hello
+        var content = document.getElementById('hello').getAttribute('data-id');
+        //in ra thông nội dung lấy được.
+        alert(content);
+    </script>
+</body>
+
+</html>
+```
+Xem Kết Quả"
+204,Bài 11: DOM HTML trong javascript,"3, Lời Kết.","-Như vậy mình đã giới thiệu xong đến mọi người cơ bản vềDOM HTML trong javascript rồi, còn các vấn đề liên quan đến series thực hành mình sẽ nói sau.
+Chúc các bạn học tốt!"
+205,Bài 7: Hàm trong javascript,Giới thiệu,"Ở cách phần trước chúng ta đã được tìm hiểu qua các khái niệm và cách sử dụng cáccâu lệnh rẽ nhánh, vàvòng lặpBài hôm nay chúng ta sẽ tiếp tục đi tìm hiểu khái niệm hàm và cách sử dụng hàm trong javascript."
+206,Bài 7: Hàm trong javascript,"1, Hàm là gì?","-Hàm là một hoặc nhiều đoạn mã được viết ra để thực thi một hoặc nhiều hành động khi gọi nó, hàm có khả năng gọi đi gọi lại được. VD như thay vì tính tích của 2 số nhất định chúng ta có thể sử dụng hàm để tính tích của 2 số bất kỳ mà chúng ta muốn."
+207,Bài 7: Hàm trong javascript,"2, Cấu trúc của hàm.","-Hàm trong javascript khai báo cũng giống như trong javascript, là bắt đầu phải có từ khóafunctionvới các dạng như sau:
+
+```js
+function
+```"
+208,Bài 7: Hàm trong javascript,Hàm cơ bản,"-Đây là dạng cơ bản nhất của hàm trong javascript, có cú pháp như sau:
+
+```js
+function funName() {
+	//code
+}
+```
+
+```js
+function funName() {
+	//code
+}
+```
+Trong đó:funName là tên của hàm mà các bạn muốn đặt còn function là từ khóa bắt buộc.
+VD: Tạo hàm lấy tên website.
+
+```js
+function getWebsite() {
+    document.write('http://toidicode.com');
+}
+```
+
+```js
+function getWebsite() {
+    document.write('http://toidicode.com');
+}
+```"
+209,Bài 7: Hàm trong javascript,Hàm có tham số truyền vào,"-Đây là một dạng hàm rất hay được sử dụng trong dự án.
+Cú pháp:
+
+```js
+function funName(param_1, ..., pram_n) {
+	//code
+}
+```
+
+```js
+function funName(param_1, ..., pram_n) {
+	//code
+}
+```
+Trong đó:
+VD: Tạo hàm tính tổng của 2 số bất kì.
+
+```js
+function getSum(a, b) {
+	document.write('Tổng: ' + (a + b));
+}
+```
+
+```js
+function getSum(a, b) {
+	document.write('Tổng: ' + (a + b));
+}
+```"
+210,Bài 7: Hàm trong javascript,Hàm có tham số mặc định,"-Đây thực ra là dạng hàm có truyền tham số và đồng thời xét luôn giá trị mặc định cho các tham số đó.
+Cú pháp:
+
+```js
+function funName(param_1 = value_1, ..., pram_n = value_2) {
+	//code
+}
+```
+
+```js
+function funName(param_1 = value_1, ..., pram_n = value_2) {
+	//code
+}
+```
+Trong đó:
+VD: với hàmgetSumở trên mình sẽ xét tham số mặc định cho nó.
+
+```js
+function getSum(a = 1, b = 2) {
+	document.write('Tổng: ' + (a + b));
+}
+```
+
+```js
+function getSum(a = 1, b = 2) {
+	document.write('Tổng: ' + (a + b));
+}
+```"
+211,Bài 7: Hàm trong javascript,Hàm có giá trị trả về và không,"-Trong javascript có hai loại hàm,đó là hàm có giá trị trả về và hàm không có giá trị trả về.
+VD: khai báo hàm getSum ở trên là hàm có giá trị trả về.
+
+```js
+function getSum(a = 1, b = 2) {
+	return a + b;
+}
+```
+
+```js
+function getSum(a = 1, b = 2) {
+	return a + b;
+}
+```"
+212,Bài 7: Hàm trong javascript,"3, Gọi hàm.",-Sau khi đã tạo được hàm thì giờ các bạn chỉ cần gọi hàm thôi.
+213,Bài 7: Hàm trong javascript,Hàm cơ bản,"-Để gọi hàm này các bạn sử dụng cú pháp:
+
+```js
+funName();
+```
+
+```js
+funName();
+```
+Trong đó: funName là tên của hàm các bạn muốn gọi.
+VD: Gọi hàmgetWebsiteở trên.
+
+```js
+getWebsite
+```
+
+```js
+getWebsite();
+```
+
+```js
+getWebsite();
+```
+Xem Kết Quả"
+214,Bài 7: Hàm trong javascript,Hàm có tham số truyền vào,"-Để gọi dạng hàm này thì các bạn cũng dùng cú pháp như hàm cơ bản, nhưng đồng thời các bạn truyền thêm các param vào theo cú pháp:
+
+```js
+funName(param_1, ..., param_n);
+```
+
+```js
+funName(param_1, ..., param_n);
+```
+VD: Ta sẽ gọi hàmgetSumở trên.
+
+```js
+getSum
+```
+
+```js
+getSum(5, 6);
+```
+
+```js
+getSum(5, 6);
+```
+Xem Kết Quả"
+215,Bài 7: Hàm trong javascript,Hàm có tham số mặc định,"-Để gọi dạng hàm này chúng ta có thể sử dụng cách gọi hàm cơ bản nếu không muốn truyền tham số, và cách gọi hàm có tham số truyền vào nếu muốn truyền tham số cho hàm.
+VD: Mình sẽ gọi hàmgetSumtheo 2 cách.
+
+```js
+getSum
+```
+
+```js
+getSum();
+//tạo khoảng ngăn cách cho các bạn dễ nhìn
+document.write('<br>__________________________________<br>');
+getSum(4, 5);
+```
+
+```js
+getSum();
+//tạo khoảng ngăn cách cho các bạn dễ nhìn
+document.write('<br>__________________________________<br>');
+getSum(4, 5);
+```
+Xem Kết Quả"
+216,Bài 7: Hàm trong javascript,Hàm có giá trị trả về và không,"-Hàm này thì các bạn gọi như các ví dụ trên nhé.
+VD: Mình sẽ gọi hàmgetSumở trên.
+
+```js
+getSum
+```
+
+```js
+var kq1 = getSum();
+//in kết quả hàm trả về
+document.write(kq1);
+//tạo khoảng ngăn cách cho các bạn dễ nhìn
+document.write('<br>__________________________________<br>');
+var kq2 = getSum(4, 5);
+//in kết quả hàm trả về
+document.write(kq2);
+```
+
+```js
+var kq1 = getSum();
+//in kết quả hàm trả về
+document.write(kq1);
+//tạo khoảng ngăn cách cho các bạn dễ nhìn
+document.write('<br>__________________________________<br>');
+var kq2 = getSum(4, 5);
+//in kết quả hàm trả về
+document.write(kq2);
+```
+Xem Kết Quả"
+217,Bài 7: Hàm trong javascript,"4, Các ràng buộc của tên hàm.","-Javascript cũng giống như các ngôn ngữ khác nó cũng có các ràng buộc về tên hàm sau đây:
+
+```js
+_
+```
+
+```js
+_
+```"
+218,Bài 7: Hàm trong javascript,"5, Lời kết.","-Như vậy phần này mình đã giới thiệu với các bạn về hàm trong javascript rồi, phần tiếp theo mình sẽ giới thiệu với bạncác hàm xuất ra notification(thông báo) trên trình duyệt trong javascript."
+219,Bài 2: Hằng và biến trong Javascript,Giới thiệu,"Bài trướcchúng ta đã tìm hiểu qua về khái niệm, cách sử dụng và viết chương trình helloword bằng javascript rồi, bài này chúng ta tiếp tục tìm hiểu về hằng và biến trong javascript."
+220,Bài 2: Hằng và biến trong Javascript,"1, Hằng trong javascript.","-Để khai báohằngtrong javascript chúng ta sử dụng cú pháp:
+
+```js
+const tenHang = giatri;
+```
+
+```js
+const tenHang = giatri;
+```
+Trong đó:
+Chú ý:Tên Hằng phải được đặt theo quy tắc sau đây
+VD:
+
+```js
+const MyConst = 4; // đúng
+	const _MyConst = 4; // đúng
+	const __MyConst = 4; // đúng
+	const MyConst1 = 4; // đúng
+	const _MyConst1 = 4; // đúng
+	const __MyConst1 = 4; // đúng
+	const 90MyConst1 = 4; // sai
+	const -MyConst1 = 4; // sai
+```
+
+```js
+const MyConst = 4; // đúng
+	const _MyConst = 4; // đúng
+	const __MyConst = 4; // đúng
+	const MyConst1 = 4; // đúng
+	const _MyConst1 = 4; // đúng
+	const __MyConst1 = 4; // đúng
+	const 90MyConst1 = 4; // sai
+	const -MyConst1 = 4; // sai
+```"
+221,Bài 2: Hằng và biến trong Javascript,"2, Biến trong javascript.","-Trong javascript chúng ta có thể khai báo biến bằng các cách sau đây:
+Cách 1: Sử dụng từ khóa var.
+
+```js
+var tenBien = giaTri;
+```
+
+```js
+var tenBien = giaTri;
+```
+Cách 2: Không cần sử dụng từ khóa.
+
+```js
+tenBien = giaTri
+```
+
+```js
+tenBien = giaTri
+```
+Trong đó:
+Chú ý:Tên Biến phải được đặt theo quy tắc sau đây
+VD:
+
+```js
+var MyVariable = 4; // đúng
+	var _MyVariable = 4; // đúng
+	var __MyVariable = 4; // đúng
+	var MyVariable1 = 4; // đúng
+	var _MyVariable1 = 4; // đúng
+	var __MyVariable1 = 4; // đúng
+	var 90MyVariable1 = 4; // sai
+	var -MyVariable1 = 4; // sai
+```
+
+```js
+var MyVariable = 4; // đúng
+	var _MyVariable = 4; // đúng
+	var __MyVariable = 4; // đúng
+	var MyVariable1 = 4; // đúng
+	var _MyVariable1 = 4; // đúng
+	var __MyVariable1 = 4; // đúng
+	var 90MyVariable1 = 4; // sai
+	var -MyVariable1 = 4; // sai
+```"
+222,Bài 2: Hằng và biến trong Javascript,"3, Kiểu dữ liệu trong Javascript.","-Cũng giống như trongPHPbiến và hằng trong javascript cũng tự detect kiểu dữ liệu của biến và hằng.
+VD:
+
+```js
+var a = 5; //dữ liệu kiểu int
+var a = 5.65; //dữ liệu kiểu float
+var a = 'Toidicode'; //dữ liệu kiểu string
+var a = [1, 2, 3, 5, 9]; //dữ liệu kiểu array
+var a = new Array(1, 2, 3, 5, 9); //dữ liệu kiểu array
+var a = {'b': 4, 'c': 5}; //dữ liệu kiểu object
+```
+
+```js
+var a = 5; //dữ liệu kiểu int
+var a = 5.65; //dữ liệu kiểu float
+var a = 'Toidicode'; //dữ liệu kiểu string
+var a = [1, 2, 3, 5, 9]; //dữ liệu kiểu array
+var a = new Array(1, 2, 3, 5, 9); //dữ liệu kiểu array
+var a = {'b': 4, 'c': 5}; //dữ liệu kiểu object
+```"
+223,Bài 2: Hằng và biến trong Javascript,"4, Hiển thị nội dung ra trình duyệt.","-Trong javascript bạn có thể hiển thị nội dung ra trình duyệt bằng rất nhiều cách, nhưng trong phần này mình sẽ chỉ hướng dẫn mọi người 2 cách thông dụng nhất để các bạn có thể kiểm tra được dữ liệu.
+Cách 1: dùng document.write() hoặc document.writeln().
+
+```js
+var a = 'toidicode.com';
+document.write(a);
+```
+
+```js
+var a = 'toidicode.com';
+document.write(a);
+```
+Xem Kết Quả
+Chú ý: Cách này không thể in ra được thông tin của object.
+Cách 2: dùng console.log().
+
+```js
+var a = 'toidicode.com';
+	console.log(a);
+```
+
+```js
+var a = 'toidicode.com';
+	console.log(a);
+```
+Xem Kết Quả
+-Cách này có thể xuất được nội dung của tất cả các dạng dữ liệu và để xem được hiển thị của nó thì các bạn cần phải bật cửa sổ console của trình duyệt (thường ấn f12)."
+224,Bài 2: Hằng và biến trong Javascript,"5, Lời kết.","-Qua phần này mình đã giới thiệu với mọi người về hằng và biến trong javascript, tuy nó rất là basic nhưng mọi người cũng nên chú ý vì sau này phải sử dụng nó rất là nhiều đấy."
+225,Bài 8: Hiển thị thông báo ra màn hình trong javascript,Giới thiệu,"Đúng như tiêu đề thì bài này chúng ta sẽ tìm hiểu về các hàm hiển thị thông báo ra màn hình trong javascript. Cụ thể là ba hàm alert(), confirm(), prompt()."
+226,Bài 8: Hiển thị thông báo ra màn hình trong javascript,"1, Hàm alert().","-Hàm alert() trong javascript có nhiệm vụ hiển thị ra màn hình một hộp thoại kèm theo nội dung do chúng ta setup.
+
+Cú pháp:
+
+```js
+alert(content);
+```
+
+```js
+alert(content);
+```
+Trong đó:contentlà nội dung mà các bạn muốn hiển thị ra ngoài màn hình, có thể là biến, hằng,...
+VD: Thông báo ra màn hình chữ: 'học lập trình online toidicode.com'.
+
+```js
+alert('học lập trình online toidicode.com');
+```
+
+```js
+alert('học lập trình online toidicode.com');
+```
+Xem Kết Quả"
+227,Bài 8: Hiển thị thông báo ra màn hình trong javascript,"2, Hàm Confirm().","-Hàm này cũng có tác dụng tạo ta các thông báo trên màn hình như hàmalert()và đồng thời kèm theo 2 button OK, hủy(tùy theo ngôn ngữ của trình duyệt có thể sẽ khác). Khi của sổ hiện nên nếu như người dùng chọn OK thì nó sẽ trả về TRUE và ngược lại thì nó sẽ trả về FALSE.
+
+```js
+alert()
+```
+
+Cú pháp:
+
+```js
+confirm(content);
+```
+
+```js
+confirm(content);
+```
+Trong đó:contentlà nội dung mà các bạn muốn hiển thị ra ngoài màn hình, có thể là biến, hằng,...
+VD: Hiển thị ra màn hình đoạn text 'Bạn có phải là fan của toidicode.com không?' và kiểm tra nếu như người dùng chọn Ok thì in ra chữ'Cảm ơn bạn rất nhiều!' còn chọn hủy thì in ra chữ 'Sao thế bạn?'
+
+```js
+if (confirm('Bạn có phải là fan của toidicode.com không?')) {
+    document.write('Cảm ơn bạn rất nhiều!');
+} else {
+    document.write('Sao thế bạn?');
+}
+```
+
+```js
+if (confirm('Bạn có phải là fan của toidicode.com không?')) {
+    document.write('Cảm ơn bạn rất nhiều!');
+} else {
+    document.write('Sao thế bạn?');
+}
+```
+Xem Kết Quả"
+228,Bài 8: Hiển thị thông báo ra màn hình trong javascript,"3, Hàm Prompt().","-Hàm này sẽ hiển thị ra màn hình một thông báo kèm theo một ô input cho chúng ta nhập vào nội dung. Nếu người dùng chọn hủy thì nó sẽ trả về FALSE, nếu người dùng nhập nội dung và ấn ok thì nó sẽ trả về nội dung đó.
+
+Cú pháp:
+
+```js
+prompt(content);
+```
+
+```js
+prompt(content);
+```
+Trong đó:contentlà nội dung mà các bạn muốn hiển thị ra ngoài màn hình, có thể là biến, hằng,...
+VD: Hiển thị ra màn hình một prompt kèm thông báo 'Chào bạn, năm nay bạn bao nhiêu tuổi?' nếu người dùng ấn hủy thì sẽ in ra dòng chữ 'Sao không trả lời à bạn?' còn nếu người dùng nhập nội dung và ấn ok thì sẽ in ra nội dung mà người dùng vừa nhập.
+
+```js
+if (result = prompt('Chào bạn, năm nay bạn bao nhiêu tuổi?')) {
+    document.write(result);
+} else {
+    document.write('Sao không trả lời à bạn?');
+}
+```
+
+```js
+if (result = prompt('Chào bạn, năm nay bạn bao nhiêu tuổi?')) {
+    document.write(result);
+} else {
+    document.write('Sao không trả lời à bạn?');
+}
+```
+Xem Kết Quả"
+229,Bài 8: Hiển thị thông báo ra màn hình trong javascript,"4, Lời kết.",-Như vậy qua phần này mình đã giới thiệu với các bạn ba hàm hiển thị thông báo ra trình duyệt trong javascript rồi. Phần tiếp theo chúng ta sẽ tìm hiểu về mảng trong javascript.
+230,"Bài 6: Lệnh break, continue trong javascript",Giới thiệu,"Trong thực tế chương trình của chúng ta sẽ không được chơn chu như mình thường mà đôi khi chúng ta sẽ cần phải dừng chương trình hay chuyển tới một đoạn nào đó, và bài hôm nay chúng ta sẽ tìm hiểu về lệnh break,continue để giải quyết vấn đề trên."
+231,"Bài 6: Lệnh break, continue trong javascript","1, Break.","-Lệnh break trong javascript sẽ có tác dụng dừng vòng lặp trong chương trình.
+VD: Dùng break để dừng vòng lặp.
+
+```js
+//khởi tạo vòng lặp chạy từ 0 đến 10
+for (var i = 0; i <= 10; i++) {
+    //in ra i hiện tại
+    document.write(i);
+    //nếu i = 5 thì dừng vòng lặp
+    if (i == 5) {
+        break;
+    }
+}
+```
+
+```js
+//khởi tạo vòng lặp chạy từ 0 đến 10
+for (var i = 0; i <= 10; i++) {
+    //in ra i hiện tại
+    document.write(i);
+    //nếu i = 5 thì dừng vòng lặp
+    if (i == 5) {
+        break;
+    }
+}
+```
+Xem Kết Quả"
+232,"Bài 6: Lệnh break, continue trong javascript","2, Continue.","-Continue trong javascript có tác dụng bỏ qua các dòng lệnh phía sau nó và nhảy qua tiến trình lặp tiếp theo.
+
+```js
+//khởi tạo vòng lặp chạy từ 0 đến 10
+for (var i = 0; i <= 10; i++) {
+    //nếu i = 5 thì bỏ qua vòng lặp
+    if (i == 5) {
+        continue;
+    }
+    //in ra i hiện tại
+    document.write(i + '<br>');
+}
+```
+
+```js
+//khởi tạo vòng lặp chạy từ 0 đến 10
+for (var i = 0; i <= 10; i++) {
+    //nếu i = 5 thì bỏ qua vòng lặp
+    if (i == 5) {
+        continue;
+    }
+    //in ra i hiện tại
+    document.write(i + '<br>');
+}
+```
+Xem Kết Quả
+-Các bạn xem kết quả và cảm nhận nhé!"
+233,"Bài 6: Lệnh break, continue trong javascript","3, Lời Kết.","-Sau phần này mình hi vọng các bạn sẽ hiểu thêm về lệnh break,continue trong javascript. Bài tiếp theo chúng ta sẽ tìm hiểu về hàm trong javascript."
+234,Bài 9: Mảng trong javascript,Giới thiệu,"Ở phầnhằng và biến trong javascriptmình cũng có nói qua về cách khai báo mảng trong javascript rồi. Nhưng đó mới chỉ là mức độ khai báo còn sử dụng thì mình chưa nói, nên bài này mình sẽ giới thiệu lại với mọi người về mảng trong javascript một cách chi tiết hơn."
+235,Bài 9: Mảng trong javascript,"1, Khai báo mảng.",-Ở trong javascript chúng ta có thể khai báo mảng bằng 2 cách sau đây:
+236,Bài 9: Mảng trong javascript,Khai báo bằng dấu [],"-Đối với cách này các bạn khai báo theo cú pháp sau:
+
+```js
+var arr = [value1, value2, ..., valuen];
+```
+
+```js
+var arr = [value1, value2, ..., valuen];
+```
+Trong đó:
+VD: Khai báo mảng arr gồm các số: 1,2,4,5,9,6 bằng dấu[].
+
+```js
+[]
+```
+
+```js
+var arr = [1, 2, 4, 5, 9, 6];
+```
+
+```js
+var arr = [1, 2, 4, 5, 9, 6];
+```"
+237,Bài 9: Mảng trong javascript,Khai báo bằng new Array(),"-Đối với cách này các bạn khai báo với cú pháp như sau:
+
+```js
+var arr = new Array(value1, value2, ..., valuen);
+```
+
+```js
+var arr = new Array(value1, value2, ..., valuen);
+```
+Trong đó:
+VD: Khai báo mảng arr gồm các số: 1,2,4,5,9,6 bằng từ khóanew Arrray().
+
+```js
+new Arrray()
+```
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+```
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+```"
+238,Bài 9: Mảng trong javascript,"2, Truy xuất mảng.","-Sau khi đã tạo được mảng rồi thì chúng ta cần phải truy xuất thông tin của mảng. Để có thể lấy ra giá trị của một thành phần trong mảng thì chúng ta sử dụng cú pháp sau:
+
+```js
+arr[index];
+```
+
+```js
+arr[index];
+```
+Trong đó: arrlà tên biến mảng,indexlà vị trí của mảng(bắt đầu từ 0).
+VD:
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+alert(arr[1]);
+//result: 2
+```
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+alert(arr[1]);
+//result: 2
+```
+Xem Kết Quả"
+239,Bài 9: Mảng trong javascript,"3, Các hàm xử lý mảng.",-Sau đây mình xin tổng hợp lại các hàm xử lý mảng mà javascript đã tích hợp sẵn cho chúng ta.
+240,Bài 9: Mảng trong javascript,Length,"-Đây là mộtthuộc tínhtrong mảng, trả về số lượng phần tử đang có trong mảng.
+Cú pháp:
+
+```js
+arr.length;
+```
+
+```js
+arr.length;
+```
+Trong đó:arr là tên của biến mảng.
+VD:
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+alert(arr.length);
+```
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+alert(arr.length);
+```
+Xem Kết Quả"
+241,Bài 9: Mảng trong javascript,Hàm join(),"-Hàm này có tác dụng gộp tất cả các phần tử có trong mảng thành một chuỗi.
+Cú Pháp:
+
+```js
+arr.join(string);
+```
+
+```js
+arr.join(string);
+```
+Trong đó:
+
+```js
+,
+```
+VD:
+
+```js
+//gộp mảng mặc định
+document.write(arr.join() + '<br>');
+//result: 1,2,4,5,9,6
+//gộp mảng ngăn cách nhau bằng -
+document.write(arr.join('-') + '<br>');
+//result: 1-2-4-5-9-6
+```
+
+```js
+//gộp mảng mặc định
+document.write(arr.join() + '<br>');
+//result: 1,2,4,5,9,6
+//gộp mảng ngăn cách nhau bằng -
+document.write(arr.join('-') + '<br>');
+//result: 1-2-4-5-9-6
+```
+Xem Kết Quả"
+242,Bài 9: Mảng trong javascript,Hàm valueOf(),"-Hàm này tương tự như hàmjoin(), nhưng chỉ có thể nối các phần tử trong mảng bằng dấy,thôi.
+
+```js
+join()
+```
+
+```js
+,
+```"
+243,Bài 9: Mảng trong javascript,Hàm push(),"-Hàm này có tác dụng thêmmột hoặc nhiềuphần tử vào cuối mảng.
+VD:
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//thêm 7 vào mảng
+arr.push(7);
+document.write(arr.join() + '<br>');
+//thêm 3,8 vào mảng
+arr.push(3,8);
+document.write(arr.join() + '<br>');
+```
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//thêm 7 vào mảng
+arr.push(7);
+document.write(arr.join() + '<br>');
+//thêm 3,8 vào mảng
+arr.push(3,8);
+document.write(arr.join() + '<br>');
+```
+Xem Kết Quả"
+244,Bài 9: Mảng trong javascript,Hàm pop(),"-Hàm này có tác dụng xóa phần tử cuối cùng trong mảng.
+VD:
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//xóa phần tử cuối
+arr.pop();
+document.write(arr.join() + '<br>');
+```
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//xóa phần tử cuối
+arr.pop();
+document.write(arr.join() + '<br>');
+```
+Xem Kết Quả"
+245,Bài 9: Mảng trong javascript,Hàm unshift(),"-Hàm này có tác dụng thêmmột hoặc nhiều phần tửvào đầu mảng.
+VD:
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//thêm 7 vào mảng
+arr.unshift(7);
+document.write(arr.join() + '<br>');
+//thêm 3,8 vào mảng
+arr.unshift(3, 8);
+document.write(arr.join() + '<br>');
+```
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//thêm 7 vào mảng
+arr.unshift(7);
+document.write(arr.join() + '<br>');
+//thêm 3,8 vào mảng
+arr.unshift(3, 8);
+document.write(arr.join() + '<br>');
+```
+Xem Kết Quả"
+246,Bài 9: Mảng trong javascript,Hàm shift(),"-Hàm này có tác dụng xóa phần tử đầu tiên của mảng.
+VD:
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//xóa phần tử đầu
+arr.shift();
+document.write(arr.join() + '<br>');
+```
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//xóa phần tử đầu
+arr.shift();
+document.write(arr.join() + '<br>');
+```
+Xem Kết Quả"
+247,Bài 9: Mảng trong javascript,Hàm splice(),"-Hàm này có tác dụng thêm phần tử vào mảng theo một vị trí xác định.
+Cú pháp:
+
+```js
+arr.splice(index, howmany, item1, ....., itemX)
+```
+
+```js
+arr.splice(index, howmany, item1, ....., itemX)
+```
+Trong đó:
+VD:
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//thêm 2 phần tử vào vị trí thứ 1 và 0 xóa phần tử nào
+arr.splice(1, 0, 3, 8);
+document.write(arr.join() + '<br>');
+```
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//thêm 2 phần tử vào vị trí thứ 1 và 0 xóa phần tử nào
+arr.splice(1, 0, 3, 8);
+document.write(arr.join() + '<br>');
+```
+Xem Kết Quả"
+248,Bài 9: Mảng trong javascript,Hàm concat(),"-Hàm này có tác dụng ghép 2 mảng lại với nhau.
+VD:
+
+```js
+var arr1 = new Array(1, 2, 4, 5, 9, 6);
+var arr2 = new Array(3, 8, 7);
+document.write(arr1.concat(arr2) + '<br>');
+```
+
+```js
+var arr1 = new Array(1, 2, 4, 5, 9, 6);
+var arr2 = new Array(3, 8, 7);
+document.write(arr1.concat(arr2) + '<br>');
+```
+Xem Kết Quả"
+249,Bài 9: Mảng trong javascript,Hàm slice(),"-Hàm này có tác dụng lấy ra một hoặc một số phần tử trong mảng.
+Cú pháp:
+
+```js
+arr.slice(begin,end);
+```
+
+```js
+arr.slice(begin,end);
+```
+Trong đó:
+VD:
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//cắt mảng từ vị trí thứ 3 đến hết
+document.write(arr.slice(3) + '<br>');
+```
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//cắt mảng từ vị trí thứ 3 đến hết
+document.write(arr.slice(3) + '<br>');
+```
+Xem Kết Quả"
+250,Bài 9: Mảng trong javascript,Hàm sort(),"-Hàm này có tác dụng sắp xếp lại mảng theo chiều tăng dần, nếu là số thì từ bé đến lớn, chữ thì sắp xếp theo alpha(a-z).
+VD:
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//sắp xếp lại mảng
+document.write(arr.sort() + '<br>');
+```
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//sắp xếp lại mảng
+document.write(arr.sort() + '<br>');
+```
+Xem Kết Quả"
+251,Bài 9: Mảng trong javascript,Hàm reverse(),"-Hàm này có tác dụng đảo ngược vị trí các phần tử của mảng.
+VD:
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//cắt mảng từ vị trí thứ 3 đến hết
+document.write(arr.reverse() + '<br>');
+```
+
+```js
+var arr = new Array(1, 2, 4, 5, 9, 6);
+document.write(arr.join() + '<br>');
+//cắt mảng từ vị trí thứ 3 đến hết
+document.write(arr.reverse() + '<br>');
+```
+Xem Kết Quả"
+252,Bài 9: Mảng trong javascript,"3, Lời kết.","-Như vậy mình đã giới thiệu xong đến mọi người về mảng trong javascript rồi, phần sau chúng ta sẽ bắt đầu chuyển qua tìm hiểu về object trong javascript."
+253,Bài 3: Toán tử trong Javascript,Giới thiệu,Tiếp tục series bài hôm nay chúng ta sẽ tìm hiểu về toán tử và các biểu thức trong Javascript.
+254,Bài 3: Toán tử trong Javascript,Toán tử gán.,"-Toán tử gán thực ra là các bạn đã dùng qua ở bài trước rồi nhưng các bạn chưa biết tên gọi của nó thôi. Trong Javascript để gán giá trị cho biến hoặc hằng,.. chúng ta sử dụng dấu=
+
+```js
+=
+```
+Cú pháp:
+
+```js
+var bien = giatri;
+```
+
+```js
+var bien = giatri;
+```
+VD:
+
+```js
+var a = 1996
+```
+
+```js
+var a = 1996
+```"
+255,Bài 3: Toán tử trong Javascript,Toán tử số học,"-Toán tử số học thực ra là các dạng tính toán như cộng, trừ, nhân, chia ,... mà các bạn đã được học từ bé và đây là danh sách các toán tử số học trong javascript hỗ trợ.
+-Phép cộng sẽ cộng 2 con số lại nếu nó là số, và sẽ nối chuỗi lại nếu là chuỗi.
+VD:
+
+```js
+var a = 6;
+var b = 5;
+var c = 'vu thanh ';
+var d ='tai';
+document.write(a + b); // 11
+document.write('<br/>'); // xuống dòng cho dễ đọc
+document.write(c + d); // vu thanh tai
+```
+
+```js
+var a = 6;
+var b = 5;
+var c = 'vu thanh ';
+var d ='tai';
+document.write(a + b); // 11
+document.write('<br/>'); // xuống dòng cho dễ đọc
+document.write(c + d); // vu thanh tai
+```
+-Phép trừ chỉ dùng được với số
+VD:
+
+```js
+var a = 6;
+var b = 5;
+document.write(a - b); // 1
+```
+
+```js
+var a = 6;
+var b = 5;
+document.write(a - b); // 1
+```
+-Phép nhân cũng chỉ dùng được với số.
+VD:
+
+```js
+var a = 6;
+var b = 5;
+document.write(a * b); // 30
+```
+
+```js
+var a = 6;
+var b = 5;
+document.write(a * b); // 30
+```
+-Phép chia dùng được với số.
+VD:
+
+```js
+var a = 10;
+var b = 5;
+document.write(a / b); // 2
+```
+
+```js
+var a = 10;
+var b = 5;
+document.write(a / b); // 2
+```
+-Phép chia này sẽ lấy phần dư của phép chia
+VD:
+
+```js
+var a = 6;
+var b = 5;
+document.write(a % b); // 1
+```
+
+```js
+var a = 6;
+var b = 5;
+document.write(a % b); // 1
+```
+Xem Kết Quả"
+256,Bài 3: Toán tử trong Javascript,"2, Toán Tử Kết Hợp",-Toán tử kết hợp  thực ra là một cách rút gọn của các toán tử số học.
+257,Bài 3: Toán tử trong Javascript,"3,Toán Tử Quan Hệ","-Đây là một dạng toán tử sẽ phải sử dụng rất nhiều trong khi lập trình, mà theo như bên toán học thì đây là toán so sánh. Kết quả trả về của toán tử này sẽ là kiểu boolean (TRUE FALSE).
+-Chú ý: Các toán tử có từ 2 ký tự trở lên như <=,>= phải viết liền không được chứa khoảng trắng ở giữa."
+258,Bài 3: Toán tử trong Javascript,"4, Toán tử logic.","-Đây là một dạng toán tử kết hợp giữa hai hoặc nhiều giá trịbooleanhay nói cách khác là kết hợp của hai hay nhiều toán tử quan hệ lại và nó cũngtrả về dữ liệu dạng True False.
+Bảng Logic"
+259,Bài 3: Toán tử trong Javascript,"5, Lời kết.","-Phần hôm nay chúng ta dùng ở đây thôi, các bạn cố gắng ôn tập nhiều về phần này nhé, Bài tiếp theo chúng ta sẽ tìm hiểu về câu lệnh rẽ nhánh trong javascript."
+260,Bài 5: Vòng lặp trong javascript,Giới thiệu,Sau khi đã học xong câu lệnhrẽ nhánh trong javascriptthì phần tiếp theo không thể thiếu trong lập trình nói chung và với Javascript nói riêng sẽ là vòng lặp. Và đương nhiên chúng ta cần biết vòng lặp nó là cái quái gì?
+261,Bài 5: Vòng lặp trong javascript,"1, Vòng lặp là gì.","-Vòng lặp là một chuỗi sự kiện, hành động được lặp đi lặp lại theo một nguyên tắc nhất định. Ví dụ như vong lặp của con người: sinh-lão-bệnh-tử.
+-Và đối với Javascript nó hỗ trợ chúng ta 3 kiểu vòng lặp(loop) làfor,forEach(cái này mình sẽ nói sau)whilevàdo-while."
+262,Bài 5: Vòng lặp trong javascript,"2, Vòng lặp for.","-Vòng lặp for trong javascript hoạt động cũng giống như các ngôn ngữ khác.
+Cú Pháp:
+
+```js
+for (bienkhoitao; dieukienthucthi ; buocnhay) { 
+	# code...
+}
+```
+
+```js
+for (bienkhoitao; dieukienthucthi ; buocnhay) { 
+	# code...
+}
+```
+Trong đó:
+VD:
+
+```js
+for (var i = 1; i <= 10; i++) {
+    document.write('Dòng số: ' + i + '<br/>');
+}
+```
+
+```js
+for (var i = 1; i <= 10; i++) {
+    document.write('Dòng số: ' + i + '<br/>');
+}
+```
+Xem Kết Quả"
+263,Bài 5: Vòng lặp trong javascript,Vòng lặp for vô tận,"-Để có thể làm vòng lặp for trở thành vòng lặp vô tận thì bạn chỉ cần để trống biểu thức điều kiện thứ 2 trong vòng lặp for.
+VD:
+
+```js
+for (var i = 0; ; i++) {
+    //code
+}
+```
+
+```js
+for (var i = 0; ; i++) {
+    //code
+}
+```"
+264,Bài 5: Vòng lặp trong javascript,"3, Vòng lặp do-while.","-Đây là một dạng vòng lặp cũng khá phổ biến trong javascript, đặc trưng của vòng lặp này là để lặp các dữ liệu mà không xác đinh được điều kiện dừng chính xác hoặc điều kiện dừng phức tạp và nóthực thi câu lệnh trước rồi mới kiểm tra điều kiện.
+Cú Pháp:
+
+```js
+do {
+    // code
+} while (condition);
+```
+
+```js
+do {
+    // code
+} while (condition);
+```
+Trong đó:conditionlà điều kiện để dừng vòng lặp, nếu bằng false thì vòng lặp sẽ dừng và ngược lại true vòng lặp sẽ chạy tiếp.
+VD: Phía trên mình có nói là vòng lặp do-while thực thi câu lệnh trước rồi mới kiểm tra. và đây là ví dụ chứng minh cho câu nói đó.
+
+```js
+do {
+	document.write(1);
+} while(false);
+```
+
+```js
+do {
+	document.write(1);
+} while(false);
+```
+Xem Kết Quả
+VD: Thực hiện in ra các số từ 1 đến 10 bằng vòng lặp do-while.
+
+```js
+//khởi tạo biến i bằng 1
+var i = 1;
+do {
+    //in ra i hiện tại
+	document.write(i+ '<br>');
+    //tiến hành cộng i thêm 1 đơn vị
+	i++;
+//xét điều kiện i>10 thì sẽ dừng 
+} while(i <= 10);
+```
+
+```js
+//khởi tạo biến i bằng 1
+var i = 1;
+do {
+    //in ra i hiện tại
+	document.write(i+ '<br>');
+    //tiến hành cộng i thêm 1 đơn vị
+	i++;
+//xét điều kiện i>10 thì sẽ dừng 
+} while(i <= 10);
+```
+Xem Kết Quả"
+265,Bài 5: Vòng lặp trong javascript,"4, Vòng lặp while.","-Vòng lặp while cũng giống như vòng lặp do-while là dùng để lặp các dữ liệu không biết chính xác điều kiện dừng hoặc điều kiện dừng phức tạp. Và vòng lặp while khác với vòng lặp do-while là nó sẽ tiến hành kiểm tra điều kiện xong rồi mới tiến hành lặp.
+Cú Pháp:
+
+```js
+while (condition) {
+		//code
+	}
+```
+
+```js
+while (condition) {
+		//code
+	}
+```
+Trong đó:conditionlà điều kiện để dừng vòng lặp, nếu bằng false thì vòng lặp sẽ dừng và ngược lại true vòng lặp sẽ chạy tiếp.
+VD: Thực hiện in ra các số từ 1 đến 10 bằng vòng lặp while.
+
+```js
+//khởi tạo biến i=1
+var i = 1;
+//xác định điều kiện i>10 thì sẽ dừng vòng lặp
+while(i <= 10){
+	document.write(i);
+	//tiến hành tăng i thêm 1 đơn vị
+	i++;
+}
+```
+
+```js
+//khởi tạo biến i=1
+var i = 1;
+//xác định điều kiện i>10 thì sẽ dừng vòng lặp
+while(i <= 10){
+	document.write(i);
+	//tiến hành tăng i thêm 1 đơn vị
+	i++;
+}
+```
+Xem Kết Quả"
+266,Bài 5: Vòng lặp trong javascript,"5, Vòng lặp lồng nhau.","-Cũng giống nhưcâu lệnh điều kiệnthì voàng lặp cũng hoàn toàn có thể lồng nhau.
+VD: Vòng lặp for lồng nhau.
+
+```js
+for(i = 0; i <= 10; i++) {
+	for(j = i ; j <= 10; j++) {
+		document.write('*');
+	}
+	document.write('<br>');
+}
+```
+
+```js
+for(i = 0; i <= 10; i++) {
+	for(j = i ; j <= 10; j++) {
+		document.write('*');
+	}
+	document.write('<br>');
+}
+```
+Xem Kết Quả
+VD: Vòng lặp do-while lồng nhau.
+
+```js
+var i = 0;
+do {
+    var j = i;
+    do {
+        document.write('*');
+        j++;
+    } while (j <= 10);
+    document.write('<br>');
+    i++;
+} while (i <= 10);
+```
+
+```js
+var i = 0;
+do {
+    var j = i;
+    do {
+        document.write('*');
+        j++;
+    } while (j <= 10);
+    document.write('<br>');
+    i++;
+} while (i <= 10);
+```
+Xem Kết Quả
+VD: Vòng lặp while lồng nhau.
+
+```js
+var i = 0;
+while (i <= 10) {
+    var j = i;
+    while (j <= 10) {
+        document.write('*');
+        j++;
+    }
+    document.write('<br>');
+    i++;
+}
+```
+
+```js
+var i = 0;
+while (i <= 10) {
+    var j = i;
+    while (j <= 10) {
+        document.write('*');
+        j++;
+    }
+    document.write('<br>');
+    i++;
+}
+```
+Xem Kết Quả"
+267,Bài 5: Vòng lặp trong javascript,"6, Lời kết.","-Như vậy phần trên mình đã giới thiệu với mọi người về vòng lặp trong javascript rồi, bài tiếp theo chúng ta sẽ đi tìm hiểu về hàm trong javascript."
+268,Bài 1: Javascript là gì? Viết chương trình đầu tiên,1. Javascript là gì?,"-Javascript là một ngôn ngữ lập trình kịch bản dựa vào các đối tượng có sẵn hoặc do người dùng( programmer) tự định nghĩa, ngày nay javascript được sử dụng rất phổ biến(99% các website hiện nay) và đương nhiên là với độ phổ biến như thế thìhầu như tất cả các trình duyệt đều hỗ trợ.
+- Javascripthỗ trợ được đa nền tảng, các bạn cũng có thể xây dựng những web game hay thậm chí là app mobile.
+-Hiện nay với sự hỗ trợ của nhiều ông lớn như: google,facebook,... thì javascript đã mạnh lại càng thêm mạnh."
+269,Bài 1: Javascript là gì? Viết chương trình đầu tiên,Sử dụng Javascript trực tiếp trên file HTML,"-Để có thể viết được HTML trên file HTML thì bắt buộc các bạn cần phải khai báo bắt buộc theo cú pháp:
+
+```js
+<script type=""text/javascript"">
+		//code javascript ở đây
+	</script>
+```
+
+```js
+<script type=""text/javascript"">
+		//code javascript ở đây
+	</script>
+```
+-Và đoạn script này có thể đặt ở bất cứ đâu trong file HTML."
+270,Bài 1: Javascript là gì? Viết chương trình đầu tiên,Import javascript từ một file bên ngoài,"-Cúng giống nhưcssjavascript cũng có thể import từ một file bên ngoài vào được vàbắt buộcfile đó phải có phần mở rộng.jstheo cú pháp:
+
+```js
+.js
+```
+
+```js
+<script  type=""text/javascript""></script>
+```
+
+```js
+<script  type=""text/javascript""></script>
+```
+-Trong đó: file là đường dẫn của file các bạn muốn import vào.
+VD: import một file demo.js
+
+```js
+<script  type=""text/javascript""></script>
+```
+
+```js
+<script  type=""text/javascript""></script>
+```"
+271,Bài 1: Javascript là gì? Viết chương trình đầu tiên,Viết javascript trong thẻ HTML,"-Cách này cũng khá phổ biến khi bạn muốn gọi một hàm hay thực thi một đoạn code javascript ngắn.
+Cú pháp:
+
+```js
+<button type=""button"" onclick=""code"">Ấn vào rồi biết</button>
+```
+
+```js
+<button type=""button"" onclick=""code"">Ấn vào rồi biết</button>
+```
+-Trong đó:codelà nơi chứa codejavascript.
+VD:
+
+```js
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=""utf-8"">
+	<meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+	<title>Javascript lesson1</title>
+	<link rel=""stylesheet"" href="""">
+</head>
+<body>
+	<button type=""button"" onclick=""alert(1)"">click</button>
+</body>
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=""utf-8"">
+	<meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+	<title>Javascript lesson1</title>
+	<link rel=""stylesheet"" href="""">
+</head>
+<body>
+	<button type=""button"" onclick=""alert(1)"">click</button>
+</body>
+</html>
+```
+Xem Kết Quả"
+272,Bài 1: Javascript là gì? Viết chương trình đầu tiên,"3, Helloworld kinh điển","-Nếu bạn là người hay đọc các series lập trình của mình thì chắc hẳn các bạn cũng đã biết được các ngôn ngữ mình giới thiệu đều có chung một bàikinh điểnđó là 'helloworld'. Và đối với javascript cũng không ngoại trừ.
+-Đầu tiên chúng ta tạo một fileindex.htmlvà code đoạn code như sau:
+
+```js
+index.html
+```
+
+```js
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=""utf-8"">
+	<meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+	<title>Javascript lesson1</title>
+</head>
+<style type=""text/css"" media=""screen"">
+	body{
+		text-align: center;
+	}
+</style>
+<body>
+	<h3>Click vào button đi ông tướng</h3>
+	<button type=""button"" onclick=""alert('helloworld')"">click</button>
+</body>
+</html>
+```
+
+```js
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=""utf-8"">
+	<meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+	<title>Javascript lesson1</title>
+</head>
+<style type=""text/css"" media=""screen"">
+	body{
+		text-align: center;
+	}
+</style>
+<body>
+	<h3>Click vào button đi ông tướng</h3>
+	<button type=""button"" onclick=""alert('helloworld')"">click</button>
+</body>
+</html>
+```
+Xem Kết Quả
+-Trong đó:chúng ta có sử dụng hàm alert trong javascript để in ra thông báo trên màn hình."
+273,Bài 1: Javascript là gì? Viết chương trình đầu tiên,"4, Lời kết.","-Qua bài hôm nay mình đã giới thiệu với mọi người khái niệm cũng như viết chương trình đầu tiên trong javascript rồi, bài tiếp theo chúng ta sẽ tìm hiểu về biến và hằng trong javascript."

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Tutor Bot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  </head>
+  <body>
+    <div class="chat-container">
+      <header class="chat-header">
+        <h1><i class="fab fa-js"></i> JavaScript Tutor</h1>
+        <div class="language-switcher">
+          <button class="lang-btn active" data-lang="vi">VI</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </header>
+
+      <div class="chat-messages" id="chat-messages">
+        <!-- Messages will appear here -->
+        <div class="message bot-message">
+          <div class="message-content">Xin chào! Tôi là trợ lý học JavaScript. Hãy hỏi tôi bất kỳ câu hỏi nào về JavaScript nhé!</div>
+        </div>
+      </div>
+
+      <div class="chat-input">
+        <textarea id="user-input" placeholder="Nhập câu hỏi về JavaScript..."></textarea>
+        <button id="send-btn"><i class="fas fa-paper-plane"></i> Gửi</button>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const chatMessages = document.getElementById("chat-messages");
+        const userInput = document.getElementById("user-input");
+        const sendBtn = document.getElementById("send-btn");
+        const langButtons = document.querySelectorAll(".lang-btn");
+        let currentLang = "vi";
+
+        // Xử lý chuyển đổi ngôn ngữ
+        langButtons.forEach((btn) => {
+          btn.addEventListener("click", function () {
+            langButtons.forEach((b) => b.classList.remove("active"));
+            this.classList.add("active");
+            currentLang = this.dataset.lang;
+            userInput.placeholder = currentLang === "vi" ? "Nhập câu hỏi về JavaScript..." : "Ask your JavaScript question...";
+          });
+        });
+
+        // Xử lý gửi tin nhắn
+        function sendMessage() {
+          const message = userInput.value.trim();
+          if (!message) return;
+
+          // Hiển thị tin nhắn người dùng
+          addMessage(message, "user-message");
+          userInput.value = "";
+
+          // Gửi đến backend
+          fetch("/chat", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              question: message,
+              lang: currentLang,
+            }),
+          })
+            .then((response) => {
+              if (!response.ok) throw new Error("Network error");
+              return response.json();
+            })
+            .then((data) => {
+              addMessage(data.response, "bot-message");
+            })
+            .catch((error) => {
+              addMessage(`⚠️ Lỗi: ${error.message}`, "error-message");
+            });
+        }
+
+        // Thêm tin nhắn vào khung chat
+        function addMessage(content, messageType) {
+          const messageDiv = document.createElement("div");
+          messageDiv.className = `message ${messageType}`;
+
+          const contentDiv = document.createElement("div");
+          contentDiv.className = "message-content";
+
+          // Xử lý mã code trong phản hồi
+          if (content.includes("```")) {
+            const parts = content.split("```");
+            parts.forEach((part, index) => {
+              if (index % 2 === 1) {
+                // Phần code
+                const codeBlock = document.createElement("pre");
+                codeBlock.textContent = part;
+                contentDiv.appendChild(codeBlock);
+              } else {
+                // Phần text thường
+                const textNode = document.createElement("span");
+                textNode.innerHTML = part.replace(/\n/g, "<br>");
+                contentDiv.appendChild(textNode);
+              }
+            });
+          } else {
+            contentDiv.innerHTML = content.replace(/\n/g, "<br>");
+          }
+
+          messageDiv.appendChild(contentDiv);
+          chatMessages.appendChild(messageDiv);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Gửi tin nhắn khi click nút hoặc nhấn Enter
+        sendBtn.addEventListener("click", sendMessage);
+        userInput.addEventListener("keypress", function (e) {
+          if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,3601 @@
+id,bai,tieude,noidung
+1,JS 2.4 Variable Name,Bài tập,"Cho 1 chương trình mẫu. Nhưng nó ko phải là 1 chương trình đúng. Các tên biến đang ko tuân theo chuẩn của JS. Hãy thay đổi tên biến cho chính xác và in chúng ra màn hình
+Đầu vào
+: Không có
+Đầu ra
+: Hãy thay đổi tên biến cho chính xác và in chúng ra màn hình"
+2,JS 2.4 Variable Name,Gợi ý,Đọc phần lý thuyết sau để biết về quy tắc đặt tên biến trong JS
+3,JS 2.4 Variable Name,Lý thuyết,"Hiểu về quy tắc đặt tên cho biến.
+Biết những từ khóa riêng cái mà không thể sử dùng làm biến, function, phương thức hay tên đối tượng.
+Các quy ước đặt tên cho các biến JavaScript
+Khi đặt tên cho các biến của bạn trong JavaScript, hãy ghi nhớ các quy tắc sau.
+- Tên biến phải bắt đầu bằng một chữ cái, gạch dưới (_), hay ký tự dollar ($).
+- Tên biến không thể bắt đầu bằng 1 chữ số.
+- Tên biến chỉ có thể chưa ký tự alpha-numeric (A-z, 0-9) và gạch dưới.
+- Tên biến không thể chưa ký tự cách.
+- Tên biến không thể là các từ khóa của JavaScript hay reserved word (từ khóa riêng).
+- Tên biến trong JS có phân biệt hoa thường. Ví dụ,
+Name
+và
+name
+là 2 biến khác nhau.
+Bảng sau là danh sách nhưng từ khóa riêng của JS. Chúng ko thể dc sử dụng đề đặt tên biến, hàm, phương thức, nhãn vòng lắp hay tên object."
+4,JS 2.2  Variables,Bài tập,"Khai báo biến
+a
+và gán giá trị 15 cho
+a
+.
+Khai báo biến
+b
+và gán giá trị 'javascript' cho
+b
+.
+Khai báo biến
+c
+và gán giá trị true cho
+c
+.
+In ra tất cả các biến trong chương trình
+Đầu vào
+: Không có
+Đầu ra
+: In ra tất cả các biến trong chương trình"
+5,JS 2.2  Variables,Gợi ý,Đọc phần lý thuyết sau để hiểu về biến trong JS
+6,JS 2.2  Variables,Lý thuyết,"Hiểu về cách làm việc của biến (Khai báo, Khởi tạo, gán giá trị
+Biến là gì
+Các biến là cơ bản cho tất cả các ngôn ngữ lập trình. Các biến được sử dụng để lưu trữ dữ liệu, như chuỗi văn bản, số, v.v. Dữ liệu hoặc giá trị được lưu trữ trong các biến có thể được gán, thay đổi và truy xuất bất cứ khi nào cần. Nói chung, các biến là tên tượng trưng cho các giá trị.
+Bạn có thể tạo 1 biến với từ khóa
+var
+, toán tử gán (
+=
+) được sử dụng để gán giá trị cho biến, như:
+var varName = value;
+Ví dụ:
+```js
+varname=""Tuan Phong"";varage=10;varisBoy=true;
+```
+Trong ví dụ trên, chúng ta đã tạo ba biến, biến thứ nhất được gán với giá trị chuỗi, biến thứ hai được gán với một số, trong khi biến cuối được gán với giá trị boolean. Các biến có thể chứa các loại dữ liệu khác nhau, chúng ta sẽ tìm hiểu về chúng trong chương sau.
+Trong JavaScript, các biến cũng có thể được khai báo mà không có bất kỳ giá trị ban đầu nào được gán cho chúng. Điều này hữu ích cho các biến được cho là giữ các giá trị như đầu vào của người dùng.
+```js
+// Declaring Variablevarname;// Assigning valuename=""Tuan Phong"";
+```
+Khai báo nhiều biến cùng một lúc
+Ngoài ra, bạn cũng có thể khai báo nhiều biến và đặt giá trị ban đầu của chúng trong một câu lệnh. Mỗi biến được phân tách bằng dấu phẩy, như được minh họa trong ví dụ sau:
+```js
+/Declaring multiple Variablesvarname=""Tuan Phong"",age=10,isBoy=true;/* Longer declarations can be written to span
+multiple lines to improve the readability */varname=""Tuan Phong"",age=10,isBoy=true;
+```
+Phạm vi của biến
+Phạm vi của một biến là khu vực của chương trình mà nó được xác định. Các biến JavaScript chỉ có hai phạm vi.
+- Global Variables (Biến toàn cục)
+− Một biến toàn cục có phạm vi toàn cầu, có nghĩa là nó có thể được định nghĩa ở bất kỳ đâu trong mã JavaScript của bạn.
+- Local Variables (Biến cục bộ)
+− Một biến cục bộ sẽ chỉ hiển thị trong một hàm được định nghĩa. Các tham số chức năng luôn luôn cục bộ với chức năng đó.
+```js
+varmyVar=""out of function"";// Declare a global variablefunctiondo_something(){varmyVar=""in of function"";// Declare a local variableconsole.log(myVar);}do_something();// Output: ""in of function""// orvarmyVar=""out of function"";// Declare a global variablefunctiondo_something(){console.log(myVar);}do_something();// Output: ""out of function""
+```"
+7,JS 3.5 Operators -  typeof Operator,Bài tập,"Viết chương trình in ra kiểu dữ liệu của các biến trong chương trình
+```js
+vara=12;varb=""javascript"";varc=true;vard=['Apple','Banana'];vare={type:""Fiat"",model:""500"",color:""white""};varf=function(){console.log(""javascript"");};varg;
+```"
+8,JS 3.5 Operators -  typeof Operator,Gợi ý,"Sử dụng
+typeof"
+9,JS 3.5 Operators -  typeof Operator,Lý thuyết,"Sinh viên hiểu về các toán tử typeof và cách sử dụng nó trong các vấn đề thực tế.
+Toán tử
+typeof
+là toán tử đơn nguyên được đặt trước toán hạng đơn của nó, có thể là bất kỳ loại nào. Giá trị của nó là một chuỗi chỉ ra kiểu dữ liệu của toán hạng.
+Toán tử
+typeof
+ước tính thành ""number"", ""string"" hoặc ""boolean"" nếu toán hạng của nó là một số, chuỗi hoặc giá trị boolean và trả về giá trị đúng hoặc sai dựa trên đánh giá.
+Dưới đây là danh sách các giá trị trả về cho Toán tử typeof..
+Arr
+Chuỗi trả về bởi typeof
+Number
+""number""
+String
+""string""
+Boolean
+""boolean""
+Object
+""object""
+Array
+""object""
+Function
+""function""
+Undefined
+""undefined""
+Null
+""object"""
+10,JS 3.5 Operators -  typeof Operator,Ví dụ:,"```js
+console.log(typeof42);// expected output: ""number""console.log(typeof'blubber');// expected output: ""string""console.log(typeoftrue);// expected output: ""boolean""console.log(typeofdeclaredButUndefinedVariable);// expected output: ""undefined"";
+```"
+11,JS 2.1 Variable - Data type,Bài tập,"Cho chương trình mẫu. Khai báo các biến để chương trình in ra các giá trị sau
+Đầu vào
+: Không có
+Đầu ra
+: hiển thị các giá trị sau
+24
+JavaScript
+[ 1, 2 ]
+{ a: 'x', b: 'y' }
+```js
+24
+JavaScript
+[ 1, 2 ]
+{ a: 'x', b: 'y' }
+```"
+12,JS 2.1 Variable - Data type,Gợi ý,Đọc phần lý thuyết để biết về các kiểu dữ liệu của biến trong javascript
+13,JS 2.1 Variable - Data type,Lý thuyết,"Hiểu về các kiểu dữ liệu của biến trong javascript
+Các kiểu dữ liệu về cơ bản chỉ định loại dữ liệu nào có thể được lưu trữ và các sử dụng trong một chương trình.
+Có sáu loại dữ liệu cơ bản trong JavaScript có thể được chia thành ba loại chính: nguyên thủy (hoặc sở cấp), hỗn hợp (hoặc tham chiếu) và các loại dữ liệu đặc biệt. Chuỗi, Số và Boolean là các kiểu dữ liệu nguyên thủy. Object, Array và Function (là tất cả các loại đối tượng) là các kiểu dữ liệu hỗn hợp. Trong đó Undefined và Null là các loại dữ liệu đặc biệt.
+Các kiểu dữ liệu nguyên thủy chỉ có thể giữ một giá trị tại một thời điểm, trong khi các kiểu dữ liệu hỗn hợp có thể chứa các tập hợp các giá trị và các thực thể phức tạp hơn.
+String (Kiểu chuỗi)
+Kiểu dữ liệu chuỗi được sử dụng để thể hiện dữ liệu văn bản (nghĩa là các chuỗi ký tự). Chuỗi được tạo bằng cách sử dụng dấu ngoặc đơn hoặc kép bao quanh một hoặc nhiều ký tự, như hiển thị bên dưới:
+```js
+vara='Hi';// using single quotesvarb=""Hi"";// using double quotes
+```
+Bạn có thể thêm dấu ngoặc đơn hoặc kép vào trong chuỗi
+```js
+vara=""Let's have a cup of coffee."";// single quote inside double quotesvarb='He said ""Hello"" and left.';// double quotes inside single quotesvarc='We\'ll never give up.';// escaping single quote with backslash
+```
+Number (Kiểu số)
+Kiểu dữ liệu số được sử dụng để biểu thị các số dương hoặc âm có hoặc không có vị trí thập phân hoặc các số được viết bằng ký hiệu số mũ như 1.5e-4 (tương đương 1.5x10
+-4
+)
+```js
+vara=25;// integervarb=80.5;// floating-point numbervarc=4.25e+6;// exponential notation, same as 4.25e6 or 4250000vard=4.25e-6;// exponential notation, same as 0.00000425
+```
+Kiểu dữ liệu Số cũng bao gồm một số giá trị đặc biệt đó là: Vô cực, âm vô cực và NaN. Vô cực đại diện cho
+∞
+, lớn hơn bất kỳ số nào. Vô cực là kết quả của việc chia một số khác không cho 0, như được minh họa dưới đây:
+```js
+console.log(16/0);// Output: Infinityconsole.log(-16/0);// Output: -Infinityconsole.log(16/-0);// Output: -Infinity
+```
+Trong khi
+NaN
+đại diện cho giá trị đặc biệt
+Not-a-Number
+(Không phải là số). Đó là kết quả của một phép toán không hợp lệ hoặc không xác định, như căn bậc 2 của -1, hay chia 0 cho 0. v.v
+```js
+console.log(""Some text""/2);// Output: NaNconsole.log(""Some text""/2+10);// Output: NaNconsole.log(Math.sqrt(-1));// Output: NaN
+```
+Boolean
+Kiểu dữ liệu Boolean chỉ có thể chứa hai giá trị: true hoặc false. Nó thường được sử dụng để lưu trữ các giá trị như có (đúng) hoặc không (sai), on(đúng) hoặc off(sai), v.v. như được trình bày dưới đây:
+```js
+varisReading=true;// yes, I'm readingvarisSleeping=false;// no, I'm not sleeping
+```
+Các giá trị Boolean cũng là kết quả của sự so sánh trong một chương trình. Ví dụ sau so sánh hai biến và hiển thị kết quả:
+```js
+vara=1,b=4,c=5;console.log(b>a)// Output: trueconsole.log(b>c)// Output: false
+```
+Null
+Đây là một loại dữ liệu đặc biệt khác chỉ có thể có một giá trị - giá trị null. Giá trị null có nghĩa là không có giá trị. Nó không tương đương với một chuỗi rỗng ("""") hoặc 0, nó chỉ đơn giản là không có gì.
+Một biến có thể được làm trống rỗng , xóa bỏ nội dung hiện tại của nó bằng cách gán cho nó giá trị null.
+```js
+vara=null;console.log(a);// Output: nullvarb=""Hello World!""console.log(b);// Output: Hello World!b=null;console.log(b)// Output: null
+```
+Object (Kiểu đối tượng)
+Object là một kiểu dữ liệu phức tạp cho phép bạn lưu trữ các tập dữ liệu.
+An object contains properties, defined as a key-value pair. A property key (name) is always a string, but the value can be any data type, like strings, numbers, booleans, or complex data types like arrays, function and other objects. You'll learn more about objects in upcoming chapters.
+Một object chứa các thuộc tính, được định nghĩa là một cặp key-value. key (tên thuộc tính) luôn là 1 chuỗi, Nhưng value (giá trị) của nó có thể là bất kỳ loại dữ liệu nào, như chuỗi, số, booleans hoặc các loại dữ liệu phức tạp như mảng, hàm và các đối tượng khác.
+Ví dụ sau đây sẽ chỉ cho bạn cách đơn giản nhất để tạo một đối tượng trong JavaScript.
+```js
+varemptyObject={};varperson={""name"":""Clark"",""surname"":""Kent"",""age"":""36""};// For better readingvarcar={""modal"":""BMW X3"",""color"":""white"",""doors"":5}
+```
+Bạn có thể bỏ quả các dấu ngoạc trước và sau tên thuộc tính nếu nó là 1 tên hợp lệ. Nghĩa là dấu ngoạc là bắt buộc cho
+""first-name""
+nhưng không bắt buộc cho
+firstname
+. Như vậy object car ở trên có thể viết lại như sau:
+```js
+varcar={modal:""BMW X3"",color:""white"",doors:5}
+```
+Array (Kiểu mảng)
+Mảng là một loại đối tượng được sử dụng để lưu trữ nhiều giá trị trong một biến. Mỗi giá trị (còn được gọi là một phần tử) trong một mảng có một vị trí số, được gọi là chỉ mục của nó và nó có thể chứa dữ liệu của bất kỳ loại dữ liệu nào - số, chuỗi, booleans, hàm, đối tượng và thậm chí các mảng khác. Chỉ số mảng bắt đầu từ 0, do đó phần tử mảng đầu tiên là arr[0] không phải là arr[1].
+Cách đơn giản nhất để tạo một mảng là bằng cách chỉ định các thành phần mảng dưới dạng một danh sách được phân tách bằng dấu phẩy được bao quanh bởi dấu ngoặc vuông, như trong ví dụ dưới đây:
+```js
+varcolors=[""Red"",""Yellow"",""Green"",""Orange""];varcities=[""London"",""Paris"",""New York""];console.log(colors[0]);// Output: Redconsole.log(cities[2]);// Output: New York
+```
+Function (Kiểu hàm)
+Hàm này là đối tượng có thể gọi được cái mà thực thi một khối lệnh. Vì các hàm là các đối tượng, vì vậy có thể gán chúng cho các biến, như trong ví dụ dưới đây:
+```js
+vargreeting=function(){return""Hello World!"";}// Check the type of greeting variableconsole.log(typeofgreeting)// Output: functionconsole.log(greeting());// Output: Hello World!
+```"
+14,JS - 2.5 constant,Bài tập,"Khai báo 1 hằng số có giá trị là 2019 và in nó ra màn hình
+Đầu vào
+: none
+Đầu ra
+: 2019"
+15,JS - 2.5 constant,Gợi ý,Đọc phần lý thuyết sau để biết làm thế nào để khái báo hằng số trong JS
+16,JS - 2.5 constant,Lý thuyết,"Sinh viên hiểu về hằng số và làm thế nào để khái báo hằng số
+Hằng số trong các ngôn ngữ lập trình là một biến giá trị không thay đổi. Trong bài này, chúng ta sẽ học cú pháp để khai báo một hằng số trong Java script
+Một hằng số được khai báo với từ khóa
+const
+. Giá trị của hằng số sẽ ko thể nào thay đổi khi đã khởi tạo:
+```js
+constPI=3.141592653589793;PI=3.14;// This will give an errorPI=PI+10;// This will also give an errorvara=PI+10;// OK
+```
+Các biến const JavaScript phải được gán một giá trị khi chúng được khai báo:
+```js
+// IncorrectconstPI;PI=3.14159265359;// CorrectconstPI=3.14159265359;
+```
+Hằng số Objects có thể thay đổi
+Bạn có thể thay đổi các thuộc tính của một hằng số object:
+```js
+// You can create a const object:constcar={type:""Fiat"",model:""500"",color:""white""};// You can change a property:car.color=""red"";// You can add a property:car.owner=""Johnson"";
+```
+Nhưng bạn ko thể gán lại một hằng số object:
+```js
+constcar={type:""Fiat"",model:""500"",color:""white""};car={type:""Volvo"",model:""EX60"",color:""red""};// ERROR
+```
+Hằng số mảng có thể thay đổi
+Bạn có thể thay đổi các phần tử của hằng số mảng:
+```js
+// You can create a constant array:constcars=[""Saab"",""Volvo"",""BMW""];// You can change an element:cars[0]=""Toyota"";// You can add an element:cars.push(""Audi"");
+```
+Nhưng cũng không thể gán lại hằng số mảng:
+```js
+constcars=[""Saab"",""Volvo"",""BMW""];cars=[""Toyota"",""Volvo"",""Audi""];// ERROR
+```"
+17,Creates a JavaScript Date instance,Bài tập,"Cho 3 số tự nhiên
+year, month, day
+. Sử dụng các phương thức date để khai báo
+year
+là năm,
+month
+là tháng và
+day
+là ngày và in ra ngày
+Ví dụ
+:
+cho
+year = 2019; month = 6; day = 24;
+in ra
+""06/24/2019""
+Đầu vào
+:
+year, month, day
+Đầu ra
+: Khai báo
+year
+là năm,
+month
+là tháng và
+day
+là ngày và in ra ngày
+cho
+year = 2019; month = 6; day = 24;
+in ra
+""06/24/2019"""
+18,Creates a JavaScript Date instance,Gợi ý,Đọc phần lý thuyết để biết các phương thức của date
+19,Creates a JavaScript Date instance,Lý thuyết,"Các phương thức của date
+Phương thức
+Mô tả
+getDate()
+Nó trả về giá trị số nguyên từ 1 đến 31 đại diện cho ngày cho ngày đã chỉ định trên cơ sở giờ địa phương.
+getDay()
+Nó trả về giá trị nguyên từ 0 đến 6 đại diện cho ngày trong tuần trên cơ sở giờ địa phương.
+getFullYears()
+Nó trả về giá trị số nguyên biểu thị năm trên cơ sở giờ địa phương.
+getHours()
+Nó trả về giá trị nguyên từ 0 đến 23 đại diện cho giờ trên cơ sở giờ địa phương.
+getMilliseconds()
+Nó trả về giá trị số nguyên từ 0 đến 999 đại diện cho mili giây trên cơ sở thời gian địa phương.
+getMinutes()
+Nó trả về giá trị nguyên từ 0 đến 59 đại diện cho số phút trên cơ sở giờ địa phương.
+getMonth()
+Nó trả về giá trị nguyên từ 0 đến 11 đại diện cho tháng trên cơ sở giờ địa phương.
+getSeconds()
+Nó trả về giá trị nguyên từ 0 đến 60 đại diện cho giây trên cơ sở thời gian địa phương.
+getUTCDate()
+Nó trả về giá trị số nguyên từ 1 đến 31 đại diện cho ngày cho ngày đã chỉ định trên cơ sở thời gian thế gới.
+getUTCDay()
+Nó trả về giá trị nguyên từ 0 đến 6, đại diện cho ngày trong tuần trên cơ sở thời gian thế giới.
+getUTCFullYears()
+Nó trả về giá trị nguyên biểu thị năm trên cơ sở thời gian thế giới.
+getUTCHours()
+Nó trả về giá trị nguyên từ 0 đến 23 đại diện cho giờ trên cơ sở thời gian thế giới.
+getUTCMinutes()
+Nó trả về giá trị nguyên từ 0 đến 59 đại diện cho số phút trên cơ sở thời gian thế giới.
+getUTCMonth()
+Nó trả về giá trị nguyên từ 0 đến 11, đại diện cho tháng trên cơ sở thời gian thế giới+.
+getUTCSeconds()
+Nó trả về giá trị số nguyên từ 0 đến 60 đại diện cho giây trên cơ sở thời gian thế giới.
+setDate()
+Nó đặt 1 giá trị ngày cho ngày cụ thể trên cơ sở giờ địa phương.
+setDay()
+Nó đặt ngày cụ thể trong tuần trên cơ sở giờ địa phương.
+setFullYears()
+Nó đặt giá trị năm cho ngày đã chỉ định trên cơ sở giờ địa phương.
+setHours()
+Nó đặt giá trị giờ cho ngày đã chỉ định trên cơ sở giờ địa phương.
+setMilliseconds()
+Nó đặt giá trị mili giây cho ngày đã chỉ định trên cơ sở giờ địa phương.
+setMinutes()
+Nó đặt giá trị phút cho ngày đã chỉ định trên cơ sở giờ địa phương.
+setMonth()
+Nó đặt tháng cho ngày được chỉ định trên cơ sở giờ địa phương.
+setSeconds()
+Nó đặt giây cho ngày được chỉ định trên cơ sở giờ địa phương.
+setUTCDate()
+Nó đặt ngày cụ thể trong tuần trên cơ sở giờ thế giới.
+setUTCDay()
+Nó đặt ngày cụ thể trong tuần trên cơ sở thời gian thế giới.
+setUTCFullYears()
+Nó đặt giá trị năm cho ngày đã chỉ định trên cơ sở thời gian thế giới.
+setUTCHours()
+Nó đặt giá trị giờ cho ngày đã chỉ định trên cơ sở thời gian thế giới.
+setUTCMilliseconds()
+Nó đặt giá trị mili giây cho ngày đã chỉ định trên cơ sở thời gian thế giới.
+setUTCMinutes()
+Nó đặt giá trị phút cho ngày đã chỉ định trên cơ sở thời gian thế giới.
+setUTCMonth()
+Nó đặt giá trị phút cho ngày đã chỉ định trên cơ sở thời gian thế giới.
+setUTCSeconds()
+Nó đặt giá trị giây cho ngày đã chỉ định trên cơ sở thời gian thế giới.
+toDateString()
+Nó trả về phần ngày của một đối tượng Date.
+toISOString()
+Nó trả về ngày ở dạng chuỗi định dạng ISO.
+toJSON()
+Nó trả về một chuỗi đại diện cho đối tượng Date. Nó cũng tuần tự hóa đối tượng Date trong quá trình tuần tự hóa JSON.
+toString()
+Nó trả về ngày ở dạng chuỗi.
+toTimeString()
+Nó trả về phần thời gian của một đối tượng Date.
+toUTCString()
+Nó chuyển đổi ngày được chỉ định dưới dạng chuỗi bằng múi giờ UTC.
+valueOf()
+Nó trả về giá trị nguyên thủy của một đối tượng Date."
+20,Date Methods,Bài tập,"Chạy code mẫu và xem kết quả trả về
+Đầu vào
+: None
+Đầu ra
+: None"
+21,Date Methods,Gợi ý,Đọc phần lý thuyết sau để hiểu về các phương thức của Math
+22,Date Methods,Lý thuyết,"Sinh viên hiểu về các phương thức toán học trong javascript
+Math là một đối tượng tích hợp có các thuộc tính và phương thức cho các hằng số và hàm toán học. Không phải là một đối tượng chức năng.
+Math làm việc với kiểu Number. Nó không làm việc với kiểu BigInt.
+Không giống như các đối tượng toàn cục khác, Math không phải là một hàm tạo. Tất cả các thuộc tính và phương pháp của Math là tĩnh. Bạn gọi hằng số pi là Math.PI và bạn gọi hàm sin là Math.sin (x), trong đó x là đối số của phương thức. Các hằng số được xác định với độ chính xác đầy đủ của các số thực trong JavaScript.
+Các phương thức phổ biến của Math
+Phương thức
+Mô tả
+abs()
+Trả về giá trị tuyệt đối của số đã cho
+acos()
+Trả về arccosine của số đã cho bằng radian.
+asin()
+Trả về arcsine của số đã cho bằng radian.
+atan()
+Trả về arc-tangentcủa số đã cho bằng radian.
+cbrt()
+Trả về căn bậc ba của số đã cho
+ceil()
+Trả về một giá trị nguyên nhỏ nhất, lớn hơn hoặc bằng số đã cho.
+cos()
+Trả về cosin của số đã cho.
+cosh()
+Trả về cosin hyperbol của số đã cho.
+exp()
+Trả về dạng số mũ của số đã cho.
+floor()
+Trả về giá trị nguyên lớn nhất, thấp hơn hoặc bằng số đã cho.
+hypot()
+Trả về căn bậc hai của tổng bình phương của các số đã cho.
+log()
+Trả về logarit tự nhiên của một số.
+max()
+Trả về giá trị tối đa của các số đã cho.
+min()
+Trả về giá trị tối thiểu của các số đã cho.
+pow()
+Nó trả về giá trị số mũ.
+random()
+Nó trả về số ngẫu nhiên trong khoảng từ 0 (đã bao gồm) và 1 (độc quyền).
+round()
+Nó trả về giá trị nguyên gần nhất của số đã cho.
+sign()
+Nó trả về dấu của số đã cho
+sin()
+Nó trả về sin của số đã cho.
+sinh()
+Nó trả về hyperbolic sine của số đã cho.
+sqrt()
+Nó trả về căn bậc hai của số đã cho
+tan()
+It returns the tangent of the given number.
+Nó trả về tangent của số đã cho.
+tanh()
+Nó trả về hyperbolic tangent của số đã cho.
+trunc()
+Nó trả về một phần nguyên của số đã cho.
+Ví dụ:
+```js
+Math.abs(-3);// returns 3Math.abs(4);// returns 4Math.acos(-2);// NaNMath.acos(-1);// 3.141592653589793Math.acos(0);// 1.5707963267948966Math.acos(0.5);// 1.0471975511965979Math.acos(1);// 0Math.acos(2);// NaNMath.asin(-2);// NaNMath.asin(-1);// -1.5707963267948966 (-pi/2)Math.asin(0);// 0Math.asin(0.5);// 0.5235987755982989Math.asin(1);// 1.5707963267948966 (pi/2)Math.asin(2);// NaNMath.atan(1);// 0.7853981633974483Math.atan(0);// 0Math.atan(-0);// -0Math.cbrt(8);// 2Math.ceil(1);// 1Math.ceil(1.01);// 2Math.floor(5.95);// 5Math.floor(5);// 5Math.hypot(3,4);// 5Math.hypot(5,12);// 13Math.max(1,3,2);// 3Math.max(-1,-3,-2);// -1Math.min(1,3,2);// 1Math.min(-1,-3,-2);// -2Math.pow(2,3);// 8Math.pow(7,2);// 49Math.pow(7,3);// 343Math.random();// random numberMath.round(5.95);// 6Math.round(5.5);// 6Math.round(5.05);// 5Math.sqrt(4);// 2Math.sqrt(9);// 3Math.trunc(13.37);// 13Math.trunc(-0.123);// 0Math.trunc(0.123);// 0
+```"
+23,Number exercise 01,Bài tập,"Cho n là 1 tham số. Viết chương trình kiểm tra n có phải là số hay không
+Ví dụ
+:
+Cho
+n = '';
+In ra
+false
+Cho
+n = 'abc';
+In ra
+false
+Cho
+n = 23;
+In ra
+true
+Cho
+n = 34.5;
+In ra
+true
+Cho
+n = '23.8';
+In ra
+true
+Đầu vào
+: n
+Đầu ra
+: Kiểm tra n có phải là số hay không (true hay false)
+Cho
+n = '';
+In ra
+false
+Cho
+n = 'abc';
+In ra
+false
+Cho
+n = 23;
+In ra
+true
+Cho
+n = 34.5;
+In ra
+true
+Cho
+n = '23.8';
+In ra
+true"
+24,Number exercise 01,Gợi ý,"Read theory to understand more about
+Number.isFinite(), Number.isInteger(), Number.parseFloat() and Number.parseInt()"
+25,Number exercise 01,Theory,"Student understand about
+Number.isFinite(), Number.isInteger(), Number.parseFloat() and Number.parseInt()
+how to use it in fact problems.
+The
+Number.isFinite()
+method determines whether the passed value is a finite number.
+Syntax
+```js
+Number.isFinite(value)
+```
+Example
+```js
+Number.isFinite(Infinity);// falseNumber.isFinite(NaN);// falseNumber.isFinite(-Infinity);// falseNumber.isFinite(0);// trueNumber.isFinite(2456);// true
+```
+The
+Number.isInteger()
+method determines whether the passed value is an integer.
+Syntax
+```js
+Number.isInteger(value)
+```
+Example
+```js
+Number.isInteger(0);// trueNumber.isInteger(1);// trueNumber.isInteger(-100000);// trueNumber.isInteger(99999999999999999999999);// trueNumber.isInteger(0.1);// falseNumber.isInteger(Math.PI);// false
+```
+The
+Number.parseFloat()
+method parses a string argument and returns a floating point number.
+Syntax
+```js
+Number.parseFloat(string)
+```
+Example
+```js
+Number.parseFloat('10')//10Number.parseFloat('10.00')//10Number.parseFloat('237,21')//237Number.parseFloat('237.21')//237.21Number.parseFloat('12 34 56')//12Number.parseFloat(' 36 ')//36Number.parseFloat('36 is my age')//36Number.parseFloat('-10')//-10Number.parseFloat('-10.2')//-10.2
+```
+As you can see
+Number.parseFloat()
+is pretty flexible. It can also convert strings with words, extracting the
+first
+number, but the string must start with a number:
+```js
+Number.parseFloat('I am Flavio and I am 36')//NaN
+```
+The
+Number.parseInt()
+method parses a string argument and returns an integer of the specified radix or base.
+Syntax
+```js
+Number.parseInt(string,[radix])
+```
+Example
+```js
+Number.parseInt('10')//10Number.parseInt('10.00')//10Number.parseInt('237,21')//237Number.parseInt('237.21')//237Number.parseInt('12 34 56')//12Number.parseInt(' 36 ')//36Number.parseInt('36 is my age')//36
+```
+As you can see
+Number.parseInt()
+is pretty flexible. It can also convert strings with words, extracting the
+first
+number, but the string must start with a number:
+```js
+Number.parseInt('I am Flavio and I am 36')//NaN
+```
+You can add a second parameter to specify the radix. Radix 10 is default but you can use octal or hexadecimal number conversions too:
+```js
+Number.parseInt('10',10)//10Number.parseInt('010')//10Number.parseInt('010',8)//8Number.parseInt('10',8)//8Number.parseInt('10',16)//16
+```"
+26,Number Methods,Bài tập,"Cho 2 số
+a, b
+. In ra kết quả của a chia cho b với 2 phần thập phân
+Ví dụ
+:
+Cho
+a = 1; b = 2;
+In ra
+""0.50""
+;
+Cho
+a = 1; b = 3;
+In ra
+""0.33""
+;
+Cho
+a = 2; b = 1;
+In ra
+""2.00""
+;
+Đầu vào
+:
+a, b
+Đầu ra
+: In ra kết quả của a chia cho b với 2 phần thập phân
+Cho
+a = 1; b = 2;
+In ra
+""0.50""
+;
+Cho
+a = 1; b = 3;
+In ra
+""0.33""
+;
+Cho
+a = 2; b = 1;
+In ra
+""2.00""
+;"
+27,Number Methods,Gợi ý,"Đọc phần lý thuyết để hiểu hơn về
+toFixed()"
+28,Number Methods,Lý thuyết,"Sinh viên hiểu về
+toFixed
+() và cách sử dụng nó để giải quyết vấn đề trong thực tế
+toFixed()
+sẽ chuyển đổi một số thành kiểu chuỗi, giữ lại số chữ số thập phân do người dùng xác định.
+Cú pháp
+```js
+numObj.toFixed([digits])
+```
+Ví dụ
+```js
+varnumObj=12345.6789;numObj.toFixed();// Returns '12346': note rounding, no fractional partnumObj.toFixed(1);// Returns '12345.7': note roundingnumObj.toFixed(6);// Returns '12345.678900': note added zeros
+```"
+29,ifElseStatementAss1,Bài tập,"Viết chương trình, người dùng nhập một năm bất kỳ và in ra năm đó có phải là năm nhuận hay không.
+Ví
+dụ:
+Với
+year = 2016
+, đầu ra được in ra màn hình là
+2016 is a leap year
+Vì 2016 chia hết cho 4 và không chia hết cho 100.
+Ví
+dụ:
+Với
+year = 2016
+, đầu ra được in ra màn hình là
+2016 is a leap year
+Vì 2016 chia hết cho 4 và không chia hết cho 100.
+Với
+year = 2015
+, đầu ra được in ra màn hình là
+2015 is not a leap year
+Vì 2015 không chia hết cho 4.
+Với
+year = 2015
+, đầu ra được in ra màn hình là
+2015 is not a leap year
+Vì 2015 không chia hết cho 4.
+Đầu vào:
+1 số nguyên
+year
+Điều kiện tiền đề:
+1 ≤ n ≤ 9999
+Đầu ra:
+kiểm tra year có phải là năm nhuận hay không và in ra màn hình theo kiểu sau:
+2016 is a leap year
+or
+2015 is not a leap year"
+30,ifElseStatementAss1,Gợi ý,"Sử dụng câu lệnh if để giải bài toán này
+Nhớ lại dấu hiệu nhận biết của nam nhuận"
+31,JavaScript conditional exercises,Bài tập,"Viết chương trình javascript để sắp xếp 4 số (a, b, c, d). Và in ra kết quả.
+Ví dụ
+:
+Cho
+a = 3; b = 2; c= 9; d= -1;
+In ra ""9,3,2,-1"";
+Cho
+a = 3; b = 3; c= 8; d= -5;
+In ra ""8,3,3,-5"";
+Đầu vào
+: a, b, c, d
+Đầu ra
+: sắp xếp 4 số (a, b, c, d). Và in ra kết quả.
+Cho
+a = 3; b = 2; c= 9; d= -1;
+In ra ""9,3,2,-1"";
+Cho
+a = 3; b = 3; c= 8; d= -5;
+In ra ""8,3,3,-5"";"
+32,JavaScript conditional exercises,Gợi ý,"Cố gắng nhớ lại kiến thức
+if...else"
+33,JS 5.1 If,Bài tập,"Cho 1 số tự nhiên
+n
+. Viết chương trình kiểm tra
+n
+là số lẽ hay chẵn.
+Nếu number là số chẵn , In ra ""
+Even number
+"" và ""
+Done
+"".
+Ngoài ra, in ""
+Done
+"" ra màn hình.
+Ví dụ:
+Cho
+n = 10
+, kết quả nên in ra như sau:
+Even number Done
+Cho
+n = 151
+, Kết quả nên in ra là ""
+Done
+""
+Ví dụ:
+Cho
+n = 10
+, kết quả nên in ra như sau:
+Even number Done
+Cho
+n = 151
+, Kết quả nên in ra là ""
+Done
+""
+Cho
+n = 10
+, kết quả nên in ra như sau:
+```js
+Even number Done
+```
+Đầu vào:
+n
+Đầu ra:
+Nếu n là số chẵn, In ra màn hình ""
+Even number
+"" và ""
+Done
+"". Ngoài ra in ""
+Done
+"" ra màn hình
+Đầu vào:
+n
+Đầu ra:
+Nếu n là số chẵn, In ra màn hình ""
+Even number
+"" và ""
+Done
+"". Ngoài ra in ""
+Done
+"" ra màn hình"
+34,JS 5.1 If,Gợi ý,Đọc lý thuyết dưới đây và sử dụng câu lệnh if để giải quyết vấn đề
+35,JS 5.1 If,Lý thuyết,"Học sinh hiểu về khái niệm if statement và cách sử dụng nó trong các vấn đề thực tế.
+Tổng quan
+Các lệnh lựa chọn có 3 biến thể:
+Lệnh
+if
+Lệnh
+if...else
+Lệnh
+if...else if-...-else
+Câu lệnh
+if
+đơn giản cho phép thực thi một câu lệnh nhất định hoặc một khối điều kiện, chỉ khi kết quả của biểu thức đánh giá được
+thỏa mãn
+:
+```js
+if(condition){// Do something}
+```
+Ví dụ
+```js
+if(true)console.log(""true"");//1: trueif(false)console.log(""false"");//2:int x=1,y=5;if(x>y)console.log(""x > y"");//3:if(x<y)console.log(""x < y"");//4: x < yif((x+5)>y){//5: x + 5 > yconsole.log(""x + 5 > y"");x=y;}if(x==y){//6: x == yconsole.log(""x == y"");}
+```
+Để chứng minh rằng dấu ngoặc nhọn cũng có thể được sử dụng với một câu lệnh, do đó tạo thành một khối lệnh chỉ gồm một câu lệnh.
+Đó một cách thực hành tốt, nói chung, để có ngoặc nhọn sau
+if
+; điều này giúp cho việc đọc tôt hơn và giúp tránh những lỗi gây bực bội: bạn thêm một câu lệnh khác sau if, và nó sẽ được thực thi chỉ khi biểu thức trả về
+true
+:
+```js
+if(x>y)console.log(""x > y"");x=y;
+```
+Nhưng, câu lệnh
+x = y
+trong đoạn code này được thực thi vô điều kiện. Nếu bạn nghĩ rằng một lỗi như vậy không xảy ra một cách thường xuyên, bạn sẽ phải ngạc nhiên.
+```js
+Một bài học tốt là luôn luôn sử dụng dấu ngoặc nhọn {} với câu lệnh if.
+```
+Như chúng ta đã đề cập, bên trong câu lệnh điều kiện có thể bao gồm một câu lệnh điều kiện khác để tạo ra một logic chặt chẽ hơn cho luồng điều khiển:
+```js
+if(x>y){console.log(""x > y"");if(x==3){console.log(""x == 3"");}if(y==3){console.log(""y == 3"");console.log(""x == ""+x);}}
+```
+Nó có thể chứa (lồng nhau) để thỏa mãn yêu cầu về mặt logic."
+36,if Else Statement,Bài tập,"Cho 3 số a, b và c. hoàn thành chương trình để in ra số lớn nhất
+Ví dụ:
+Cho
+a = 5, b = 7, c = 1,
+Kết quả in ra nên là
+The greatest number is 7
+Cho
+a = 2, b = 2, c = 2,
+Kết quả in ra nên là
+The greatest number is 2
+Đầu vào :
+a
+,
+b, c
+Đầu ra:
+Tìm số lớn nhất và in ra màn hình với định dạng:
+The greatest number is MaxNumber
+Cho
+a = 5, b = 7, c = 1,
+Kết quả in ra nên là
+The greatest number is 7
+Cho
+a = 2, b = 2, c = 2,
+Kết quả in ra nên là
+The greatest number is 2"
+37,if Else Statement,Gợi ý,"Bạn nên sử dụng lệnh
+if-else
+để giải bài toán này.
+Bạn nên học cách sử dụng lệnh
+if-else
+bằng cách đọc lý thuyết phía dưới."
+38,if Else Statement,Lý thuyết,"Mục tiêu
+Sinh viên hiểu được khái niệm về lệnh
+if...else
+và cách sử dụng chúng trong bài tập thực tế.
+Khái quát
+Cấu trúc
+if...else
+cho phép xử lí một khối lệnh nếu biểu thức trong
+if
+có giá trị là
+true
+, ngược lại, khối lệnh khác được xử lí:
+```js
+if(condition){//do something}else{//do something else}
+```
+Dưới đây có 2 ví dụ:
+```js
+varx=1,y=1;if(x==y){console.log(""x == y"");//Output: x == yx=y-1;}else{console.log(""x != y"");}if(x==y){console.log(""x == y"");}else{console.log(""x != y"");//Output: x != y}
+```
+Bạn có thể thấy dễ ràng hơn cho việc đọc code khi dấu
+{}
+được sử dụng thích hợp. Như trong phần trước của lệnh
+if
+, mỗi khối lệnh có thể có nhiều khối lệnh con khác với lệnh
+if
+khác, và cứ như thế có thể có nhiều khối lệnh con phía trong nếu cần thiết.
+if...else if-...-else
+Bạn có thể sử dụng hình thức này để tránh tạo ra nhiều khối lệnh con và làm code dễ để đọc và hiểu hơn. Ví dụ, xem đoạn trích lệnh sau đây:
+```js
+if(n>5){console.log(""n > 5"");}else{if(n==5){console.log(""n == 5"");}else{if(n==4){console.log(""n == 4"");}else{console.log(""n < 4"");}}}
+```
+Các lệnh
+if...else
+con này có thể thay thế bởi lệnh
+if...else...if
+như sau đây:
+```js
+if(n>5){console.log(""n > 5"");}elseif(n==5){console.log(""n == 5"");}elseif(n==4){console.log(""n == 4"");}else{console.log(""n < 4"");}
+```
+Lệnh như vậy là dễ đọc và hiểu hơn.
+Nếu bạn không cần làm bất kỳ điều gì khi
+n < 4
+, bạn có thể bỏ qua mệnh đề
+else
+cuối cùng dùng để bắt trường hợp còn lại của các lựa chọn trên:
+```js
+if(n>5){console.log(""n > 5"");}elseif(n==5){console.log(""n == 5"");}elseif(n==4){console.log(""n == 4"");}​
+```"
+39,JS 5.3  Exercise  1,Bài tập,"Cho điểm 5 môn Physics, Chemistry, Biology, Mathematics and Computer. Tính toán điểm trung bình (%) và in
+Grade (
+cấp) theo bảng sau:
+Điểm trung bình (%) >= 90% : Grade A
+Điểm trung bình (%) >= 80% : Grade B
+Điểm trung bình (%) >= 70% : Grade C
+Điểm trung bình (%) >= 60% : Grade D
+Điểm trung bình (%) >= 40% : Grade E
+Điểm trung bình (%) < 40% : Grade F
+Ví dụ
+:
+physics = 10, chemistry = 9.5, biology = 9.2, mathematics = 10, computer = 9. Thì
+đ
+iểm trung bình (%)
+là 95.4. => Kết quả:
+Grade A
+Đầu vào
+: physics, chemistry, biology, mathematics, computer
+Đầu ra
+: grade"
+40,JS 5.3  Exercise  1,Gợi ý,"Điểm trung bình (%)
+= ((
+physics + chemistry+ biology + mathematics  +computer) / 50) * 100
+Và dùng if ... else để tính grade"
+41,JS 5.2 Switch Case,Gợi ý,"Đọc phần lý thuyết sau để hiểu về
+swich case
+trong JS"
+42,JS 5.2 Switch Case,Lý thuyết,"Sinh viên hiểu về lệnh
+switch...case
+và cách sử dụng nó trong bài tập thực tế.
+Bạn có thể dùng nhiều lệnh
+if...else…if
+, như đã cung cấp ở phần trước, để thực hiện 1 nhánh với nhiều lối đi. Tuy nhiên điều đó không phải là giải pháp tốt nhất,
+đặc biệt là khi tất cả các nhánh phụ thuộc vào giá trị của một biến duy nhất.
+```js
+if(x==5){//do something}elseif(x==7){//do something else}elseif(x==12){//do something different}elseif(x=50){//do something yet more different}else{//do something completely different}
+```
+Tuy nhiên ở đây mỗi trường hợp xác định bằng một lệnh điều kiện, bạn có thể sử dụng lệnh
+switch...case
+, lệnh mà dễ đọc và hiểu hơn.
+switch...case
+Ví dụ lệnh trước có thể được rõ ràng hơn với lệnh
+switch
+như sau đây:
+```js
+switch(x){case5://do somethingbreak;case7://do something elsebreak;case12://do something differentbreak;case50://do something yet more differentbreak;default://do something completely different}
+```
+Kiểu của biểu thức là trả về giá trị của biến
+x
+có thể một trong các kiểu
+char
+,
+byte
+,
+short
+,
+int
+,
+Character
+,
+Byte
+,
+Short
+,
+Integer
+,
+String
+hoặc
+enum
+. Hãy chú ý từ khóa
+break
+, nó buộc lệnh
+switch...case
+dừng lại. Nếu không có nó, việc này chỉ được chấp nhận khi
+case
+đó không có bất kỳ một lệnh nào, ngược lại, lệnh
+case
+đó sẽ bị báo lỗi cú pháp. Chúng ta sẽ nói về lệnh
+break
+trong một khóa phía sau về
+các lệnh rẽ nhánh
+.
+Chúng ta hãy nhìn vào phương thức cho thấy lợi ích của lệnh
+switch
+:
+```js
+switch(n+1){case1:console.log(""case 1: ""+n);break;case2:console.log(""case 2: ""+n);break;default:console.log(""default: ""+n);break;}
+```
+Và như mệnh đề
+else
+trong lệnh
+if
+, mệnh đề
+default
+không bắt buộc trong lệnh
+switch
+nếu nó không cần thiết cho logic chương trình:
+```js
+switch(n+1){case1:console.log(""case 1: ""+n);break;case2:console.log(""case 2: ""+n);}
+```
+Switch với nhiều trường hơp và có cũng cách sử lý
+Có nhiều trường hợp một phạm vi không phải là giải pháp phù hợp, nhưng bạn cần áp dụng cùng một thực thi cho nhiều giá trị. Đây là nơi mà câu lệnh chuyển đổi có thể rất tiện dụng.
+Thay vì tạo một câu lệnh if lộn xộn với nhiều đánh giá biểu thức, bạn có thể 'xếp chồng' các trường hợp.
+Đây là một biến thể, tất cả đều rất đơn giản, trong ngày của ví dụ trong tuần. Ở đây tôi trình bày cách bạn có thể sử dụng câu lệnh chuyển đổi trong ứng dụng lịch.
+Vi dụ:
+```js
+switch(expr){case'Oranges':console.log('Oranges are $0.59 a pound.');break;case'Apples':case'Papayas':console.log('Apples and Papayas are $2.79 a pound.');break;default:console.log('Sorry, we are out of '+expr+'.');}
+```"
+43,String Methods,Bài tập,Chạy chương trình mẫu để xem kết quả của các phương thức của chuỗi
+44,String Methods,Gợi ý,Đọc phần lý thuyết để hiểu về các phương thức của chuỗi
+45,String Methods,Lý thuyết,"Sinh viên biết về phương thức của chuỗi.
+Danh sách các phương thức phổ biến của chuỗi
+Phương thức
+Mổ tả
+charAt()
+Nó cung cấp giá trị char hiện tại tại chỉ mục được chỉ định.
+charCodeAt()
+Nó cung cấp giá trị Unicode của một ký tự có trong chỉ mục được chỉ định.
+concat()
+Nó cung cấp một sự kết hợp của hai hoặc nhiều chuỗi.
+indexOf()
+Nó cung cấp vị trí của một giá trị char có trong chuỗi đã cho.
+lastIndexOf()
+Nó cung cấp vị trí của một giá trị char có trong chuỗi đã cho bằng cách tìm kiếm một ký tự từ vị trí cuối cùng.
+search()
+Nó tìm kiếm một biểu thức chính quy định trong một chuỗi đã cho và trả về vị trí của nó nếu xảy ra khớp.
+match()
+Nó tìm kiếm một biểu thức chính quy định trong một chuỗi đã cho và trả về biểu thức chính quy đó nếu xảy ra khớp.
+replace()
+Nó thay thế một chuỗi nhất định với sự thay thế được chỉ định.
+substr()
+Nó được sử dụng để tìm nạp một phần của chuỗi đã cho trên cơ sở vị trí và độ dài bắt đầu được chỉ định.
+substring()
+Nó được sử dụng để tìm nạp một phần của chuỗi đã cho trên cơ sở chỉ mục đã chỉ định.
+slice()
+Nó được sử dụng để tìm nạp một phần của chuỗi đã cho. Nó cho phép chúng ta gán chỉ số tích cực cũng như tiêu cực.
+toLowerCase()
+Nó chuyển đổi chuỗi đã cho thành chữ thường.
+toLocaleLowerCase()
+Nó chuyển đổi chuỗi đã cho thành chữ thường trên cơ sở ngôn ngữ hiện tại của máy chủ.
+toUpperCase()
+Nó chuyển đổi chuỗi đã cho thành chữ in hoa.
+toLocaleUpperCase()
+Nó chuyển đổi chuỗi đã cho thành chữ in hoa trên cơ sở ngôn ngữ hiện tại của máy chủ.
+toString()
+Nó cung cấp một chuỗi đại diện cho đối tượng cụ thể.
+valueOf()
+Nó cung cấp giá trị nguyên thủy của đối tượng chuỗi.
+split() biến 1 chuỗi thành 1 mảng các chuỗi, bằng cách tách chuỗi theo ký tự dc chỉ định
+include () xác định xem một chuỗi có thể được tìm thấy trong một chuỗi khác hay không, trả về true hoặc false khi thích hợp.
+Ví dụ
+```js
+varstr=""JavaScript"";str.charAt(0);// returns ""J""str.charAt(str.length-1);// returns ""t""'ABC'.charCodeAt(0);// returns 65""Java"".concat(""Script"");// returns ""JavaScript""""JavaScript"".indexOf(""J"");// returns 0""JavaScript"".indexOf(""X"");// returns -1'canal'.lastIndexOf('a');// returns 3'canal'.lastIndexOf('x');// returns -1""Ab"".replace('b','a');// returns Aa""Mozilla"".substr(1,2);// returns ""oz""""Mozilla"".substr(0,4);// returns ""Mozi""""Mozilla"".substring(1,3);// returns ""oz""varstr='The quick brown fox jumps over the lazy dog.';str.slice(31);// returns ""the lazy dog.""str.slice(4,19);// returns ""quick brown fox""str.slice(-4);// returns ""dog.""""Abc"".toLowerCase();// returns ""abc""""Abc"".toUpperCase();// returns ""ABC""""The quick brown fox"".split(' ');// returns ['The', 'quick', 'brown', 'fox']""11,22"".split(',');// returns ['11', '22']str='To be, or not to be, that is the question.';str.includes('To be');// truestr.includes('question');// truestr.includes('nonexistent');// falsestr.includes('To be',1);// falsestr.includes('TO BE');// falsestr.includes('');// true
+```"
+46,String Exercises 02,Bài tập,"Viết function với đầu vào là 1 chuỗi. In ra 1 chuỗi được mã hóa và loại bỏ ký tự cách ở đầu và cuối chuỗi ban đầu
+Ví dụ
+Cho
+""javascript is cool  "";
+In ra
+""j4v45cr1pt 15 c00l""
+Cho
+""programming is fun"";
+In ra
+""pr0gr4mm1ng 15 fun""
+Cho
+""  become a coder"";
+In ra
+""b3c0m3 4 c0d3r""
+Cho
+""javascript is cool  "";
+In ra
+""j4v45cr1pt 15 c00l""
+Cho
+""programming is fun"";
+In ra
+""pr0gr4mm1ng 15 fun""
+Cho
+""  become a coder"";
+In ra
+""b3c0m3 4 c0d3r""
+Để function làm việc chính xác, Function nên thay thế tất cả các ký tự  'a' bằng 4, 'e' bằng 3, 'i' bằng 1, 'o' bằng 0, and 's' bằng 5.
+Đầu vào
+: str
+Đầu ra
+: In ra 1 chuỗi được mã hóa và loại bỏ ký tự cách ở đầu và cuối chuỗi ban đầu"
+47,String Exercises 02,Gợi ý,"Đọc phần lý thuyết để hiểu hơn về 2 phương thức
+replace()
+và
+trim()"
+48,String Exercises 02,Lý thuyết,"Sinh viên hiều hơn về 2 phương thức
+replace()
+và
+trim()
+và các sử dụng chúng trong thực tế
+Phương thức
+trim()
+xóa bỏ khoảng trắng ở đầu vào cuối chuỗi. Khoảng trắng trong trường hợp này là (Ký tự cách, tab, no-break space ...) và các ký tự kết thúc dòng  (LF, CR ...).
+Cú pháp
+```js
+str.trim()
+```
+Ví dụ
+```js
+vargreeting='   Hello world!   ';console.log(greeting);// returns ""   Hello world!   "";console.log(greeting.trim());// returns ""Hello world!"";
+```
+Mở rộng về phương thức trim
+Phương thức
+trimStart()
+/
+trimLeft()
+trả về 1 chuỗi đã xóa bỏ khoảng trống bên trái/bắt đấu của nó.
+trimLeft()
+or
+trimStart()
+không ảnh hưởng đến chuỗi gốc.
+```js
+varstr='   foo  ';console.log(str.length);// 8str=str.trimStart();console.log(str.length);// 5console.log(str);// 'foo  '
+```
+Phương thức
+trimEnd()
+/
+trimRight()
+trả về 1 chuỗi đã xóa bỏ khoảng trống bên phải/kết thúc của nó.
+trimEnd()
+or
+trimRight()
+không ảnh hưởng đến chuỗi gốc.
+```js
+varstr='   foo  ';console.log(str.length);// 8str=str.trimEnd();console.log(str.length);// 6console.log(str);// '   foo'
+```
+Phương thức
+replace()
+trả về một chuỗi mới với một số hoặc tất cả các kết quả khớp của mẫu được thay thế bằng một chuỗi thay thế khác. Mẫu có thể là một chuỗi hoặc RegExp và thay thế có thể là một chuỗi. Nếu mẫu là một chuỗi, chỉ có mẫu đầu tiên sẽ được thay thế.
+Cú pháp
+```js
+varnewStr=str.replace(regexp|substr,newSubstr)
+```
+Ví dụ
+```js
+varstr='The quick brown fox jumps over the lazy dog. If the dog reacted, was it really lazy?';
+```
+Bạn sẽ thấy 2 từ ""dog"" trong biến str
+Nếu bạn sử dụng 1 chuỗi làm mẫu cho phương thức replace(). Chỉ có từ ""dog"" đầu tiên dc thay thế.
+```js
+varstr='The quick brown fox jumps over the lazy dog. If the dog reacted, was it really lazy?';console.log(str.replace('dog','monkey'));// Returns ""The quick brown fox jumps over the lazy monkey. If the dog reacted, was it really lazy?""
+```
+Nếu bạn sử dụng regexp cho phương thức replace() như sau. Tất cả từ ""dog"" sẽ được thay thế.
+```js
+varstr='The quick brown fox jumps over the lazy dog. If the dog reacted, was it really lazy?';varregex=/dog/gi;console.log(str.replace(regex,'ferret'));// Returns ""The quick brown fox jumps over the lazy ferret. If the ferret reacted, was it really lazy?""
+```"
+49,String Exercises 03,Gợi ý,Đọc phần lý thuyết để biết làm thế nào để tạo 1 date trong JS
+50,String Exercises 03,Lý Thuyết,"Sinh viên biết cách tạo kiểu dateime trong javascript
+Tạo ra một thể hiện JavaScript Date đại diện cho một khoảnh khắc trong thời gian. Đối tượng ngày được dựa trên giá trị thời gian là số mili giây kể từ ngày 1 tháng 1 năm 1970 UTC.
+Cú pháp
+```js
+newDate();newDate(value);newDate(dateString);newDate(year,monthIndex[,day[,hours[,minutes[,seconds[,milliseconds]]]]]);
+```
+Khi không có tham số nào được cung cấp, đối tượng Ngày mới được tạo sẽ biểu thị ngày và giờ hiện tại, được chỉ định trong múi giờ địa phương, kể từ thời điểm khởi tạo.
+value
+Giá trị số nguyên đại diện cho số mili giây kể từ 01/01/1970-00:00:00 UTC.
+dateString
+Giá trị chuỗi đại diện cho một ngày. Chuỗi phải ở định dạng được công nhận bới phương thức Date.parse().
+year
+Giá trị số nguyên đại diện cho năm. Các giá trị từ 0 đến 99 ứng với các năm từ 1900 đến 1999.
+monthIndex
+Giá trị số nguyên đại diện cho tháng, bắt đầu với 0 cho Tháng Một đến 11 cho Tháng Mười Hai.
+day
+(
+Tùy chọn)
+Tùy chọn. Giá trị số nguyên đại diện cho ngày trong tháng. Nếu không dc chỉ định, giá trị mặc định là 1.
+hours
+(
+Tùy chọn)
+Giá trị số nguyên đại diện cho giờ trong ngày. Mặc định là 0.
+minutes
+(
+Tùy chọn)
+Giá trị số nguyên đại diện cho phần phút của một thời gian. Mặc định là 0.
+seconds
+(
+Tùy chọn)
+Giá trị số nguyên đại diện cho phần giấy của một thời gian. Mặc định là 0.
+milliseconds
+(
+Tùy chọn)
+Giá trị số nguyên đại diện cho phần mili giây của một thời gian. Mặc định là 0.
+
+Ví dụ:
+```js
+vardate1=newDate();// Current datevardate2=newDate('December 17, 1995 03:24:00');// Sun Dec 17 1995 03:24:00 GMT...vardate3=newDate('1995-12-17T03:24:00');// Sun Dec 17 1995 03:24:00 GMT...vardate=newDate(20189,9);// Thu Oct 01 20189 00:00:00 GMT...date=newDate(20189,9,25);// Sun Oct 25 20189 00:00:00 GMT ...date=newDate(20189,9,25,6);// Sun Oct 25 20189 06:00:00 GMT...
+```"
+51,JavaScript String includes() Method,Bài tập,"Viết 1 chương trình với đầu vào là 1 chuỗi ký tự và in ra chuỗi đó với ký tự đầu được viết hoa.
+Ví dụ
+Cho
+""this is Test""
+; In ra
+""This is Test""
+Cho
+""hello a""
+; In ra
+""Hello a""
+Đầu vào
+: str
+Đầu ra
+: In ra chuỗi với ký tự đầu được viết hoa.
+Cho
+""this is Test""
+; In ra
+""This is Test""
+Cho
+""hello a""
+; In ra
+""Hello a"""
+52,JavaScript String includes() Method,Gợi ý,"Sử dụng phương thức
+charAt
+lấy ký tự đầu tiên và sử dụng phương thức
+slice
+để lấy phần con lại của chuỗi
+Sử dụng phương thức
+toUpperCase
+để viết hoa cho chữ cái đầu
+Sử dụng phương thức
+concat
+để ghép 2 chuỗi trên lại
+Đọc phần lý thuyêt để hiểu hơn về các phương thức này
+Cần thận khi chuỗi đầu vào là 1 chuỗi rỗng"
+53,JavaScript String includes() Method,Lý thuyết,"Sinh viên hiểu hơn về các phương thức
+charAt
+,
+slice
+,
+toUpperCase
+,
+concat
+và cách sử dụng chúng trong thức tế để giải quyết vấn đề.
+Phương thức
+charAt()
+trả về 1 ký tự của chuỗi ở vị trị được chỉ  định mà không sửa đổi chuỗi gốc.
+Cú pháp
+```js
+character=str.charAt(index)
+```
+Ví dụ
+```js
+varanyString='Brave new world';console.log(""The character at index 0   is '""+anyString.charAt()+""'"");// No index was provided, used 0 as defaultconsole.log(""The character at index 0   is '""+anyString.charAt(0)+""'"");console.log(""The character at index 1   is '""+anyString.charAt(1)+""'"");console.log(""The character at index 2   is '""+anyString.charAt(2)+""'"");console.log(""The character at index 999 is '""+anyString.charAt(999)+""'"");// The character at index 0   is 'B'// The character at index 0   is 'B'// The character at index 1   is 'r'// The character at index 2   is 'a'// The character at index 999 is ''
+```
+Phương thức
+slice()
+trích xuất một phần của chuỗi và trả về nó dưới dạng một chuỗi mới mà không sửa đổi chuỗi gốc.
+Cú pháp
+```js
+str.slice(beginIndex[,endIndex])
+```
+Ví dụ
+```js
+varstr1='The morning is upon us.';console.log(str1.slice(1,8));// returns ""he morn"" create new string from index 1 to index 8 of str1console.log(str1.slice(4,-2));// returns ""morning is upon u"" create new string from index 4 to index (last index - 2) of str1console.log(str1.slice(12));// returns ""is upon us."" create new string from index 12 to end of str1console.log(str1.slice(30));// returns """" create new string from index 30 to end of str1. But the length of str1 is 23
+```
+Phương thức
+toUpperCase()
+trả về giá trị chuỗi được chuyển đổi thành chữ hoa (giá trị sẽ được chuyển đổi thành chuỗi nếu không phải là một chuỗi).
+Cú pháp
+```js
+str.toUpperCase()
+```
+Ví dụ
+```js
+console.log('alphabet'.toUpperCase());// 'ALPHABET'
+```
+Phương thức
+concat()
+nối các đối số chuỗi với chuỗi được gọi và trả về một chuỗi mới.
+Syntax
+```js
+str.concat(string2[,string3,...,stringN])
+```
+Example
+```js
+varstr1='Hello';varstr2='World';console.log(str1.concat(str2));// expected output: ""HelloWorld""console.log(str1.concat(' ',str2));// expected output: ""Hello World""console.log(str2.concat(', ',str1));// expected output: ""World, Hello""
+```"
+54,Compare Strings by Count of Characters,Bài tập,"Tạo function với 2 tham số (a và b) trả về
+true
+hoặc
+false
+phụ thuộc vào tống số ký tự của a và b. Nếu số ký tự của a bằng số ký tự của b thì trả về true nếu không trả về false
+Ví dụ
+Cho
+a = 'AB'; b = 'CD';
+trả về
+true
+Cho
+a = 'BA'; b = 'XYZ';
+trả về
+false
+Đầu vào
+: a and b
+Đầu ra:
+true hoạc false; Nếu số ký tự của a bằng số ký tự của b
+Cho
+a = 'AB'; b = 'CD';
+trả về
+true
+Cho
+a = 'BA'; b = 'XYZ';
+trả về
+false"
+55,Compare Strings by Count of Characters,Gợi ý,Nhớ lại thuộc tính length của string
+56,String Exercises 01,Bài tập,"Viết chương trình với đầu vào là 1 chuỗi ký tự. Chuyển chuỗi đó thành chuỗi mới với các ký tự đầu tiên của từ dc viết hoa.
+Ví dụ
+Cho
+""the quick brown fox"";
+In ra ""
+The Quick Brown Fox
+""
+Cho
+""java script"";
+In ra ""
+Java Script
+""
+Đầu vào
+: str
+Đầu ra
+: Chuyển chuỗi đó thành chuỗi mới với các ký tự đầu tiên của từ dc viết hoa
+Cho
+""the quick brown fox"";
+In ra ""
+The Quick Brown Fox
+""
+Cho
+""java script"";
+In ra ""
+Java Script
+"""
+57,String Exercises 01,Gợi ý,"Nhờ lại function uc_first trong phần trước
+Sử dụng phương thức
+split
+tách chuỗi đầu vào thành mảng các từ
+Sử dụng
+for
+or
+foreach
+or
+array.map
+để duyệt mảng
+Và sử dụng function uc_first để chuyển đổi các từ trong mảng
+Kết hợp mảng các từ đó thách 1 chuỗi mới (Remember Array.join())"
+58,String Exercises 01,Theory,"Sinh viên hiểu hơn về phương thức
+split
+và cách sử dụng chúng trong thực tế.
+Phương thức
+split()
+biến một Chuỗi thành một mảng các chuỗi, bằng cách tách chuỗi theo 1 chuỗi đã chỉ định.
+Cú pháp
+```js
+str.split([separator[,limit]])
+```
+Ví dụ
+```js
+varstr=""The quick brown fox"";varwords=str.split(' ');console.log(words);// returns [""The"", ""quick"", ""brown"", ""fox""]varword_limit=str.split(' ',2);console.log(word_limit);// returns [""The"", ""quick""][""The"",""quick""]varchars=str.split('');console.log(chars);// return [""T"", ""h"", ""e"", "" "", ""q"", ""u"", ""i"", ""c"", ""k"", "" "", ""b"", ""r"", ""o"", ""w"", ""n"", "" "", ""f"", ""o"", ""x""]varstrCopy=str.split();console.log(strCopy);// returns [""The quick brown fox""]str=""Tom,Ken,Dan"";varnames=str.split(',');console.log(names);// returns [""Tom"", ""Ken"", ""Dan""]
+```"
+59,String Properties,Bài tập,"Cho 1 chuỗi
+name
+. Viết chương trình add phương thức mới cho chuỗi để kiểm tra chuỗi là chuỗi lớn hay ko, Chuối lớn là chuỗi có trên 10 ký tự
+Và in kết quả ra màn hình ""true"" hay ""false""
+Ví dụ
+:
+name = ""JS""; in ra""false""
+name = ""JavaScriptJavaScript""; in ra ""true""
+name = ""JS""; in ra""false""
+name = ""JavaScriptJavaScript""; in ra ""true""
+Đầu vào
+: name
+Đầu ra
+: ""true"" hay ""false"""
+60,String Properties,Gợi ý,Đọc phần lý thuyết để hiểu về các thuộc tính của chuỗi
+61,String Properties,Lý thuyết,"Sinh viên hiểu về các thuộc tính của chuỗi và cách sử dụng nó trong thực tế.
+Các giá trị nguyên thủy, như ""John Doe"", thông thường ko thể có thuộc tính hay phương thức (vì chúng ko phải là 1 object).
+Nhưng trong JS thì có vì JavaScript đối xử với các giá trị nguyên thủy như object.
+1. length
+Trả về độ dài của chuỗi
+Độ dài của chuối rỗng là 0.
+Cú pháp:
+```js
+string.length
+```
+Ví dụ:
+```js
+vartxt=""JS"";varsln=txt.length;// sln is 2
+```
+2. prototype
+Cho phép bạn thêm thuộc tính hay phương thức
+Lưu ý:
+Thuộc tính hay phương thức này sẽ là toàn cục nghĩa là nó có thể được dùng cho tất cả chuỗi khác
+Cú pháp:
+```js
+object.prototype.name=value
+```
+Ví dụ:
+```js
+String.prototype.add_more=function(char){returnthis+char;};vara=""Java"";varnew_string=a.add_more(""Script"");// new_string is JavaScript
+```"
+62,Returning Values from a Function,Bài tập,"Cho 1 chương trình mẫu.
+Sử dụng function
+get_abs
+để lấy giá trị tuyệt đối của biến x và in ra màn hình
+Đầu vào
+: Không có
+Đầu ra
+: lấy giá trị tuyệt đối của biến x và in ra màn hình"
+63,Returning Values from a Function,Gợi ý,Đọc phần lý thuyết để biết 1 fucntion trả về 1 giá trị như thế nào
+64,Returning Values from a Function,Lý thuyết,"Sinh viên hiểu về việc 1 function trả về 1 giá trị như thế nào.
+Một function có thể trả về một giá trị cho tập lệnh gọi function là kết quả bằng cách sử dụng câu lệnh return. Giá trị có thể thuộc bất kỳ loại nào, bao gồm mảng và đối tượng
+Lệnh
+return
+thường được đặt là dòng cuối cùng của hàm trước dấu ngoặc nhọn đóng và kết thúc nó bằng dấu chấm phẩy, như trong ví dụ sau.
+```js
+// Defining functionfunctiongetSum(num1,num2){vartotal=num1+num2;returntotal;}// Displaying returned valueconsole.log(getSum(6,20));// 0utputs: 26console.log(getSum(-5,17));// 0utputs: 12
+```
+Function không thể trả về nhiều giá trị. Tuy nhiên, bạn có thể thu được kết quả tương tự bằng cách trả về một mảng các giá trị, như được minh họa trong ví dụ sau..
+```js
+// Defining functionfunctionget_name(){varname1=""Tuan"";varname2=""Phong"";varname3=""Vuong"";vararr=[name1,name2,name3];returnarr;}// Store returned value in a variablevarall=get_name();// Displaying individual valuesconsole.log(all[0]);// 0utput: Tuanconsole.log(all[1]);// 0utput: Phongconsole.log(all[2]);// 0utput: Vuong
+```
+Và nếu một function trả về một giá trị, nó sẽ dừng việc thực thi của function đó. Nó có nghĩa là phần còn lại của mã sẽ không được thực thi
+```js
+// Defining functionfunctionprint_numbers(x){if(x==1){console.log(1);return;// a function can return nothing}console.log(2);return;// a function can return nothingconsole.log(3);}// Displaying individual valuesconsole.log(print_numbers(0));// 0utput: 2console.log(print_numbers(1));// 0utput: 1
+```"
+65,JavaScript Functions,Bài tập,"Cho 1 chương chình mẫu. Gọi function (hàm) sayHello để in message ra màn hình
+Đầu vào
+: none
+Đầu ra
+: print message to screen"
+66,JavaScript Functions,Gợi ý,Đọc phần lý thuyết để biết làm thế nào để khái báo 1 function và gọi nó
+67,JavaScript Functions,Lý thuyết,"Sinh viên hiểu về khái niệm function (Hàm) và cách sử dụng nó trong các vấn đề thực tế.
+Function (Hàm) là một nhóm các câu lệnh thực hiện các nhiệm vụ cụ thể và có thể được giữ và duy trì riêng biệt tạo thành chương trình chính. Các hàm cung cấp một cách để tạo các gói code(mã) có thể tái sử dụng, dễ mang theo hơn và dễ gỡ lỗi hơn. Dưới đây là một số lợi thế của việc sử dụng function:
+1.
+Functions giảm sự lặp lại code trong chương trình
+— Function cho phép bạn trích xuất khối lệnh thường được sử dụng thành một thành phần duy nhất. Bây giờ bạn có thể thực hiện cùng một tác vụ bằng cách gọi hàm này bất cứ nơi nào bạn muốn trong tập lệnh của mình mà không phải sao chép và dán cùng một khối lệnh nhiều lần
+2.
+Functions giúp các dòng code dễ bảo trì hơn
+— Do một function được tạo một lần có thể được sử dụng nhiều lần, do đó, mọi thay đổi được thực hiện bên trong một function sẽ tự động được thực hiện tại tất cả các vị trí mà không cần thay đổi ở nhiều nơi.
+3.
+Functions giúp dễ dàng hơn để loại bỏ các lỗi
+— Khi chương trình được chia thành các function, nếu có lỗi xảy ra, bạn biết chính xác function nào gây ra lỗi và tìm nó ở đâu. Do đó, sửa lỗi trở nên dễ dàng hơn nhiều.
+Khởi tạo 1 function bắt đầu với từ khóa
+function
+, tiếp theo đó là tên mà function mà bạn muốn tạo, tiếp theo là ngoặc đơn
+()
+và cuối cùng là nơi cách lệnh của function giữa các dấu ngoặc nhọn
+{}
+.
+Đây là cú pháp cơ bản để khai báo hàm:
+```js
+functionfunctionName(){// Code to be executed}
+```
+Ví dụ:
+```js
+// Defining functionfunctionsayHello(){console.log(""Hello"");}// Calling functionsayHello();// 0utputs: Hello
+```"
+68,Adding Parameters to Functions,Bài tập,"Cho 2 số
+a
+và
+b
+. Sử dụng hàm
+get_sum
+để tính tổng của
+a
+,
+b
+và in ra kết quả
+Ví dụ
+:
+Cho
+a = 5; b = 4;
+In ra: 9
+Cho
+a = 1; b = 2;
+In ra: 3
+Cho
+a = 5; b = 4;
+In ra: 9
+Cho
+a = 1; b = 2;
+In ra: 3
+Đầu vào
+: Không có
+Đầu ra
+: hiển thị tổng của a và b"
+69,Adding Parameters to Functions,Gợi ý,Đọc phần lý thuyết để biết là thế nào để gọi function với tham số
+70,Adding Parameters to Functions,Lý thuyết,"Sinh viên hiểu về việc thêm tham số vào funcion
+Bạn có thể chỉ định tham số khi bạn khai báo function của mình để nhận giá trị đầu vào trong thời gian chạy. Các tham số hoạt động như các biến giữ chỗ trong một function; chúng được thay thế vào thời gian chạy bằng các giá trị (được gọi là đối số) được cung cấp cho function tại thời điểm gọi.
+Các tham số được đặt trên dòng đầu tiên của hàm bên trong bộ dấu ngoặc đơn, như thế này:
+```js
+functionfunctionName(parameter1,parameter2,parameter3){// Code to be executed}
+```
+Function
+displaySum()
+trong ví dụ sau lấy hai số làm đối số, chỉ cần thêm chúng vào và sau đó chúng sẽ hiển thị kết quả.
+```js
+// Defining functionfunctiondisplaySum(num1,num2){vartotal=num1+num2;console.log(total);}// Calling functiondisplaySum(6,20);// 0utputs: 26displaySum(-5,17);// 0utputs: 12
+```
+Bạn có thể định nghĩa bao nhiêu tham số tùy thích. Tuy nhiên, đối với mỗi tham số bạn chỉ định, một đối số tương ứng cần được truyền cho hàm khi nó được gọi, nếu không giá trị của nó sẽ không được xác định
+undefined
+. Hãy xem xét ví dụ sau:
+```js
+// Defining functionfunctionshowFullname(firstName,lastName){console.log(firstName+"" ""+lastName);}// Calling functionshowFullname(""Tuan"",""Phong"");// 0utputs: Tuan PhongshowFullname(""Vuong"");// 0utputs: Vuong undefined
+```"
+71,Callback function,Gợi ý,"Đọc phần lý thuyết để hiểu về hàm
+callback
+(callback )"
+72,Callback function,Lý thuyết,"Sinh viên hiểu về hàm
+callback
+và cách sử dụng nó để giải quyết vấn đề trong thực tế.
+Hàm callback là một hàm được truyền vào một hàm khác dưới dạng đối số, sau đó được gọi bên trong hàm ngoài để hoàn thành một số loại thường trình hoặc hành động.
+Ví dụ:
+```js
+functionfinish_add_numbers(){console.log('Finish function');}functionadd_two_numbers(a,b,callback){varsum=a+b;console.log(sum);callback();}add_two_numbers(2,4,finish_add_numbers);// output:// 6// Finish function
+```
+```js
+functionfunctionOne(x){returnx;};functionfunctionTwo(var1){// some code}functionTwo(functionOne);
+```
+Phương thức chuyển các hàm này sang các hàm khác để sử dụng chúng bên trong được sử dụng trong các thư viện JavaScript ở hầu hết mọi nơi.
+Tên chung cho hàm được truyền vào là hàm callback.
+Trong lập trình máy tính, một cuộc gọi lại là một đoạn mã thực thi được truyền dưới dạng đối số cho mã khác, dự kiến sẽ gọi lại (thực thi) đối số vào một thời điểm thuận tiện.
+Lệnh gọi có thể ngay lập tức như trong một cuộc gọi lại đồng bộ hoặc nó có thể xảy ra vào thời gian sau, như trong một cuộc gọi lại không đồng bộ.
+Chúng tôi sẽ quay lại các cuộc gọi lại đồng bộ và không đồng bộ trong một phần khác.
+```js
+functionfunctionOne(x){console.log(x);}functionfunctionTwo(var1,callback){callback(var1);}functionTwo(2,functionOne);
+```
+Đây là một ví dụ về việc sử dụng biến callback trong Hàm JavaScript.
+One nhận một đối số và đưa ra x là đối số của nó.
+FunctionTwo nhận 1 đối số và 1  function.
+Sau đó, FunctionTwo chuyển đối số mà nó đưa vào cho hàm mà nó đã thực hiện.
+FunctionOne là hàm callback trong trường hợp này.
+Vì JavaScript có sẵn các hàm vô danh, bạn cũng có thể chuyển các Hàm vô danh dưới dạng một biến cho một hàm.
+```js
+functionfunctionTwo(var1,callback){callback(var1);}functionTwo(1,function(x){alert(x);})
+```
+Trong trường hợp nay, hàm callback được khởi tạo khi chúng ta gọi functionTwo.
+Hay nhớ rằng chúng ta có thể gọi hàm callback bên trong functionTwo nhiều lần nếu bạn muốn
+```js
+functionfunctionTwo(var1,callback){callback(var1);callback(var1);}functionTwo(1,function(x){console.log(x);})
+```
+Không giới hạn việc gọi bao nhiêu lần
+Một điều khác cần chú ý là bạn có thể chuyển bao nhiêu hàm callback tùy thích sang chức năng khác.
+```js
+functionfunctionTwo(var1,var2,callback1,callback2){callback1(var1);callback2(var2);}functionTwo(1,2,function(x){console.log(x);},function(x){console.log(x);})
+```
+```js
+functionfunctionOne(x){console.log(x);}
+```
+FunctionOne được định nghĩa để hiển thị giá trị của đối số được truyền vào nó.
+Kiểm tra
+```js
+functionOne(2);
+```
+Khi functionOne được gọi
+FunctionOne sẽ hiển thị cho chúng ta số 2
+Tiếp tục, Cũng định nghĩa functionTwo
+```js
+functionfunctionTwo(x){console.log(x);}
+```
+FunctionTwo được định nghĩa để hiển thị giá trị của đối số được truyền vào nó.
+Nó chính xác là giông functionOne
+```js
+functionTwo(2);
+```
+When functionTwo is called
+FunctionTwo sẽ hiển thị cho chúng ta số 2
+Điều này được mong đợi bởi vì nó có chức năng tương tự như functionOne.
+Chúng ta hãy viết lại định nghĩa của functionTwo để nó nhận một biến và một hàm.
+Sau đó, nó sẽ truyền biến cho hàm được truyền vào.
+```js
+functionfunctionTwo(var1,callback){callback(var1);}
+```
+Chúng tôi đặt tên cho hàm được truyền vào functionTwo là callback.
+Hãy kiểm tra nó bằng cách chuyển số 2 và hàm functionOne
+```js
+functionTwo(2,functionOne);
+```
+Khi functionTwo được gọi.
+Nó làm việc giống như trước.
+FunctionTwo sẽ hiển thị cho chúng ta số 2
+Tuy nhiên, lần này, thay vì functionTwo có lệnh hiển thị bên trong nó, nó đã sử dụng lệnh bên trong functionOne.
+
+Lần này hãy thử nó theo một cách khác.
+Chúng tôi tiếp tục chuyển vào số 2, ngoại trừ lần này thay vì chuyển vào hàm functionOne, chúng tôi chuyển vào một hàm vô danh.
+```js
+functionTwo(2,function(x){console.log(x);});
+```
+Khi functionTwo được gọi.
+Nó làm việc giống như trước.
+FunctionTwo sẽ hiển thị cho chúng ta số 2
+Tuy nhiên, lần này, thay vì functionTwo có lệnh cảnh báo bên trong nó, nó đã sử dụng lệnh bên trong hàm vô danh mà chúng ta đã truyền vào.
+
+Chúng ta hãy viết lại định nghĩa của hàmTwo để nó có một biến và hai hàm.
+```js
+functionfunctionTwo(var1,callback1,callback2){callback1(var1);callback2(var1);}
+```
+Hàm hai bây giờ có một biến và hai hàm.
+Chúng tôi đặt tên cho các hàm được truyền vào functionTwo là callback1 và callback2.
+Sau đó, nó chuyển biến này đến hàm đầu tiên - callback1.
+Sau đó nó chuyển biến này sang hàm thứ hai - callback2.
+
+Hãy kiểm tra nó bằng cách chuyển số 2 và hàm functionOne trong hai lần
+```js
+functionTwo(2,functionOne,functionOne);
+```
+Khi functionTwo được gọi.
+Nó làm việc giống như trước cho mỗi hàm
+FunctionTwo hiển thị số 2 với 2 lần
+
+Cuối cùng, hãy kiểm tra nó bằng cách chuyển số 2, hàm functionOne và hàm vô danh.
+Hàm vô danh sẽ hiển thị kết quả của việc thêm hai vào số được truyền vào nó.
+```js
+functionTwo(2,functionOne,function(x){alert(x+2);});
+```
+Khi functionTwo được gọi.
+Đầu tiên sẽ hiển thị 2
+Và sau đó sẽ hiển thị 4"
+73,Math.pow(),Gợi ý,Đọc phần lý thuyết để biết về các phương thức của number
+74,Math.pow(),Lý thuyết,"Sinh viên hiểu về các phương thức Number
+Đối tượng JavaScript Number là một đối tượng bao bọc cho phép bạn làm việc với các giá trị số. Một đối tượng Number có thể được tạo ra sử dụng hàm khởi tạo Number().
+Các phương thức phổ biến của number
+Phương thức
+Mô tả
+Number.isFinite()
+Nó xác định xem giá trị đã cho có phải là số hữu hạn hay không.
+Number.isInteger()
+Nó xác định xem giá trị đã cho có phải là số nguyên hay không.
+Number.parseFloat()
+Nó chuyển đổi chuỗi đã cho thành một số dấu phẩy động.
+Number.parseInt()
+Nó chuyển đổi chuỗi đã cho thành một số nguyên.
+Number.prototype.toFixed()
+Nó trả về chuỗi đại diện cho một số có chữ số chính xác sau dấu thập phân.
+Number.prototype.toString()
+Nó trả về số đã cho dưới dạng chuỗi.
+Ví dụ
+```js
+Number.isFinite(1/0);// falseNumber.isFinite(10/5);// trueNumber.isFinite(0/0);// falseNumber.isInteger(99999999999999999999999);// trueNumber.isInteger(0.1);// falseNumber.isInteger(Math.PI);// falseNumber.parseFloat('10')//10Number.parseFloat('10.00')//10Number.parseFloat('237,21')//237Number.parseFloat('237.21')//237.21Number.parseFloat('12 34 56')//12Number.parseFloat(' 36 ')//36Number.parseFloat('36 is my age')//36Number.parseInt('10')//10Number.parseInt('10.00')//10Number.parseInt('237,21')//237Number.parseInt('237.21')//237Number.parseInt('12 34 56')//12Number.parseInt(' 36 ')//36Number.parseInt('36 is my age')//36varnumObj=12345.6789;numObj.toFixed();// Returns '12346': note rounding, no fractional partnumObj.toFixed(1);// Returns '12345.7': note roundingnumObj.toFixed(6);// Returns '12345.678900': note added zeros(10).toString();// Returns '10'(17).toString();// Returns '17'(17.2).toString();// Returns '17.2'
+```"
+75,Math exercise 01,Bài tập,"Cho 1 số tự nhiên n.Viết chương trình để kiểm trả n có phải là kết quả bình phương của 1 số tự nhiên hay không
+Ví dụ
+:
+Cho
+n = 16;
+In ra
+true
+Cho
+n= 18;
+In ra
+false
+Đầu vào
+: n
+Đầu ra
+:
+true
+hay
+false
+. true nếu n là kết quả bình phương của 1 số tự nhiên
+Cho
+n = 16;
+In ra
+true
+Cho
+n= 18;
+In ra
+false"
+76,Math exercise 01,Gợi ý,"Đọc phần lý thuyết để hiểu hơn về
+Math.sqrt()"
+77,Math exercise 01,Lý thuyết,"Sinh viên hiểu hơn về
+Math.sqrt()
+và cách sử dụng nó để giải quyết vấn đề trong thực tế
+Math.sqrt()
+trả về giá trị căn bậc 2 của 1 số
+Cú pháp
+```js
+Math.sqrt(x)
+```
+Ví dụ
+:
+```js
+Math.sqrt(9);// 3Math.sqrt(2);// 1.414213562373095Math.sqrt(1);// 1Math.sqrt(0);// 0Math.sqrt(-1);// NaNMath.sqrt(-0);// -0
+```"
+78,Math Methods,Bài tập,"Cho 4 số
+a, b,c và d
+. In ra số lớn nhất và số nhỏ nhất.
+Ví dụ
+:
+Cho
+a = 1; b =2; c = 3; d = 4;
+In ra
+""4 1""
+;
+Đầu vào
+:
+a, b,c và d
+Đâu ra
+: In ra số lớn nhất và số nhỏ nhất.
+Cho
+a = 1; b =2; c = 3; d = 4;
+In ra
+""4 1""
+;"
+79,Math Methods,Gợi ý,"Đọc phần lý thuyết để hiểu hơi về
+Math.max()
+và
+Math.min()"
+80,Math Methods,Lý thuyết,"Sinh viên hiểu về
+Math.max()
+và
+Math.min()
+và các sử dụng nó để giải quyết vấn đề trong thực tế
+Math.max()
+trả vế số lớn nhất trong các số đã cho
+Cú pháp
+```js
+Math.max([value1[,value2[,...]]])
+```
+Ví dụ
+:
+```js
+console.log(Math.max(1,3,2));// output: 3console.log(Math.max(-1,-3,-2));// output: -1
+```
+Math.min()
+trả về số nhỏ nhất trong cách số đã cho, hoạc NaN nếu các tham số không phải là kiểu số
+Cú pháp
+```js
+Math.min([value1[,value2[,...]]])
+```
+Ví dụ:
+```js
+console.log(Math.min(2,3,1));// output: 1console.log(Math.min(-2,-3,-1));// output: -3
+```"
+81,test if a number is a power of 2,Bài tập,"Cho 2 số a và b. In ra kết quả của
+a
+2
++ b
+2
+Ví dụ
+Cho
+a = 1; b = 2;
+in ra
+5
+Cho
+a = 2; b = 5;
+in ra
+29
+Đầu vào
+: a và b
+Đầu ra
+: In ra kết quả của
+a
+2
++ b
+2
+Cho
+a = 1; b = 2;
+in ra
+5
+Cho
+a = 2; b = 5;
+in ra
+29"
+82,test if a number is a power of 2,Gợi ý,"Đọc phần lý thuyết để hiểu hơn về phương thức
+Math.pow()"
+83,test if a number is a power of 2,Lý thuyết,"Mục tiêu
+Sinh viên hiểu hơn về
+Math.pow()
+và các sử dụng nó để giải quyết vấn đề trong thực tế
+Math.pow()
+trả về giá trị hàm mũ với cơ số (base) là tham số đầu tiên và mũ (exponent) là tham số thứ hai.
+Cú pháp
+```js
+Math.pow(base,exponent)
+```
+Ví dụ
+```js
+console.log(Math.pow(3,2));// output: 9console.log(Math.pow(7,3));// output: 343console.log(Math.pow(4,0.5));// output: 2console.log(Math.pow(7,-2));// output: 0.02040816326530612console.log(Math.pow(-7,0.5));// output: NaN​
+```"
+84,JS 3.4 Operators - Assignment Operators,Bài tập,"Cho 1 số tự nhiên
+a
+. Sử dụng toán tử gán vào những toán tử sau và in giá trị của
+a
+sau khi thay đổi
+```js
+a=a*2;a=a+9;a=a-4;a=a/3;a=a%3;
+```
+Vi dụ: Cho
+a = 5
+, In ra sẽ là
+```js
+10191552
+```
+Đầu vào:
+một số tự nhiên
+a
+Đầu ra:
+giá trị của
+a
+sau khi thay đổi"
+85,JS 3.4 Operators - Assignment Operators,Gợi ý,Đọc phần lý thuyết sau để hiểu về toán tử gán
+86,JS 3.4 Operators - Assignment Operators,Lý thuyết,"Sinh viên hiểu về toán tử gán và cách sử dụng chúng trong bài toán thực tế.
+Assignment operators (most popular):
+=
++=
+-=
+*=
+/=
+%=
+Mặc dù chúng ta thảo luận về chúng không phải là những toán tử đầu tiên, nhưng đây là các toán tử được sử dụng thường xuyên nhất, đặc biệt là toán tử gán đơn giản = để gán giá trị cho một biến (cũng được gọi là gán giá trị cho biến). Chúng ta đã nhiều lần thấy các ví dụ về việc sử dụng các phép gán đơn giản.
+Chú ý duy nhất có thể có trong việc sử dụng phép gán đơn giản là khi kiểu biến ở vế bên trái không tương đồng với giá trị hoặc loại biến ở  vế bên phải. Sự khác biệt về kiểu có thể dẫn đến
+thu hẹp
+hoặc
+mở rộng
+giá trị trong trường hợp kiểu biến là nguyên thủy,
+boxing
+hoặc
+unboxing
+khi một biến là loại nguyên thủy và biến còn lại là loại tham chiếu. Chúng ta sẽ thảo luận về
+Thu hẹp và mở rộng conversion of kiểu nguyên thủy
+và
+Boxing và unboxing giữa kiểu nguyên thủy và kiểu tham chiếu
+sau
+.
+Cách viết tắt của toán tử gán (
++= -= *= /= %=
+) được gọi là toán tử gán phức hợp:
+```js
+x+=2;// assigns the result of this addition: x = x + 2;x-=2;// assigns the result of this subtraction: x = x - 2;x*=2;// assigns the result of this multiplication: x = x * 2;x/=2;// assigns the result of this division: x = x / 2;x%=2;// assigns the remainder of this division: x = x % 2;
+```
+Ví dụ dưới đây cho chúng ta biết cách các toán tử hoạt động.
+```js
+varx=1;x+=2;console.log(x);// output: 3x-=1;console.log(x);// output: 2x*=2;console.log(x);// output: 4x/=2;console.log(x);// output: 2x%=2;console.log(x);// output: 0
+```"
+87,remainder operator %,Bài tập,"Cho 1 số a. Tìm phần dư của
+a chia cho 5
+a chia cho 3
+a chia cho 2
+Và in các phần dư ra màn hình
+Ví dụ
+Cho
+a = 13
+, in ra
+Cho
+a = 13
+, in ra
+```js
+remainderofa divided by5is3remainderofa divided by3is1remainderofa divided by2is1
+```
+Đầu vào
+: a
+Đầu ra
+: Các phần dư của a"
+88,remainder operator %,Gợi ý,"Nhớ lại toán tự
+%
+trong phần trước"
+89,JS 3.2 Operators - relational  Operators,Bài tập,"Cho 2 số tự nhiên
+a
+và
+b
+. Viết chương trình để in ra kết quả so sánh (
+true
+or
+false
+) của
+a
+và
+b
+. Nhưng toán tử so sánh sau
+a == b, a != b, a > b, a < b, b >= a, b <= a
+Ví dụ
+: Cho
+a = 10, b = 11
+, kết quả sẽ là:
+```js
+a==b isfalsea!=b istruea>b isfalsea<b istrueb>=a istrueb<=a isfalse
+```
+Đầu vào:
+2 số
+a
+và
+b
+.
+Đầu ra:
+In ra kết quả so sánh của
+a
+và
+b"
+90,JS 3.2 Operators - relational  Operators,Gợi ý,Đọc phần lý thuyết sau và sử dụng toán tử so sánh để viết chương trình.
+91,JS 3.2 Operators - relational  Operators,Lý thuyết,"Sinh viên hiểu về các toán tử quan hệ và cách sử dụng nó trong các vấn đề thực tế.
+Toán tử đẳng thức:  ==   !=
+Toán tử
+Mô tả
+Ví dụ
+==
+bằng với
+10==20 = false
+""abc""==""xyz"" = false
+""js""==""js"" = true
+!=
+Không bằng với
+10!=20 = true
+Các toán tử đẳng thức
+==
+(có nghĩa là bằng) và
+!=
+(Có nghĩa là không bằng) so sánh các giá trị cùng loại và trả về giá trị
+Boolean
+true
+nếu giá trị của các toán hạng bằng nhau hoặc ngược lại là
+false
+. Sự so sánh của kiểu nguyên thủy  và Boolean rất đơn giản:
+```js
+varx=1;vary=2;varz=""2"";varw=""2"";console.log(x!=y);// output: trueconsole.log(x==y);// output: falseconsole.log(z==y);// output: trueconsole.log(true==true);// output: trueconsole.log(true!=true);// output: false
+```
+
+Toán tử quan hệ:  <  >  <=  >=
+Toán tử
+Mô tả
+Ví dụ
+>
+Lớn hơn
+20>10 = true
+>=
+Lớn hơn hoạc bằng
+20>=10 = true
+<
+Nhỏ hơn
+20<10 = false
+<=
+Nhỏ hơn hoạc bằng
+20<=10 = false
+Toán tử quan hệ chỉ có thể được sử dụng với các kiểu dữ liệu nguyên thủy:
+```js
+vari1=1;vari2=2;vari3=1;console.log(i1>i2);//prints: falseconsole.log(i1>=i2);//prints: falseconsole.log(i1>=i3);//prints: trueconsole.log(i1<i2);//prints: trueconsole.log(i1<=i2);//prints: trueconsole.log(i1<=i3);//prints: trueconsole.log('a'>='b');//prints: falseconsole.log('a'<='b');//prints: true
+```"
+92,JS 3.3 Operators - Logical Operators,Bài tập,"Cho 2 số
+a
+và
+b
+. Viết chương trình sử dụng toán tử logic để in ra kết quả (
+true
+or
+false
+) của
+a
+và
+b
+. Các quan hệ logic sau
+(a%2 == 0) && (b%2 == 0)
+(a%2 == 0) || (b%2 == 0)
+!(a > b)
+Ví dụ
+: Cho
+a = 20, b = 11
+, Kết quả sẽ là:
+```js
+((a%2==0)&&(b%2==0))isfalse((a%2==0)||(b%2==0))istrue!(a>b)isfalse
+```
+Đầu vào:
+2 số
+a
+and
+b
+.
+Đầu ra:
+in ra kết quả quan hệ của
+a
+và
+b"
+93,JS 3.3 Operators - Logical Operators,Gợi ý,Đọc phần lý thuyết và sử dụng toán tử logic để viết chương trình.
+94,JS 3.3 Operators - Logical Operators,Lý thuyết,"Sinh viên hiểu về các toan tử logic và cách sử dụng chúng trong thực tế
+Các toán tử sau được gọi là toán tử logic JavaScript.
+Ví dụ:
+```js
+vara=1;varb=2;varc=true;vard=false;console.log(a>0&&b>0);// output: trueconsole.log(a==2&&b==2);// output: falseconsole.log(a==2||b==2);// output: trueconsole.log(!c);// output: falseconsole.log(!d);// output: true
+```"
+95,JS 3.1 Operators - Arithmetic Operators,Bài tập,"Tìm 2 số khi biết tổng và hiều. Cho 2 số là tổng và hiệu của 2 số
+a
+và
+b
+. Viết function tính toán a và b và in ra màn hình
+Ví dụ:
+cho
+sum = 10
+,
+different = 2
+, Kết quả nên là
+cho
+sum = 10
+,
+different = 2
+, Kết quả nên là
+```js
+64
+```
+Đầu vào
+: 2 số
+sum
+và
+different
+Đầu ra
+:
+a và b và in chúng ra màn hình"
+96,JS 3.1 Operators - Arithmetic Operators,Gợi ý,Đọc phần lý thuyết sau và sử dụng toán tử số học để giải quyết vấn đề
+97,JS 3.1 Operators - Arithmetic Operators,Lý thuyết,"Sinh viên  hiểu về khái niệm toán tử số học và cách sử dụng nó trong các vấn đề thực tế.
+Javascript cung cấp một tập hợp các toán tử phong phú để thao tác các biến. Chúng tôi có thể chia tất cả các toán tử thành các nhóm sau:
+-  Toán tử số học
+-  Toán tử quan hệ
+-  Toán tử logic
+-  Toán tử gán
+-  Toán tử typeof
+Trong phần này, chúng ta sẽ thảo luận về các toán tử số học được sử dụng trong các biểu thức toán học giống như cách chúng được sử dụng trong đại số.
+Toán tử số học được sử dụng để thực hiện các phép toán số học trên các toán hạng. Các toán tử sau được gọi là toán tử số học JavaScript.
+Toán tử
+Mô tả
+Ví dụ
++
+Phép cộng
+2+3 = 5
+-
+Phép trừ
+10-2 = 8
+*
+Phép nhân
+2*4 = 8
+/
+Phéo chia
+50/5 = 10
+%
+Phép chia lấy phần dư
+11%4 = 3
+++
+tăng lên 1
+var a=10; a++; Now a = 11
+--
+giảm xuống 1
+var a=10; a--; Now a = 9
+Vì dụ:
+```js
+vara=3;varb=2;varx=a*b;console.log(x);// output: 6varc=3;x=(a*b)+c;console.log(x);// output: 9x=(a*b)%5;console.log(x);// output: 1
+```"
+98,Minutes to Seconds,Bài tập,"Viết chương trình với đầu vào là 1 số
+minutes
+và chuyển đổi số đó thành giây
+Ví dụ
+Cho
+minutes = 3;
+In ra
+180
+Cho
+minutes = 10;
+In a
+600
+Đầu vào
+: minutes
+Đầu ra
+: seconds
+Cho
+minutes = 3;
+In ra
+180
+Cho
+minutes = 10;
+In a
+600"
+99,Minutes to Seconds,Gợi ý,Nhớ lại toán tử số học trong phần trước
+100,What's JavaScript,Bài tập,"Chạy bạn hãy viết chương trình in ra
+""Hello World""
+trên màn hình.
+JavaScript là ngôn ngữ kịch bản phía máy khách phổ biến nhất và được sử dụng rộng rãi. Kịch bản phía máy khách đề cập đến các tập lệnh chạy trong trình duyệt web của bạn. JavaScript được thiết kế để thêm hiệu ứng tương tác và động cho các trang web bằng cách thao tác nội dung được trả về từ máy chủ web.
+JavaScript là một ngôn ngữ hướng đối tượng và nó cũng có một số điểm tương đồng về cú pháp với ngôn ngữ lập trình Java. Nhưng, JavaScript không liên quan đến Java theo bất kỳ cách nào.
+JavaScript là 1 trong 3 ngôn ngữ mà tất cả các nhà phát triển website phải học:
+1.
+HTML
+để xây dựng nội dung của website
+2.
+CSS
+để chỉ định bố cục của các trang web
+3.
+JavaScript
+để lập trình hành vi của các trang web
+Các trang web không phải là nơi duy nhất sử dụng JavaScript. Nhiều chương trình máy tính để bàn và máy chủ sử dụng JavaScript. Node.js là nổi tiếng nhất. Một số cơ sở dữ liệu, như MongoDB và CouchDB, cũng sử dụng JavaScript làm ngôn ngữ lập trình của họ.
+Có rất nhiều điều bạn có thể làm với JavaScript.
+Bạn có thể sửa đổi nội dung của một trang web bằng cách thêm hoặc xóa các yếu tố.
+Bạn có thể thay đổi kiểu dáng và vị trí của các thành phần trên trang web.
+Bạn có thể theo dõi các sự kiện như nhấp chuột, di chuột, v.v. và phản ứng với nó.
+Bạn có thể thực hiện và kiểm soát chuyển tiếp và hình ảnh động.
+Bạn có thể tạo cửa sổ bật lên cảnh báo để hiển thị thông tin hoặc thông báo cảnh báo cho người dùng.
+Bạn có thể thực hiện các thao tác dựa trên đầu vào của người dùng và hiển thị kết quả.
+Bạn có thể xác nhận đầu vào của người dùng trước khi gửi nó đến máy chủ.
+Danh sách không kết thúc ở đây, có nhiều điều thú vị khác mà bạn có thể làm với JavaScript. Bạn sẽ tìm hiểu về tất cả chúng một cách chi tiết trong các chương sắp tới."
+101,JS 1.0 console.log,Bài tập,"Viết chương trình hiển thị
+""Hello World""
+ra màn hình
+Đầu vào:
+Không
+Đầu ra:
+hiển thị
+""Hello World""
+ra màn hình"
+102,JS 1.0 console.log,Gợi ý,Đọc phần lý thuyết sau để biết làm thế nào để in 1 thông báo ra màn hình.
+103,JS 1.0 console.log,Lý thuyết,"Phương thức console.log() để viết tin nhắt ra màn hình / console.
+console rất hữu ích cho mục đích kiểm tra
+Console.log () là một hàm trong JavaScript, được sử dụng để in bất kỳ biến nào được xác định trước đó hoặc chỉ in bất kỳ thông báo nào cần hiển thị cho người dùng.
+```js
+console.log(""..."");
+```
+Ví Dụ
+:
+```js
+console.log(""Javascript"");// output: JavascriptvarmyObj={firstname:""John"",lastname:""Doe""};console.log(myObj);// output: { firstname: 'John', lastname: 'Doe' }
+```
+```js
+console.log(""Java"",""Script"");// output: ""Javas Sript""console.log(""Java"","","",""Script"");// output: ""Javas , Sript""
+```"
+104,String concatenation in JavaScript,Bài tập,"Cho 2 chuỗi,
+firstName
+và
+lastName
+, In ra 1 chuỗi mới với định dạng
+""firstName, lastName""
+.
+Đầu vào
+:
+firstName
+và
+lastName
+Đầu ra
+: In ra 1 chuỗi mới với định dạng
+""firstName, lastName""
+."
+105,String concatenation in JavaScript,Gợi ý,Đọc phần lý thuyết để hiểu về việc nỗi chuỗi trong javascript
+106,String concatenation in JavaScript,Lý thuyết,"Hiểu về việc nỗi chuỗi trong javascript
+Toán tử
++
+đươc sử dụng cho việc nỗi chuỗi trong javascript nếu ít nhất 1 trong các chuỗi là chuỗi.
+Ví dụ:
+```js
+console.log(""Hello""+"" ""+""World"");// output: ""Hello World""console.log(""Hello""+""-""+""World"");// output: ""Hello-World""
+```
+Làm việc với các biến (Chúng ta sẽ thảo luần về các biến trong các phần sau)
+```js
+vara=""Java"";varb=""Script"";varnew_string=a+b;console.log(new_string);// output: ""JavaScript""new_string=a+"" and ""+b;console.log(new_string);// output: ""Java and Script""
+```"
+107,JS 1.2 Comment in code,Bài tập,"Viết vài comment cho function hiển thị
+""HelloWorld""
+ra màn hình
+Đầu vào
+: none
+Đầu ra
+: In ""
+HelloWorld
+"" Ra màn hình"
+108,JS 1.2 Comment in code,Gợi ý,Đọc lý thuyết sau để biết làm thế nào để sử dụng comment trong javascript.
+109,JS 1.2 Comment in code,Lý thuyết,"JavaScript comments
+là cách hữu ích để truyền tải thông điệp. Nó được sử dụng để thêm thông tin vào code, cảnh báo hay gợi ý. Để người dùng có thể dễ dàng giải nghĩa code.
+Trong bài này, chúng tôi sẽ giúp bạn tạo nhưng comment trong source code
+The JavaScript comment được bỏ qua JavaScript engine. Tức là không thực thi như code javascript bình thường
+Có 2 kiểu comments trong JavaScript.
+Single-line Comment (Comment 1 dòng)
+Nó được thể hiện bằng dấu gạch chéo kép (//). Nó có thể được sử dụng trước hoặc sau 1 câu lệnh.
+```js
+// This is a comment for codevarabc=”xyz”;
+```
+Multi-line Comment (Comment nhiều dòng)
+Nó có thể được sử dụng để thêm comment đơn cũng như nhiều dòng. Vì vậy, nó là thuận tiện hơn.
+Nó được thể hiện bằng dấu gạch chéo về phía trước với dấu hoa thị ""/*"" rồi dấu hoa thị với dấu gạch chéo về phía trước ""*/""
+```js
+/* This is a comment for code
+You can write something here */varabc=”xyz”;
+```"
+110,JS 6.2 Loops - while loop,Bài tập,"Cho 1 số n. Sử dụng while loop để in ra các số chẵn từ 1 tới n
+Ví dụ
+:
+n = 7; In ra: 2,4,6
+n = 10; In ra: 2,4,6,8,10
+Đầu vào
+: n
+Đầu ra:
+các số chẵn từ 1 tới n
+n = 7; In ra: 2,4,6
+n = 10; In ra: 2,4,6,8,10"
+111,JS 6.2 Loops - while loop,Gợi ý,"Bạn nên sử dụng lệnh while để giải bài toán này.
+Bạn nên học cách sử dụng lệnh while bằng cách đọc lý thuyết phía dưới."
+112,JS 6.2 Loops - while loop,Lý thuyết,"Sinh viên hiểu được khái niệm về lệnh
+while
+và cách sử dụng chúng trong bài tập thực tế.
+Lệnh
+while
+xử lí 1 biểu thức điều kiện và 1 khối lệnh được lặp lại cho đến khi giá trị của biểu thức cho ra giá trị
+false
+:
+```js
+while(condition){//do something}
+```
+Đây là 2 điều cần chú ý:
+Dấu
+{}
+là không cần thiết khi chỉ có một câu lệnh cần được xử lí lặp lại, tuy nhiên việc sử dụng nó được cân nhắc hơn cho tính đồng nhất và tốt hơn cho việc hiểu mã lệnh.
+Lệnh có thể không được xử lí bất kỳ lần nào (khi biểu thức điều kiện trả về
+false
+ngay từ ban đầu)
+Chúng ta hãy xem một vài ví dụ. Vòng lặp dưới đây xử lí lệnh in 5 lần:
+```js
+vari=0;while(i++<5){console.log(i+"" "");//prints: 1 2 3 4 5}
+```
+Và ở đây là 1 ví dụ về gọi 1 phương thức mà trả về mỗi vài giá trị, giá trị được tích lũy (cộng dần) cho tới khi ngưỡng yêu cầu được đạt tới.
+```js
+varresult=0;while(result<1){result+=0.1;}
+```
+Cộng dần
+0.1
+vào biến
+result
+cho tới khi biểu thức điều kiện
+result < 1
+trả về
+false
+thì vòng lặp dừng lại.
+Đây là một cách để làm vòng lặp này trở nên đơn giản hơn:
+```js
+varresult=0;while((result+=0.1)<1){console.log(result);}
+```
+Giá trị được in sẽ không bao giờ bằng hoặc vượt 1.0 vì biểu thức với giá trị cộng dồn mới nhất sẽ được kiểm tra trước khi vào khối lệnh xử lí. Đó là điều cần chú ý khi các tính toán được bao gồm trong biểu thức điều kiện, không ở trong khối lệnh xử lí."
+113,JS 6.5 Loops - for-of loop,Bài tập,"Cho 1 mảng số tự nhiên. Dùng
+for-of
+tính tổng các sô dương trong mảng và in ra kết quả
+Ví dụ
+:  [0, 2, -4, 8]
+In ra: 10
+Đầu vào
+: datas
+Đầu ra
+: tính tổng các sô dương trong mảng và in ra kết quả"
+114,JS 6.5 Loops - for-of loop,Gợi ý,"Sử dụng lệnh
+for...of
+để giải quyết vấn đề
+Đọc phần lý thuyết sau để biết về
+for-of"
+115,JS 6.5 Loops - for-of loop,Lý thuyết,"Sinh viên hiểu về
+for...of
+và các sử dụng nó trong thực tế
+Cú pháp
+for...of
+để chạy vòng lặp trên String, Array. Hoạc các đối tượng tương tự như Array
+Cú pháp
+```js
+for(variableofiterable){statement}
+```
+variable
+Tên biến đại diện cho một phần tử được loop.
+iterable
+Array, String,... các đối tượng để chạy vòng lặp
+Example
+```js
+letiterable=[2,4,6];for(constvalueofiterable){console.log(value);}// 2// 4// 6
+```
+Loop qua một String
+```js
+letiterable='hello';for(letvalueofiterable){console.log(value);}// h// e// l// l// o
+```"
+116,JS 6.3 Loops - do-while loop,Bài tập,"Cho 1 số nguyên dương n. Viết một chương trình đếm và in ra màn hình có bao nhiêu lần số đã cho chia hết cho 2.
+Ví dụ:
+Với
+n = 7
+, đầu ra là
+""0""
+Vì 7 không chia hết cho 2. Tổng số lần 7 chia hết cho 2 là 0.
+Ví dụ:
+Với
+n = 7
+, đầu ra là
+""0""
+Vì 7 không chia hết cho 2. Tổng số lần 7 chia hết cho 2 là 0.
+Với
+n = 8
+, đầu ra là
+""3""
+Vì 8 chia 2 được 4, 4 chia 2 được 2, 2 chia 2 được 1 và 1 không chia hết cho 2. Tổng số lần 8 chia hết cho 2 là 3.
+Với
+n = 8
+, đầu ra là
+""3""
+Vì 8 chia 2 được 4, 4 chia 2 được 2, 2 chia 2 được 1 và 1 không chia hết cho 2. Tổng số lần 8 chia hết cho 2 là 3.
+Đầu vào:
+1 số nguyên
+n
+nhập từ bàn phím
+Điều kiện tiền đề:
+1 ≤ n ≤ 1000000
+Đầu
+ra:
+số lần mà số đã cho
+n
+có thể chia hết cho 2.
+Suggestion
+Bạn nên sử dụng lệnh do...while để giải bài toán này.
+Bạn nên học cách sử dụng lệnh do...while bằng cách đọc lý thuyết phía dưới.
+Sinh viên hiểu được khái niệm về lệnh
+do...while
+và cách sử dụng chúng trong bài tập thực tế.
+Tương tự như lệnh
+while
+, lệnh
+do...while
+xử lí 1 biểu thức điều kiện và 1 khối lệnh được lặp lại cho đến khi giá trị của biểu thức cho ra giá trị
+false
+:
+```js
+do{//statement or block}while(condition)
+```
+Tuy nhiên nó xử lí khối lệnh một lần trước khi biểu thức điều kiện được kiểm tra, nghĩa là khối lệnh đó sẽ được xử lí ít nhất 1 lần.
+Chúng ta hãy xem một số ví dụ. Mã lệnh sau xử lí lệnh in 6 lần (nhiều hơn một lần so với lệnh
+while
+thông thường):
+```js
+vari=0;do{console.log(i+"" "");//prints: 0 1 2 3 4 5}while(i++<5);
+```
+Trong khi mã lệnh sau vận hành một cách tương tự như một lệnh
+while
+:
+```js
+varresult=0;do{result+=0.1;console.log(result);}while(result<1);
+```
+Điều này là vì giá trị được in sau khi nó được cộng dồn, và sau đó biểu thức điều kiện được kiểm tra trước khi đi vào khối lệnh xử lí lần nữa.
+Lệnh
+do...while
+rút gọn vận hành một cách khác. Ở đây là một ví dụ:
+```js
+varresult=0;do{console.log(result);}while((result+=0.1)<1);
+```
+Giá trị ban đầu của biến
+result
+luôn được in đầu tiên bởi lệnh được xử lí ít nhất một lần trước khi biểu thức điều kiện được kiểm tra lần đầu."
+117,JS 6.1 Loops - for loop,Bài tập,"Cho 1 số n . Viết một chương trình để tính toán và in ra màn hình giai thừa của số đã nhập (n!)
+Ví dụ:
+Với
+n = 5
+, đầu ra được in ra màn hình là
+""120""
+Vì 5! = 5 * 4 * 3 * 2 * 1 = 120
+Với
+n = 3
+, đầu ra được in ra màn hình là
+""6""
+Vì 3! = 3 * 2 * 1 = 6
+Đầu vào:
+1 số nguyên
+n
+nhập từ bàn phím
+Điều kiện tiền đề:
+1 ≤ n ≤ 20
+Đầu ra:
+giai thừa của số đã cho
+n
+Ví dụ:
+Với
+n = 5
+, đầu ra được in ra màn hình là
+""120""
+Vì 5! = 5 * 4 * 3 * 2 * 1 = 120
+Với
+n = 3
+, đầu ra được in ra màn hình là
+""6""
+Vì 3! = 3 * 2 * 1 = 6"
+118,JS 6.1 Loops - for loop,Gợi ý,"Đọc phần lý thuyết sau để hiểu về
+for loop"
+119,JS 6.1 Loops - for loop,Lý thuyết,"Sinh viên hiểu được lệnh
+for
+và cách sử dụng nó trong bài tập thực tế.
+Vòng lặp JavaScript cho vòng lặp lặp lại các phần tử cho số lần cố định. Nó nên được sử dụng nếu số lần lặp được biết đến. Cú pháp của vòng lặp for được đưa ra dưới đây.
+```js
+for(initialization;condition;increment){code to be executed}// Example:for(i=0;i<10;i++){console.log(""The number is ""+i);}
+```
+Trong ví dụ trên, Bạn có thể thấy:
+- Initialization: Gán 1 biến trước khi bắt đầu vòng lặp (var i = 0).
+- Condition: Xác định điều kiến cho vòng lặp chạy (i phải nhỏ hơn 10).
+- Increment: Tăng giá trị (i++) sau mỗi lần đoạn code trong vòng lặp được thực hiện.
+Initialization
+Thông thường bạn sẽ sử dụng câu lệnh
+initialization
+để khởi tạo biến được sử dụng trong vòng lặp (i = 0).
+Điều này không phải lúc nào cũng đúng, JavaScript không quan tâm. initialization là tùy chọn.
+Bạn có thể bắt đầu nhiều giá trị trong initialization (được phân tách bằng dấu phẩy):
+Vi dụ
+:
+```js
+for(i=0,len=10,text="""";i<len;i++){text+=i+"" - "";}
+```
+Và bạn có thể bỏ qua phần initialization (như khi giá trị của bạn được đặt trước khi vòng lặp bắt đầu):
+```js
+vari=2;varlen=10;vartext="""";for(;i<len;i++){text+=i+"" - "";}
+```
+Condition
+Condition thường được sử dụng để đánh giá điều kiện của biến ban đầu.
+Nếu Condition trả về true, vòng lặp sẽ bắt đầu lại, nếu nó trả về false, vòng lặp sẽ kết thúc.
+Increment
+Increment thường tăng giá trị của biến ban đầu.
+Điều này không phải lúc nào cũng đúng, JavaScript không quan tâm và Increment là không bắt buộc.
+Increment có thể làm bất cứ điều gì như tăng âm (i--), tăng dương (i = i + 15) hoặc bất cứ điều gì khác.
+Increment cũng có thể được bỏ qua (như khi bạn tăng các giá trị của mình bên trong vòng lặp):
+Vi dụ:
+```js
+vari=0;varlen=10;for(;i<len;){text+=i+"" - "";i++;}
+```
+Bạn có thể sử dụng
+for
+loop cho 1 string
+```js
+varstr=""javascript"";for(i=0;i<str.length;i++){console.log(str[i]);}// output:// j// a// v// a// s// c// r// i// p// t
+```"
+120,Exercise reverse a string,Bài tập,"Cho 1 chuỗi str_input. Viết chương trình đảo ngược chuỗi và in ra kết quả
+Ví dụ
+:
+Cho:
+str_input = ""program"";
+in ra: ""margorp""
+Cho:
+str_input = ""data"";
+in ra: ""atad""
+Đầu vào
+: str_input
+Đầu ra
+: đảo ngược chuỗi và in ra kết quả
+Cho:
+str_input = ""program"";
+in ra: ""margorp""
+Cho:
+str_input = ""data"";
+in ra: ""atad"""
+121,Exercise reverse a string,Gợi ý,Nhớ lại việc sử dụng vòng lặp for cho chuỗi
+122,JS 6.4 Loops - for-in loop,Bài tập,"Cho 1 object
+a
+. In tất cả thuộc tính và giá trị với định dạng
+""{property} is {value}""
+Ví dụ
+: a = {name:""Peter"", address: ""Ha Noi""}
+Kết quả cần in ra
+```js
+name is Peter
+
+address is Ha Noi
+```
+Đầu vào
+: Object a
+Đầu ra
+: In tất cả thuộc tính và giá trị"
+123,JS 6.4 Loops - for-in loop,Gợi ý,"Sử dụng lệnh
+for...in
+để giải quyết vấn đề
+Đọc phần lý thuyết sau để biết về
+for-in
+Sinh viên hiểu về
+for...in
+và các sử dụng nó trong thực tế
+Vòng lặp
+for ... in
+được sử dụng để lặp qua các thuộc tính của đối tượng. Vì chúng tôi chưa thảo luận về Đối tượng, bạn có thể không cảm thấy thoải mái với vòng lặp này. Nhưng một khi bạn hiểu cách các đối tượng hành xử trong JavaScript, bạn sẽ thấy vòng lặp này rất hữu ích.
+Cú pháp
+```js
+for(variableinobject){statement}
+```
+variable
+Một tên thuộc tính khác nhau được gán cho
+variable
+trên mỗi lần lặp
+object
+Đối tượng có các thuộc tính không phải là Biểu tượng được lặp lại.
+Vi dụ
+```js
+varperson={fname:""Vuong"",lname:""Trung"",age:31};varx;for(xinperson){console.log('property '+x+' in object is '+person[x]);}/* output 
+property fname in object is Vuong
+property lname in object is Trung
+property age in object is 31
+*/
+```"
+124,JS 6.6 Loops - Continue and Break,Bài tập,"Cho 1 mảng các số tự nhiên. In ra các số trong mảng đó với điều kiện
+Bỏ qua số đó nếu số đó chia hết cho 4
+Thoát vòng lắp nếu số đó chia hết cho cả 4 và 3
+Ví dụ
+: Cho datas = [1, 3 , 4 , 6 , 12, 5, 4 , 9]
+In ra:
+```js
+1
+3
+6
+```
+Đầu vào
+: datas
+Đầu ra
+: In ra các số trong mảng đó với điều kiện"
+125,JS 6.6 Loops - Continue and Break,Gợi ý,"Dùng ""
+Continue
+"" để bỏ qua
+Dùng ""
+Break
+"" để thoát vòng lặp
+Đọc phần lý thuyết để hiểu hơn về
+Continue
+và
+Break"
+126,JS 6.6 Loops - Continue and Break,Lý thuyết,"Câu lệnh break ""nhảy ra"" của một vòng lặp.
+Câu lệnh continue""nhảy qua"" một lần lặp trong vòng lặp.
+Break
+Bạn đã thấy câu lệnh break được sử dụng trong một chương trước.
+Nó được sử dụng để ""nhảy ra"" câu lệnh switch ().
+Câu lệnh break cũng có thể được sử dụng để nhảy ra khỏi vòng lặp.
+Câu lệnh break phá vỡ vòng lặp và tiếp tục thực thi mã sau vòng lặp (nếu có):
+```js
+for(i=0;i<10;i++){if(i===3){break;}text+=""The number is ""+i+“\n”;}/*
+Output
+The number is 0
+The number is 1
+The number is 2
+*/
+```
+Continue
+Câu lệnh continue phá vỡ một lần lặp (trong vòng lặp), nếu một điều kiện được chỉ định xảy ra và tiếp tục với lần lặp tiếp theo trong vòng lặp.
+Ví dụ sau ta bỏ qua giá trị 3:
+```js
+for(i=0;i<10;i++){if(i===3){continue;}text+=""The number is ""+i+""\n"";}/*
+Output
+The number is 0
+The number is 1
+The number is 2
+The number is 4
+The number is 5
+The number is 6
+The number is 7
+The number is 8
+The number is 9
+*/
+```"
+127,Array.find() and Array.findIndex(),Bài tập,"Cho 1 mảng số tự nhiên
+data
+. Tìm ra số dương đầu tiên trong mảng và in ra chỉ mục và giá trị với định dạng ""{index} {value}""
+Ngoài ra, in ra ""No result"" Nếu không có số dương nào trong mảng
+Ví dụ
+:
+data = [-1, -2, 3, 4,-5];
+Print:
+""2 3""
+data = [-1, 2, 3, 4,-5];
+Print:
+""1 2""
+data = [-1, -2];
+Print:
+""No result""
+Đầu vào
+: data
+Đầu ra
+: số dương đầu tiên trong mảng
+data = [-1, -2, 3, 4,-5];
+Print:
+""2 3""
+data = [-1, 2, 3, 4,-5];
+Print:
+""1 2""
+data = [-1, -2];
+Print:
+""No result"""
+128,Array.find() and Array.findIndex(),Gợi ý,"Đọc phần lý thuyết để biết về
+Array.find()
+và
+Array.findIndex()"
+129,Array.find() and Array.findIndex(),Lý thuyết,"Sinh viên hiểu về
+Array.find()
+,
+Array.findIndex()
+và cách sử dụng nó trong thực tế.
+Phương thức
+find()
+trả về giá trị của phần tử đầu tiên trong mảng thỏa mãn hàm kiểm tra được cung cấp. Nếu không, không xác định được trả lại.
+Cú pháp
+```js
+arr.find(callback(element[,index[,array]])[,thisArg])
+```
+callback
+:
+Một hàm để kiểm tra cho từng phần tử, lấy ba đối số:
+element
+: Phần tử hiện tại đang được xử lý trong mảng.
+index
+(Optional): Chỉ mục của phần tử hiện tại đang được xử lý trong mảng.
+array
+(Optional): Các mảng được gọi theo.
+thisArg
+:
+Một giá trị để sử dụng như thế này khi thực hiện callback.
+Ví dụ
+:
+```js
+vararray1=[5,12,8,130,44];varfound=array1.find(function(element){returnelement>10;});console.log(found);// expected output: 12
+```
+Phương thức
+findIndex()
+trả về chỉ mục của phần tử đầu tiên trong mảng thỏa mãn hàm kiểm tra được cung cấp. Mặt khác, nó trả về -1, chỉ ra rằng không có phần tử nào vượt qua bài kiểm tra.
+Cú pháp
+:
+```js
+arr.findIndex(callback(element[,index[,array]])[,thisArg])
+```
+callback
+:
+Một hàm để kiểm tra cho từng phần tử, lấy ba đối số:
+element
+: Phần tử hiện tại đang được xử lý trong mảng.
+index
+(Optional): Chỉ mục của phần tử hiện tại đang được xử lý trong mảng.
+array
+(Optional): Các mảng được gọi theo.
+thisArg
+:
+Một giá trị để sử dụng như thế này khi thực hiện callback.
+Ví dụ
+:
+```js
+vararray1=[5,12,8,130,44];functionisLargeNumber(element){returnelement>13;}console.log(array1.findIndex(isLargeNumber));// expected output: 3
+```"
+130,Array.join(),Bài tập,"Cho mảng
+data
+. Ghép và in tất cả các phần tử trong mảng dc ngăn cách nhau với dấu phảy và ký tự cách => "", ""
+Ví dụ
+:
+data = [""A"", ""B"", ""C""];
+Print: ""
+A, B, C
+""
+data = [1, 2, 3];
+Print: ""
+1, 2, 3
+""
+Đầu vào
+: datas
+Đầu ra
+: Ghép và in tất cả các phần tử trong mảng dc ngăn cách nhau với dấu phảy và ký tự cách => "", ""
+data = [""A"", ""B"", ""C""];
+Print: ""
+A, B, C
+""
+data = [1, 2, 3];
+Print: ""
+1, 2, 3
+"""
+131,Array.join(),Gợi ý,"Đọc phần lý thuyết để hiểu về
+Array.join()"
+132,Array.join(),Lý thuyết,"Sinh viên hiểu về
+Array.join()
+và cách sử dụng nó trong thực tế.
+Phương thức join() tạo và trả về một chuỗi mới bằng cách nối tất cả các phần tử trong một mảng (hoặc một đối tượng giống như mảng), được phân tách bằng dấu phẩy hoặc chuỗi phân tách được chỉ định. Nếu mảng chỉ có một mục, thì mục đó sẽ được trả về mà không cần sử dụng dấu phân cách.
+Cú pháp
+```js
+vararray_in_string=arr.join([separator]);
+```
+separator
+(tùy chọn)
+:
+Là một chuỗi xác định dùng để ngăn cách các phần tử liền kề của mảng. Nếu bỏ qua, các phần tử sẽ được ngăn cách bởi dấu phẩy ("",""). Nếu là một chuỗi rỗng, các phần tử sẽ nối với nhau mà không có bất kì ký tự nào ngăn cách chúng.
+Ví dụ
+```js
+vara=['Wind','Water','Fire'];a.join();// 'Wind,Water,Fire'a.join(', ');// 'Wind, Water, Fire'a.join(' + ');// 'Wind + Water + Fire'a.join('');// 'WindWaterFire'
+```"
+133,Array.sort(),Bài tập,"Cho 1 mảng số tự nhiên
+data
+. Viết chương trình để sắp xếp mảng theo giá trị và in ra mảng mới đã sắp xếp
+Ví dụ
+:
+Cho
+data = [1, 5, 2, 6, 8];
+In ra:
+[1, 2, 5, 6, 8]
+Cho
+data = [1, 5, 2, 6, 8];
+In ra:
+[1, 2, 5, 6, 8]
+Đầu vào
+: data
+Đầu ra
+: in ra mảng đã sắp xếp"
+134,Array.sort(),Gợi ý,"Đọc phần lý thuyết để biết về
+Array.sort()"
+135,Array.sort(),Lý thuyết,"Sinh viên hiểu về
+Array.sort()
+và cách sử dụng nó trong thực tế.
+Phương thức sort() sẽ sắp xếp các phần tử của mảng ngay tại chỗ (in place) và trả về mảng đó. Kết quả sắp xếp có thể không ổn định (stable). Cách sắp xếp mặc định là theo Unicode code point của chuỗi.
+Độ phức tạp về thời gian và không gian của thuật toán sắp xếp sẽ tùy vào cách hiện thực.
+Cú pháp
+```js
+arr.sort([compareFunction]);
+```
+compareFunction
+(không bắt buộc)
+Hàm dùng để xác định thứ tự sắp xếp. Nếu bỏ qua, mảng sẽ được sắp xếp dựa vào giá trị Unicode code point của từng ký tự của chuỗi được chuyển đổi từ giá trị của phần tử.
+Mô tả
+Nếu không truyền
+compareFunction
+vào, các phần tử sẽ được sẽ được quy đổi về chuỗi kí tự và được so sánh dựa trên thứ tự của chuỗi kí tự đó trong bảng mã Unicode. Chẳng hạn, ""Banana"" đứng trước ""Cherry"". Còn nếu so sánh số học, 9 đứng trước 80, nhưng bởi vì các chữ số đã được quy đổi về chuỗi kí tự, nên ""80"" sẽ đứng trước ""9"" theo bảng mã Unicode.
+Nếu truyền
+compareFunction
+vào, phần tử của mảng sẽ được sắp xếp dựa theo giá trị trả về của hàm so sánh. Nếu
+a
+và
+b
+là hai phần tử được so sánh, thì:
+- Nếu
+compareFunction(a, b)
+trả về nhỏ hơn 0, đặt chỉ số cho
+a
+nhỏ hơn so với chỉ số của
+b
+, tức là để
+a
+lên trước.
+- Nếu
+compareFunction(a, b)
+trả về 0, giữ nguyên
+a
+và
+b
+, nhưng tiếp tục so sánh lần lượt các phần tử khác của mảng. Chú ý: quy định của ECMAscript không đảm bảo hành vi này, tương tự đối với tất cả các trình duyệt (ví dụ các phiên bản của Mozilla từ 2003).
+- Nếu
+compareFunction(a, b)
+trả về lớn hơn 0, đặt chỉ số của
+b
+nhỏ hơn chỉ số của
+a
+, tức là để
+b
+lên trước.
+-
+compareFunction(a, b)
+luôn phải trả về cùng một giá trị với mỗi cặp phần tử a và b. Nếu kết quả trả về không nhất quán thì thứ tự sắp xếp sẽ không xác định.
+
+Ví dụ đơn giản cho hàm so sánh:
+```js
+functioncompare(a,b){if(a nhỏ hơn b){return-1;}if(a lớn hơn b){return1;}// a bằng breturn0;}
+```
+Để so sánh giữa các số, chỉ cần lấy
+a
+trừ cho
+b
+. Hàm dưới đây sẽ sắp xếp mảng theo chiều tăng dần (nếu mảng không chứa
+Infinity
+và
+NaN
+):
+```js
+varnumbers=[4,2,5,1,3];numbers.sort(function(a,b){returna-b;});console.log(numbers);// [1, 2, 3, 4, 5]
+```
+Các Object cũng có thể được sắp xếp với một trong những thuộc tính của chúng.
+```js
+varitems=[{name:'Edward',value:21},{name:'Sharpe',value:37},{name:'And',value:45},{name:'The',value:-12},{name:'Magnetic',value:13},{name:'Zeros',value:37}];// ?sắp xếp theo value (giá trị)items.sort(function(a,b){returna.value-b.value;});// sắp xếp theo name (tên)items.sort(function(a,b){varnameA=a.name.toUpperCase();// bỏ qua hoa thườngvarnameB=b.name.toUpperCase();// bỏ qua hoa thườngif(nameA<nameB){return-1;}if(nameA>nameB){return1;}// name trùng nhaureturn0;});
+```"
+136,Array.filter(),Bài tập,"Cho 1 mảng số tự nhiên
+datas
+. Lấy tất cả các số dương thành 1 mảng mới và in ra nó
+Ví dụ
+:
+datas = [1,- 2, 3, 4,-5];
+in ra:
+[1, 3, 4]
+Đầu vào
+: datas
+Đầu ra
+: mảng các số dương
+datas = [1,- 2, 3, 4,-5];
+in ra:
+[1, 3, 4]"
+137,Array.filter(),Gợi ý,"Đọc phần lý thuyết sau để hiểu về
+Array.filter()"
+138,Array.filter(),Lý thuyết,"Sinh viên hiểu về
+Array.filter()
+và cách sử dụng nó trong thực tế.
+Phương thức
+filter()
+tạo ra một mảng mới với tất cả các phần tử vượt qua kiểm tra được thực hiện bởi hàm được cung cấp.
+Ví dụ
+```js
+functionisBigEnough(value){returnvalue>=10;}vararray1=[12,5,8,130,44];varfiltered=array1.filter(isBigEnough);// output: [12, 130, 44]
+```
+Cú pháp
+```js
+varnewArray=arr.filter(callback(element[,index[,array]])[,thisArg])
+```
+callback:
+Một hàm để kiểm tra cho từng phần tử, lấy ba đối số:
+element
+: Phần tử hiện tại đang được xử lý trong mảng.
+index
+(Optional): Chỉ mục của phần tử hiện tại đang được xử lý trong mảng.
+array
+(Optional): Các mảng được gọi theo.
+thisArg:
+Một giá trị để sử dụng như thế này khi thực hiện callback.
+filter()
+sẽ thực thi hàm callback trên từng phần tử của mảng, và xây dựng một mảng mới với các phần tử mà giá trị trả về của callback nếu ép kiểu sẽ mang giá trị true. callback chỉ được thực thi tại những chỉ mục (index) của mảng mà chúng được gán giá trị; nó không được thực thi tại chỉ mục đã bị xóa hoặc chưa từng được gán giá trị. Những phần tử không thỏa điều kiện tại hàm thử callback sẽ bị bỏ qua, không được cho vào mảng mới."
+139,Array.indexOf() and Array.lastIndexOf(),Bài tập,"Cho 1 mảng số tự nhiên
+data
+. tìm và in ra chỉ mục đầu tiên của giá trị 2 và chỉ mục cuối cùng của giá trị 2 trong mảng
+Ví dụ
+:
+data = [-1, 2, 3, 4, 2, 6];
+Print: ""
+1 4
+""
+data = [0, 6];
+Print: ""
+No result
+""
+Đầu vào
+: datas
+Đầu ra
+: chỉ mục đầu tiên của giá trị 2 và chỉ mục cuối cùng của giá trị 2
+data = [-1, 2, 3, 4, 2, 6];
+Print: ""
+1 4
+""
+data = [0, 6];
+Print: ""
+No result
+"""
+140,Array.indexOf() and Array.lastIndexOf(),Gợi ý,"Đọc phần lý thuyết để hiểu về
+Array.indexOf()
+và
+Array.lastIndexOf()"
+141,Array.indexOf() and Array.lastIndexOf(),Lý thuyết,"Sinh viên hiểu về
+Array.indexOf()
+,
+Array.lastIndexOf()
+và cách sử dụng nó trong thực tế.
+Phương thức
+indexOf()
+trả về chỉ mục đầu tiên mà tại đó một phần tử đã cho có thể được tìm thấy trong mảng hoặc -1 nếu không có.
+Cú pháp
+:
+```js
+arr.indexOf(searchElement[,fromIndex])
+```
+searchElement:
+Phần tử cần tìm trong mảng.
+fromIndex
+(Optional): Vị trí index nơi bắt đầu tìm kiếm. Nếu index lớn hơn hoặc bằng số phần tử trong mảng,
+-1
+sẽ được trả về, việc tìm kiếm sẽ không xảy ra. Nếu giá trị
+fromIndex
+là một số âm, vị trí index được tính từ cuối mảng. Lưu ý: cho dù
+fromIndex
+là số âm, kết quả tìm kiếm vẫn tính từ đầu mảng trở về sau. Nếu index bằng 0, cả mảng sẽ được tìm kiếm. Mặc định: 0 (cả mảng sẽ được tìm kiếm)
+Ví dụ
+:
+```js
+varbeasts=['ant','bison','camel','duck','bison'];console.log(beasts.indexOf('bison'));// expected output: 1// start from index 2console.log(beasts.indexOf('bison',2));// expected output: 4console.log(beasts.indexOf('giraffe'));// expected output: -1
+```
+Phương thức
+lastIndexOf()
+trả về chỉ mục cuối cùng mà tại đó một phần tử đã cho có thể được tìm thấy trong mảng hoặc -1 nếu không có. Mảng được tìm kiếm ngược, bắt đầu từ fromIndex.
+Cú pháp:
+```js
+arr.lastIndexOf(searchElement[,fromIndex])
+```
+searchElement:
+Phần tử cần tìm trong mảng.
+fromIndex
+(Optional): Vị trí index nơi bắt đầu tìm kiếm. Nếu index lớn hơn hoặc bằng số phần tử trong mảng,
+-1
+sẽ được trả về, việc tìm kiếm sẽ không xảy ra. Nếu giá trị
+fromIndex
+là một số âm, vị trí index được tính từ cuối mảng. Lưu ý: cho dù
+fromIndex
+là số âm, kết quả tìm kiếm vẫn tính từ đầu mảng trở về sau. Nếu index bằng 0, cả mảng sẽ được tìm kiếm. Mặc định: 0 (cả mảng sẽ được tìm kiếm)
+Ví dụ
+:
+```js
+varanimals=['Dodo','Tiger','Penguin','Dodo'];console.log(animals.lastIndexOf('Dodo'));// expected output: 3console.log(animals.lastIndexOf('Tiger'));// expected output: 1varnumbers=[2,5,9,2];numbers.lastIndexOf(2);// 3numbers.lastIndexOf(7);// -1numbers.lastIndexOf(2,3);// 3numbers.lastIndexOf(2,2);// 0numbers.lastIndexOf(2,-2);// 0numbers.lastIndexOf(2,-1);// 3
+```"
+142,Array.concat(),Bài tập,"Cho 2 mảng a và b. Gộp a vào b và in ra mảng b mới
+Ví dụ
+:
+```js
+a = ['a', 'b', 'c'];
+b = [1, 2, 3];
+```
+In ra:
+[ 1, 2, 3, 'a', 'b', 'c' ]
+Đầu vào
+: a và b
+Đầu ra
+: Gộp a vào b và in ra mảng b mới"
+143,Array.concat(),Gợi ý,"Đọc phần lý thuyết để hiểu về
+Array.concat()"
+144,Array.concat(),Lý thuyết,"Sinh viên hiểu về
+Array.concat()
+và cách sử dụng chúng trong thực tế
+Phương thức
+concat()
+dùng để kết nối 2 hay nhiều mảng với nhau. Phương thức này không làm thay đổi các mảng đã có mà thay vào đó sẽ trả về 1 mảng mới.
+```js
+varnew_array=old_array.concat([value1[,value2[,...[,valueN]]]])
+```
+```js
+vararray1=['a','b','c'];vararray2=['d','e','f'];varnew_array=array1.concat(array2);console.log(new_array);// output: [""a"", ""b"", ""c"", ""d"", ""e"", ""f""]// orvarnum1=[1,2,3],num2=[4,5,6],num3=[7,8,9];varnums=num1.concat(num2,num3);console.log(nums);// output: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+```"
+145,Array.includes(),Bài tập,"Cho 1 mảng số tự nhiên
+data
+. In ra ""
+Yes
+"" nếu mảng có phần tử có giá trị ""
+5
+"". Nếu không in ra ""
+No
+""
+Ví dụ
+:
+data = [1, 2, 3, 4, 6];
+Print: ""
+No
+""
+data = [1, 2, 3, 5, 6];
+Print: ""
+Yes
+""
+data = [1, 2, 3, 4, 6];
+Print: ""
+No
+""
+data = [1, 2, 3, 5, 6];
+Print: ""
+Yes
+""
+Đầu vào
+: data
+Đầu ra
+: ""Yes"" hoạc ""No"""
+146,Array.includes(),Gợi ý,"Đọc phần lý thuyết để biết về
+Array.includes()"
+147,Array.includes(),Lý thuyết,"Sinh viên hiểu về
+Array.includes()
+và cách sử dụng nó trong thực tế.
+Phương thức
+include()
+xác định xem một mảng có bao gồm một giá trị nhất định trong số các mục nhập của nó hay không, trả về
+true
+hoặc
+false
+khi thích hợp.
+Cú pháp
+```js
+arr.includes(valueToFind[,fromIndex])
+```
+valueToFind:
+Giá trị muốn kiểm tra.
+fromIndex
+(Tùy chọn): Vị trí trong mảng để bắt đầu tìm kiếm valueToFind; đầu tìm kiếm tại fromIndex khi fromIndex mang giá trị dương, hoặc tại array.length + fromIndex khi fromIndex mang giá trị âm (sử dụng giá trị tuyệt đối của fromIndex làm số lượng kí tự tính từ cuối mảng làm vị trí bắt đầu). Giá trị mặc định là 0.
+Ví dụ
+```js
+vararray1=[1,2,3];console.log(array1.includes(2));// output: truevarpets=['cat','dog','bat'];console.log(pets.includes('cat'));// output: trueconsole.log(pets.includes('at'));// output: false
+```
+Ví dụ với fromIndex
+```js
+[1,2,3].includes(2);// true[1,2,3].includes(3);// true[1,2,3].includes(3,3);// false[1,2,3].includes(3,-1);// true
+```"
+148,Array.reverse(),Bài tập,"Cho mảng
+data
+. Đảo ngước các phần tử của mảng và in ra mảng mới
+Ví dụ:
+data = [""A"", ""B"", ""C""];
+In ra:
+[""C"", ""B"", ""A""]
+Đầu vào
+: data
+Đầu ra
+: In ra mảng mới"
+149,Array.reverse(),Gợi ý,"Đọc phần lý thuyết để hiểu về
+Array.reverse()"
+150,Array.reverse(),Lý thuyết,"Sinh viên hiểu về
+Array.reverse()
+và cách sử dụng nó trong thực tế.
+Phương thức
+reverse()
+đảo ngược thứ tự của chính mảng đó. Phần tử đầu tiên của mảng trở thành phần tử cuối và ngược lại, phần tử cuối trở thành phần tử đầu tiên của mảng.
+Cú pháp
+```js
+arr.reverse()
+```
+Ví dụ
+:
+```js
+vararray1=['one','two','three'];console.log('array1: ',array1);// expected output: Array ['one', 'two', 'three']varreversed=array1.reverse();console.log('reversed: ',reversed);// expected output: Array ['three', 'two', 'one']/* Careful: reverse is destructive. It also changes
+the original array */console.log('array1: ',array1);// expected output: Array ['three', 'two', 'one']​
+```"
+151,Array.every(),Bài tập,"Cho 1 mảng các số tự nhiên
+datas
+. In ra
+""Yes""
+Nếu tất cả các phần từ của mạng là số chẵn
+Nếu không in ra
+""No""
+Ví dụ
+:
+data = [1, 2, 3, 4, 5];
+In ra:
+""No""
+data = [2, 4, 6];
+In ra:
+""Yes""
+Đầu vào
+: data
+Đầu ra
+:
+""Yes""
+hoạc
+""No""
+data = [1, 2, 3, 4, 5];
+In ra:
+""No""
+data = [2, 4, 6];
+In ra:
+""Yes"""
+152,Array.every(),Gợi ý,"Đọc phần lý thuyết để hiểu về
+Array.every()"
+153,Array.every(),Lý thuyết,"Sinh viên hiểu về
+Array.every()
+và cách sử dụng nó trong thực tế.
+Phương thức
+every()
+kiểm tra xem tất cả các phần tử trong mảng có vượt qua kiểm tra được thực hiện bởi hàm được cung cấp hay không. Nó trả về giá trị Boolean.
+Ví dụ:
+```js
+functionisBelowThreshold(currentValue){returncurrentValue<40;}vararray1=[1,30,39,29,10,13];console.log(array1.every(isBelowThreshold));// expected output: true
+```
+Cú pháp
+```js
+arr.every(callback(element[,index[,array]])[,thisArg])
+```
+callback:
+Một hàm để kiểm tra cho từng phần tử, lấy ba đối số:
+element
+: Phần tử hiện tại đang được xử lý trong mảng.
+index
+(Optional): Chỉ mục của phần tử hiện tại đang được xử lý trong mảng.
+array
+(Optional): Các mảng được gọi theo.
+thisArg:
+Một giá trị để sử dụng như thế này khi thực hiện callback.
+Mỗi phương thức thực thi hàm gọi lại được cung cấp một lần cho mỗi phần tử có trong mảng cho đến khi nó tìm thấy hàm trong đó gọi lại trả về giá trị false. Nếu một phần tử như vậy được tìm thấy, mọi phương thức ngay lập tức trả về false. Mặt khác, nếu hàm callback trả về một giá trị true cho tất cả các phần tử,  phương thức every sẽ trả về true.
+Ví dụ:
+Ví dụ sau kiểm tra xem tất cả các phần tử trong mảng có lớn hơn 10 không.
+```js
+functionisBigEnough(element,index,array){returnelement>=10;}[12,5,8,130,44].every(isBigEnough);// false[12,54,18,130,44].every(isBigEnough);// true
+```"
+154,Array.forEach(),Bài tập,"Cho 1 mảng số tự nhiên
+data
+. Sử dụng
+Array.forEach()
+để in ra tất cả các phần tử chia hết cho 5 của mảng
+Ví dụ
+:
+data = [1, 5, 30, 26];
+in ra
+5
+30
+Đầu vào
+: data
+data = [1, 5, 30, 26];
+in ra
+5
+30
+```js
+530
+```
+
+Đầu ra
+: in ra tất cả các phần tử của mảng"
+155,Array.forEach(),Gợi ý,"Đọc phần lý thuyết để biết về
+Array.forEach()"
+156,Array.forEach(),Lý thuyết,"Sinh viên hiểu về
+Array.forEach()
+và cách sử dụng nó trong thực tế.
+Phương thức
+forEach()
+thực thi một hàm được cung cấp một lần cho mỗi phần tử mảng. Có thể thay thế for để duyệt mảng
+Cú pháp
+```js
+arr.forEach(callback(currentValue[,index[,array]])[,thisArg]);
+```
+callback:
+Hàm xử lý mỗi phần tử, có 3 tham số
+currentValue
+: Phần tử hiện tại đang được xử lý trong mảng
+index
+(
+tùy chọn
+): Chỉ mục của phần tử hiện tại đang được xử lý trong mảng.
+array
+(
+tùy chọn
+): Mảng đang được
+foreach()
+xử lý.
+thisArg (
+tùy chọn
+)
+: Giá trị được gán cho từ khóa
+this
+bên trong hàm
+callback
+khi được thực thi.
+Ví dụ:
+```js
+vararray1=['a','b','c'];array1.forEach(function(element){console.log(element);});// output: ""a""// output: ""b""// output: ""c""functionlogArrayElements(element,index,array){console.log('a['+index+'] = '+element);}// Notice that index 2 is skipped since there is no item at// that position in the array.[2,5,,9].forEach(logArrayElements);// logs:// a[0] = 2// a[1] = 5// a[3] = 9
+```"
+157,Array and Array Methods,Bài tập,"Tạo 1 mảng:
+[25, 154, 461, 67, 32, 43]
+.
+Chạy chương trình mẫu và xem kết quả
+Đầu vào
+: None
+Đầu ra
+: In mảng"
+158,Array and Array Methods,Gợi ý,Đọc phần lý thuyết sau để hiểu về mảng và cách phương thức của mảng
+159,Array and Array Methods,Lý thuyết,"Sinh viên hiểu về object và các phương thức của object và cách sử dụng chúng trong thực tế
+Array
+(mảng) là một đối tượng đại diện cho một tập hợp các loại phần tử tương tự..
+Có 3 cách khai báo mạng
+1. By array literal (Theo nghĩa đen)
+Cú pháp tạo mảng bằng cách sử dụng mảng bằng chữ được đưa ra dưới đây:
+```js
+vararrayname=[value1,value2.....valueN];// Example:varemp=[""Sonoo"",""Vimal"",""Ratan""];
+```
+2. Bằng cách tạo cá thể của Array trực tiếp (dùng từ khóa new)
+Cú pháp tạo mảng trực tiếp được đưa ra dưới đây:
+```js
+vararrayname=newArray();// Example:varemp=newArray();emp[0]=""Arun"";emp[1]=""Varun"";
+```
+3. Sử dụng Array constructor (Dùng từ khóa new)
+Ở đây, bạn cần tạo cá thể của mảng bằng cách chuyển các đối số trong hàm tạo để chúng ta không phải cung cấp giá trị một cách rõ ràng.
+Ví dụ về việc tạo đối tượng bằng hàm tạo mảng được đưa ra dưới đây.
+```js
+varemp=newArray(""Jai"",""Vijay"",""Smith"");
+```
+Thuộc tính
+Mô tả
+Array.length
+Thuộc tính length của một mảng trả về số phần tử trong mảng đó. Đó là một số nguyên 32 bit không dấu và luôn lớn hơn chỉ mục lớn nhất của mảng (chỉ mục lớn nhất chính là dộ dài của mảng trừ đi 1).
+Array cũng có các phương thức
+Phương thức là hành động có thể được thực hiện trên các array.
+Các phương thức được lưu trữ trong các thuộc tính như việc định nghĩa hàm.
+Các phương thức khác nhau của array như sau: Chúng ta sẽ đi vào chi tiết 1 số các phương thức chính của array trong các phần sau.
+Phương thức
+Mô tả
+concat()
+Nó trả về một đối tượng mảng mới chứa hai hoặc nhiều mảng được hợp nhất.
+copywithin()
+Nó sao chép một phần của mảng đã cho bằng các phần tử của chính nó và trả về mảng đã sửa đổi.
+every()
+Nó xác định xem tất cả các phần tử của một mảng có thỏa mãn các điều kiện hàm được cung cấp hay không.
+fill()
+Nó điền các phần tử vào một mảng với các giá trị tĩnh.
+filter()
+Nó trả về mảng mới chứa các phần tử vượt qua các điều kiện hàm được cung cấp.
+find()
+It returns the value of the first element in the given array that satisfies the specified condition.
+findIndex()
+Nó trả về giá trị chỉ mục của phần tử đầu tiên trong mảng đã cho thỏa mãn điều kiện đã chỉ định.
+forEach()
+Nó gọi hàm được cung cấp một lần cho mỗi phần tử của một mảng.
+includes()
+Nó kiểm tra xem mảng đã cho có chứa phần tử đã chỉ định hay không.
+indexOf()
+Nó tìm kiếm phần tử được chỉ định trong mảng đã cho và trả về chỉ mục của trận đấu đầu tiên.
+join()
+Nó kết hợp các phần tử của một mảng dưới dạng một chuỗi.
+lastIndexOf()
+Nó tìm kiếm phần tử được chỉ định trong mảng đã cho và trả về chỉ mục cuối cùng.
+map()
+Nó gọi hàm được chỉ định cho mọi phần tử mảng và trả về mảng mới
+pop()
+Nó loại bỏ và trả về phần tử cuối cùng của một mảng.
+push()
+Nó thêm một hoặc nhiều phần tử vào cuối của một mảng.
+reverse()
+Nó đảo ngược các yếu tố của mảng nhất định.
+shift()
+Nó loại bỏ và trả về phần tử đầu tiên của một mảng.
+slice()
+Nó trả về một mảng mới chứa bản sao của một phần của mảng đã cho.
+sort()
+Nó trả về phần tử của mảng đã cho theo thứ tự được sắp xếp.
+splice()
+Nó thêm / xóa các phần tử đến / từ mảng đã cho.
+unshift()
+Nó thêm một hoặc nhiều phần tử vào đầu mảng đã cho."
+160,Array.map(),Bài tập,"Cho mảng số tự nhiên
+data
+. Chuyển tất cả các phần tử của mảng về giá trị tuyệt đối và in ra mảng mới
+Ví dụ
+:
+data = [2, -1, -8];
+In ra:
+[2, 1, 8]
+data = [2, -1, -8];
+In ra:
+[2, 1, 8]
+Đầu vào
+: data
+Đầu ra
+: Chuyển tất cả các phần tử của mảng về giá trị tuyệt đối và in ra mảng mới"
+161,Array.map(),Gợi ý,"Đọc phấn lý thuyết để biết về
+Array.map()"
+162,Array.map(),Lý thuyết,"Sinh viên hiểu về
+Array.map()
+và cách sử dụng nó trong thực tế.
+Phương thức
+map()
+tạo ra một mảng mới với kết quả gọi một hàm được cung cấp trên mọi phần tử trong mảng gọi.
+Cú pháp
+```js
+varnew_array=arr.map(functioncallback(currentValue[,index[,array]]){// Return element for new_array}[,thisArg])
+```
+currentValue
+: Giá trị của phần tử trong mảng đang được xử lý
+index
+(Tùy chọn): Index của phần tử trong mảng đang được xử lý
+array
+(Optional): Mảng đang được gọi với
+map
+thisArg
+(Tùy chọn): Giá trị gán cho từ khóa
+this
+bên trong
+callback
+.
+Ví dụ
+```js
+functiondouble_value(x){returnx*2;}vararray1=[1,4,9,16];// pass a function to mapconstmap1=array1.map(double_value);console.log(map1);// output: Array [2, 8, 18, 32]varnumbers=[1,2,3,4];varfilteredNumbers=numbers.map(function(num,index){if(index<3){returnnum;}});//index goes from 0,so the filterNumbers are 1,2,3 and undefined.// filteredNumbers is [1, 2, 3, undefined]// numbers is still [1, 2, 3, 4]
+```"
+163,"Array.shift(), Array.unshift(), Array.pop() and Array.push()",Gợi ý,"Đọc phần lý thuyết để hiểu về
+Array.shift()
+,
+Array.unshift()
+,
+Array.pop()
+and
+Array.push()"
+164,"Array.shift(), Array.unshift(), Array.pop() and Array.push()",Lý thuyết,"Sinh viên hiểu về
+Array.shift()
+,
+Array.unshift()
+,
+Array.pop()
+,
+Array.push()
+và cách sử dụng nó trong thực tế.
+Phương thức
+shift()
+xóa phần tử đầu liên của mạng và trả về phần tử bị xóa này. Phương thức này sẽ thay đổi độ dài của mang.
+Cú pháp
+```js
+arr.shift()
+```
+Example
+```js
+vararray1=[""A"",""B"",""C""];varfirstElement=array1.shift();console.log(array1);// output: Array [""B"", ""C""]console.log(firstElement);// output: A
+```
+Phương thức unshift() thêm một hoặc nhiều phần tử vào vị trí đầu mảng sau đó trả về chiều dài của mảng mới.
+Cú pháp
+```js
+arr.unshift(element1[,...[,elementN]])
+```
+Example
+```js
+vararray1=[1,2,3];console.log(array1.unshift(4,5));// expected output: 5console.log(array1);// expected output: Array [4, 5, 1, 2, 3]
+```
+Phường thức
+pop()
+xóa đi phần tử cuối cùng của mảng và trả về phần tử này. Phương thức này sẽ thay đổi chiều dài của mảng.
+Cú pháp
+```js
+arr.pop()
+```
+Ví dụ
+```js
+varplants=['broccoli','cauliflower','cabbage','kale','tomato'];console.log(plants.pop());// output: ""tomato""console.log(plants);// output: Array [""broccoli"", ""cauliflower"", ""cabbage"", ""kale""]plants.pop();console.log(plants);// output: Array [""broccoli"", ""cauliflower"", ""cabbage""]
+```
+Phương thức
+push()
+thêm 1 hay nhiều phần tử vào cuối mảng và trả về độ dài của mảng mới.
+Cú pháp
+```js
+arr.push(element1[,...[,elementN]])
+```
+Ví dụ
+```js
+varanimals=['pigs','goats','sheep'];console.log(animals.push('cows'));// output: 4console.log(animals);// output: Array [""pigs"", ""goats"", ""sheep"", ""cows""]animals.push('chickens');console.log(animals);// output: Array [""pigs"", ""goats"", ""sheep"", ""cows"", ""chickens""]
+```"
+165,Array.some(),Bài tập,"Cho 1 mảng các số tự nhiên
+data
+. In ra
+""Yes""
+Nếu 1 vài phần từ của mạng là số chẵn
+Nếu không, in ra
+""No""
+Ví dụ
+:
+data = [1, 2, 3, 4, 5];
+In ra:
+""Yes""
+data = [1, 1, 3, 1, 5];
+In ra:
+""No""
+Đầu vào
+: data
+Đầu ra
+:
+""Yes""
+hoạc
+""No""
+data = [1, 2, 3, 4, 5];
+In ra:
+""Yes""
+data = [1, 1, 3, 1, 5];
+In ra:
+""No"""
+166,Array.some(),Gợi ý,"Đọc phần lý thuyết sau để hiểu về
+Array.some()"
+167,Array.some(),Lý thuyết,"Sinh viên hiểu về
+Array.some()
+và cách sử dụng nó trong thực tế.
+Phương thức
+some()
+kiểm tra xem ít nhất một phần tử trong mảng có vượt qua kiểm tra được thực hiện bởi hàm được cung cấp hay không. Nó trả về giá trị Boolean.
+Ví dụ
+```js
+vararray1=[1,2,3,101,5];vararray2=[1,2,3,5];varisBig=function(element){// checks whether an element is evenreturnelement>=100;};console.log(array1.some(isBig));// output: trueconsole.log(array2.some(isBig));// output: false
+```
+```js
+arr.some(callback(element[,index[,array]])[,thisArg])
+```
+callback:
+Một hàm để kiểm tra cho từng phần tử, lấy ba đối số:
+element
+: Phần tử hiện tại đang được xử lý trong mảng.
+index
+(Optional): Chỉ mục của phần tử hiện tại đang được xử lý trong mảng.
+array
+(Optional): Các mảng được gọi theo.
+thisArg:
+Một giá trị để sử dụng như thế này khi thực hiện callback.
+Phương thức
+some()
+thực thi hàm callback một lần và lặp qua từng phần tử của mảng cho đến khi hàm callback trả về một giá trị truthy (tức là true khi được chuyển sang kiểu Boolean). Nếu như có một phần tử thoả mãn, some() sẽ lập tức trả về true. Ngược lại sẽ trả về false. callback được gọi chỉ khi các phần tử của mảng có giá trị.
+Ví dụ bên dưới đang kiểm tra xem có phần tử nào lớn hơn 10 hay không.
+```js
+functionisBiggerThan10(element,index,array){returnelement>10;}[2,5,8,1,4].some(isBiggerThan10);// false[12,5,8,1,4].some(isBiggerThan10);// true
+```"
+168,Object.assign(),Bài tập,"Cho 2 objects.
+Đầu vào
+: Không có
+Đầu ra
+:
+{ name: 'foo', d: 10, foo: 'bar', a: 5 }
+Sử dụng
+Object.assign()
+để giải quyết vấn đề.
+Đọc phần lý thuyết để hiểu về
+Object.assign()
+Sinh viên hiểu về
+Object.assign()
+và cách sử dụng chúng trong thực tế.
+Object.assign()
+được sử dụng để sao chép các giá trị của tất cả thuộc tính có thể liệt kê từ một hoặc nhiều đối tượng nguồn đến một đối tượng đích. Nó sẽ  trả về đối tượng đích đó.
+Cú pháp
+```js
+Object.assign(target,...sources)
+```
+Ví dụ
+```js
+consttarget={a:1,b:2};constsource={b:4,c:5};constreturnedTarget=Object.assign(target,source);console.log(target);// expected output: Object { a: 1, b: 4, c: 5 }console.log(returnedTarget);// expected output: Object { a: 1, b: 4, c: 5 }
+```
+Mô tả
+Các thuộc tính trong đối tượng đích sẽ bị ghi lại bởi các thuộc tính trong đối tượng nguồn nếu chúng có cùng key. Tương tự, các thuộc tính nguồn sau sẽ ghi đè lên những thuộc tính nguồn trước.
+Phương thức
+Object.assign()
+chỉ sao chép những giá trị
+liệt kê được
+và và các thuộc tính
+của bản thân
+nó đến đối tượng đích. Nó sử dụng
+[[Get]]
+trên nguồn và
+[[Set]]
+trên đích, vì vậy nó sẽ gọi các hàm getter và setter.  Vì lý do đó nó
+chỉ định
+Object.getOwnPropertyDescriptor()
+và
+Object.defineProperty()
+để thay thế.
+```js
+// Cloning an objectvarobj={a:1};varcopy=Object.assign({},obj);console.log(copy);// { a: 1 }// Merging objects with same propertiesvaro1={a:1,b:1,c:1};varo2={b:2,c:2};varo3={c:3};varobj=Object.assign({},o1,o2,o3);console.log(obj);// { a: 1, b: 2, c: 3 }
+```"
+169,Object.entries(),Bài tập,"Cho đoạn code mẫu. Dùng Object.entries để chuyển data thành mảng của mảng tên thuộc tính và giá trị và in nó ra
+Vi dụ
+Nếu data = { a: 'x', b: 'y'};  In ra: [ ['a', 'x'], ['b', 'y'] ]
+Đầu vào
+: data
+Đầu ra
+:   Dùng Object.entries để chuyển
+data
+thành mảng của mảng tên thuộc tính và giá trị và in nó ra
+Nếu data = { a: 'x', b: 'y'};  In ra: [ ['a', 'x'], ['b', 'y'] ]"
+170,Object.entries(),Gợi ý,"Đọc phần lý thuyết để biết về Object.entries
+Lý thuyết
+Sinh viên hiểu về phương thức Object.entries() và cách sử dụng nó để giải quyết vấn đề trong thực tế.
+Phương thức
+Object.entries ()
+trả về một mảng các cặp thuộc tính [key, value] chính một đối tượng cụ thể, theo cùng thứ tự như vòng lặp
+for ...in
+. Thứ tự của mảng được trả về bởi Object.entries () không phụ thuộc vào cách khai báo đối tượng. Nếu có nhu cầu nếu có nhu cầu sắp xệp lại mảng có thể sử dung Array.sort như Object.entries (obj) .sort ((a, b) => b [0] .localeCompare (a [0]));.
+Nhưng chúng ta sẽ thảo luận về Array.sort trong phần sau.
+Ví dụ:
+```js
+constobject1={a:'somestring',b:42};for(let[key,value]ofObject.entries(object1)){console.log(key+': '+value);}// expected output:// ""a: somestring""// ""b: 42""
+```
+Cu pháp
+```js
+Object.entries(obj)
+```
+obj:
+Đối tượng có các cặp thuộc tính [khóa, giá trị]
+Ví dụ
+```js
+constobj={foo:'bar',baz:1988};console.log(Object.entries(obj));// [ ['foo', 'bar'], ['baz', 1988] ]​
+```
+Description
+Object.entries()
+trả về một mảng có các phần tử là các mảng tương ứng với các cặp [key, value] thuộc tính chuỗi có thể đếm được được tìm thấy trực tiếp trên đối tượng. Thứ tự của các thuộc tính giống như thứ tự được đưa ra bằng cách lặp qua các giá trị thuộc tính của đối tượng theo cách thủ công.
+
+
+
+```js
+constobj={foo:'bar',baz:1988};console.log(Object.entries(obj));// [ ['foo', 'bar'], ['baz', 1988] ]​​
+```"
+171,Object.keys(),Bài tập,"Cho 1 object
+person  = {firstName:
+""Trung""
+, lastName:
+""Vuong""
+, age:
+50
+, eyeColor:
+""blue""
+};
+Lấy ra tất cả các tên thuộc tính của object và in chúng ra
+Đầu vào
+: Không có
+Đầu ra
+:
+```js
+firstName
+lastName
+age
+eyeColor
+```"
+172,Object.keys(),Gợi ý,"Đọc phần lý thuyết để hiểu về
+Object.keys()"
+173,Object.keys(),Lý thuyết,"Sinh viên hiểu về phương thức
+Object.keys()
+và cách sử dụng nó để giải quyết vấn đề trong thực tế.
+Phương thức
+Object.keys()
+trả về một mảng các tên thuộc tính có thể đếm được của một đối tượng cụ thể, theo thứ tự như chúng ta nhận được với một vòng lặp thông thường.
+Cú pháp
+```js
+Object.keys(obj);
+```
+Ví dụ
+:
+```js
+constobject1={a:1,b:2,c:3};console.log(Object.keys(object1));// output: Array [""a"", ""b"", ""c""]
+```
+Mô tả
+Object.keys()
+trả về một mảng có các phần tử là các chuỗi tương ứng với các thuộc tính tìm thấy trực tiếp trên đối tượng. Thứ tự của các thuộc tính giống như thứ tự được đưa ra bằng cách lặp qua các thuộc tính của đối tượng theo cách thủ công."
+174,Object and Methods of the Object,Bài tập,"Cho 1 tên (name) và 1 số là (year_of_birth) là năm sinh. Viết 1 chương trình khai báo 1 object với các thuộc tính sau
+name: name
+year_of_birth: year_of_birth
+address: ""Ha Noi""
+1. In object ra màn hình
+2. Tính toán tuổi (age) and và tin tuổi (age) ra màn hình với định rạng ""
+{name} is {age} years old
+""
+age = năm nay - year_of_birth
+Ví dụ
+: Cho
+name = ""Tom""
+,
+year_of_birth = 1988
+và nếu năm hiện tại là 2019, In ra tuổi sẽ là
+""Tom is 31 years old""
+Đầu vào
+: name, year_of_birth
+Đầu ra
+: In ra object và tin nhắn với định dạnh ""
+{name} is {age} years old"""
+175,Object and Methods of the Object,Gợi ý,"Sử dụng đoạn code sau để lấy năm hiện tại
+```js
+vard=newDate();varcurrent_year=d.getFullYear();
+```
+Đọc phần lý thuyết sau đển hiểu về object và các phương thức của object"
+176,Object and Methods of the Object,Lý thuyết,"Sinh viên hiểu về object và các phương thức của object và cách sử dụng chúng trong thực tế
+A. Object
+1 object (đối tượng) là 1 thực thể có trạng thái và hành vi  (properties and method). Vi dụ: car, pen, bike, chair, glass, keyboard, monitor etc.
+JavaScript là một ngôn ngữ dựa trên đối tượng. Mọi thứ đều là một đối tượng trong JavaScript..
+JavaScript là dựa trên mẫu không dựa trên lớp. Ở đây, chúng ta không tạo lớp để lấy đối tượng. Nhưng, chúng tôi trực tiếp tạo đối tượng.
+Có 3 cách để khái báo đối tượng.
+1. By object literal (Theo nghĩa đen)
+Cú pháp tạo đối tượng sử dụng đối tượng bằng chữ được đưa ra dưới đây:
+```js
+vardatas={property1:value1,property2:value2.....propertyN:valueN};// Example:vardatas={name:""Trung"",age:""31"",adress:""Ha Noi""};
+```
+2. Bằng cách tạo trực tiếp đối tượng (sử dụng từ khóa new)
+Cú pháp tạo đối tượng trực tiếp được đưa ra dưới đây:
+```js
+varobjectname=newObject();objectname.property1=value1;objectname.property2=value2;objectname.property3=value3;//Example:vardatas=newObject();datas.name=""Trung"";datas.age=31;datas.address=""Ha Noi"";
+```
+3. Sử dụng object constructor (using new keyword)
+Ở đây, bạn cần tạo hàm với các đối số. Mỗi giá trị đối số có thể được chỉ định trong đối tượng hiện tại bằng cách sử dụng từ khóa này.
+Từ khóa
+this
+đề cập đến đối tượng hiện tại.
+Ví dụ về việc tạo đối tượng bởi hàm tạo đối tượng được đưa ra dưới đây:
+```js
+functionemp(id,name,salary){this.id=id;this.name=name;this.salary=salary;}vare=newemp(103,""Vimal
+```
+Truy cập thuộc tính của object
+Bạn có thể truy cập vào thuộc tính của object bằng 2 cách:
+```js
+objectName[""propertyName""];
+```
+Hay
+```js
+objectName.propertyName
+```
+Ví dụ:
+```js
+varperson={firstName:""John"",lastName:""Doe"",age:50,eyeColor:""blue""};console.log(person[""firstName""]);// Output: John// orconsole.log(person.firstName);// Output: John
+```
+B. Methods of Object
+Object cũng có cách phương thức.
+Phương thức là hành động có thể được thực hiện trên các object.
+Các phương thức được lưu trữ trong các thuộc tính như việc định nghĩa hàm.
+Các phương thức khác nhau của Object như sau: Chúng ta sẽ đi vào chi tiết 1 số các phương thức chính của object trong các phần sau.
+Phương thức
+Mô tả
+Object.assign()
+Phương thức này được sử dụng để sao chép các thuộc tính có thể đếm được và sở hữu từ một đối tượng nguồn sang một đối tượng đích
+Object.create()
+Phương pháp này được sử dụng để tạo một đối tượng mới với các thuộc tính và đối tượng nguyên mẫu được chỉ định.
+Object.defineProperty()
+Phương pháp này được sử dụng để khai báo hay xác định thuộc tính của object
+Object.defineProperties()
+Phương pháp này được sử dụng để tạo mới hay khai báo nhiều thuộc tính của object
+Object.entries()
+Phương thức này trả về một mảng với các mảng của các tên thuộc tính, giá trị.
+Object.freeze()
+Phương pháp này ngăn chặn các thuộc tính hiện có bị loại bỏ.
+Object.getOwnPropertyDescriptor()
+Phương thức này trả về một mô tả thuộc tính cho thuộc tính được chỉ định của đối tượng được chỉ định.
+Object.getOwnPropertyDescriptors()
+Phương thức này trả về tất cả các mô tả thuộc tính riêng của một đối tượng nhất định.
+Object.getOwnPropertyNames()
+Phương thức này trả về một mảng của tất cả các thuộc tính (liệt kê hoặc không) được tìm thấy.
+Object.getOwnPropertySymbols()
+Phương thức này trả về một mảng của tất cả các thuộc tính khóa ký hiệu riêng.
+Object.getPrototypeOf()
+Phương thức này trả về nguyên mẫu của đối tượng đã chỉ định.
+Object.is()
+Phương pháp này xác định xem hai giá trị có cùng giá trị hay không
+Object.isExtensible()
+Phương pháp này xác định nếu một đối tượng có thể mở rộng
+Object.isFrozen()
+Phương pháp này xác định nếu một đối tượng đã bị đóng băng.
+Object.isSealed()
+Phương pháp này xác định nếu một đối tượng được niêm phong.
+Object.keys()
+Phương thức này trả về một mảng các tên thuộc tính riêng của đối tượng đã cho.
+Object.preventExtensions()
+Phương pháp này được sử dụng để ngăn chặn mọi phần mở rộng của một đối tượng.
+Object.seal()
+Phương pháp này ngăn các thuộc tính mới được thêm vào và đánh dấu tất cả các thuộc tính hiện có là không thể cấu hình.
+Object.setPrototypeOf()
+Phương thức này đặt nguyên mẫu của một đối tượng được chỉ định cho một đối tượng khác.
+Object.values()
+Phương thức này trả về một mảng các giá trị."
+177,Object.create(),Bài tập,"Cho chương trình mẫu. Tạo 1 object
+me
+từ
+person
+, gán
+name
+và
+job
+của object
+me
+từ dữ liệu được truyền vào và chạy
+printIntroduction
+của object
+me
+Ví dụ: cho
+name = ""Trung""; job = ""developer"";
+In ra:
+""My name is Trung. My job is developer""
+Đầu vào
+: name, job
+Đầu ra
+:
+""My name is {name}. My job is {job}"""
+178,Object.create(),Gợi ý,"Đọc phần lý thuyết để hiểu về
+Object.create()"
+179,Object.create(),Lý thuyết,"Phương thức
+Object.create ()
+tạo một đối tượng mới, sử dụng một đối tượng hiện có làm nguyên mẫu của đối tượng mới được tạo.
+Cú pháp
+```js
+Object.create(proto,[propertiesObject])
+```
+proto
+Đối tượng nên là nguyên mẫu của đối tượng mới được tạo.
+propertiesObject
+Không bắt buộc. Nếu được chỉ định và khác không được xác định, một đối tượng có các thuộc tính riêng có thể đếm được (nghĩa là các thuộc tính đó được xác định theo chính nó và không thể đếm được các thuộc tính dọc theo chuỗi nguyên mẫu của nó) chỉ định các mô tả thuộc tính được thêm vào đối tượng mới được tạo, với các tên thuộc tính tương ứng. Các thuộc tính này tương ứng với đối số thứ hai của
+Object.defineProperties()
+.
+Vi dụ
+```js
+consta={x:1,add_numbers:function(){varadded_number=this.x+this.y;console.log(added_number);}};constb=Object.create(a);b.y=2;b.add_numbers();// output: 3
+```"
+180,Object.values(),Bài tập,"Cho 1
+object person  = {firstName:
+""Trung""
+, lastName:
+""Vuong""
+, age:
+50
+, eyeColor:
+""blue""
+};
+Lấy ra tất cả các giá trị của các thuộc tính trong object và in chúng ra
+Đầu vào
+: Không có
+Đầu ra
+:
+```js
+Trung
+Vuong50blue
+```"
+181,Object.values(),Gợi ý,"Đọc phần lý thuyết để hiểu về
+Object.values()"
+182,Object.values(),Lý thuyết,"Sinh viên hiểu về phương thức
+Object.values()
+và cách sử dụng nó để giải quyết vấn đề trong thực tế.
+Phương thức
+Object.values()
+trả về một mảng các giá trị thuộc tính có thể đếm được của chính một đối tượng nhất định, theo cùng thứ tự được cung cấp bởi một vòng lặp
+for ... in
+Cú pháp
+```js
+Object.values(obj);
+```
+Ví dụ
+:
+```js
+constobject1={a:1,b:2,c:3};console.log(Object.values(object1));// output: Array [1, 2, 3]
+```
+Object.values()
+trả về một mảng có các phần tử là các giá trị thuộc tính có thể đếm được tìm thấy trên đối tượng. Thứ tự của các thuộc tính giống như thứ tự được đưa ra bằng cách lặp qua các giá trị thuộc tính của đối tượng theo cách thủ công."
