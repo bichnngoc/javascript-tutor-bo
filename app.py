@@ -1,4 +1,6 @@
+import datetime
 from flask import Flask, render_template, request, jsonify
+import pandas as pd
 from models.chunker import JSSplitter
 from models.retriever import FAISSRetriever
 from models.generator import GPTGenerator
@@ -7,6 +9,8 @@ import os
 import logging
 from flask import Flask, render_template, request, jsonify  # Thêm jsonify
 from g4f.client import Client
+# Đường dẫn file CSV
+CHAT_HISTORY_CSV = "chat_history.csv"
 
 app = Flask(__name__)
 client = Client()
@@ -54,6 +58,32 @@ if retriever is None:
     logging.warning("Không thể khởi tạo retriever, hệ thống sẽ hoạt động ở chế độ hạn chế")
 
 generator = GPTGenerator()
+def save_chat_history(question: str, answer: str):
+    """
+    Lưu lịch sử chat vào file CSV đơn giản
+    Chỉ bao gồm: timestamp, question, answer
+    """
+    try:
+        # Tạo dictionary với 3 trường cơ bản
+        chat_record = {
+            "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "question": question,
+            "answer": answer
+        }
+        
+        # Tạo DataFrame từ record
+        df = pd.DataFrame([chat_record])
+        
+        # Ghi vào file CSV (append nếu file đã tồn tại)
+        df.to_csv(
+            CHAT_HISTORY_CSV,
+            mode='a',
+            header=not os.path.exists(CHAT_HISTORY_CSV),
+            index=False
+        )
+        
+    except Exception as e:
+        print(f"Lỗi khi lưu chat history: {str(e)}")
 
 @app.route("/", methods=["GET"])
 def index():
@@ -80,7 +110,11 @@ def chat():
                 messages=[{"role": "user", "content": question}],
             ).choices[0].message.content
             
+        save_chat_history(question, answer)
+
         return jsonify({"response": answer})
+    
+    
     
     except Exception as e:
         return jsonify({"error": str(e)}), 500
