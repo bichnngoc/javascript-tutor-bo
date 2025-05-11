@@ -89,3 +89,20 @@
 2025-05-04 13:33:56,962 - INFO - 127.0.0.1 - - [04/May/2025 13:33:56] "POST /chat HTTP/1.1" 200 -
 2025-05-04 13:34:28,511 - INFO - 127.0.0.1 - - [04/May/2025 13:34:28] "POST /chat HTTP/1.1" 200 -
 2025-05-04 13:39:06,730 - INFO - 127.0.0.1 - - [04/May/2025 13:39:06] "POST /chat HTTP/1.1" 200 -
+2025-05-11 16:09:34,077 - INFO - Use pytorch device_name: cpu
+2025-05-11 16:09:34,078 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-11 16:09:38,156 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-11 16:09:38,156 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-11 16:09:38,158 - INFO -  * Restarting with stat
+2025-05-11 16:09:43,653 - INFO - Use pytorch device_name: cpu
+2025-05-11 16:09:43,653 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-11 16:09:47,807 - WARNING -  * Debugger is active!
+2025-05-11 16:09:47,810 - INFO -  * Debugger PIN: 209-657-565
+2025-05-11 16:10:19,593 - INFO - 127.0.0.1 - - [11/May/2025 16:10:19] "GET / HTTP/1.1" 200 -
+2025-05-11 16:10:19,691 - INFO - 127.0.0.1 - - [11/May/2025 16:10:19] "GET /static/styles.css HTTP/1.1" 200 -
+2025-05-11 16:10:20,102 - INFO - 127.0.0.1 - - [11/May/2025 16:10:20] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-11 16:12:50,480 - INFO - 127.0.0.1 - - [11/May/2025 16:12:50] "POST /chat HTTP/1.1" 200 -
+2025-05-11 16:12:53,122 - INFO - 127.0.0.1 - - [11/May/2025 16:12:53] "GET / HTTP/1.1" 200 -
+2025-05-11 16:12:53,182 - INFO - 127.0.0.1 - - [11/May/2025 16:12:53] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-05-11 16:14:37,795 - INFO - 127.0.0.1 - - [11/May/2025 16:14:37] "POST /chat HTTP/1.1" 200 -

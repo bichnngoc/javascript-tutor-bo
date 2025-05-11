@@ -1,0 +1,102 @@
+timestamp,question,answer
+2025-05-11 16:12:50,Khi nào nên dùng Array.some() thay vì Array.every()?,"Bạn nên dùng Array.some() khi bạn muốn kiểm tra xem có ít nhất MỘT phần tử trong mảng thỏa mãn điều kiện nào đó.  
+Ngược lại, dùng Array.every() khi bạn muốn kiểm tra TẤT CẢ các phần tử trong mảng đều thỏa mãn điều kiện.
+
+## Giải thích đơn giản
+
+- **Array.some():** Trả về true nếu ÍT NHẤT MỘT phần tử trong mảng thỏa mãn điều kiện. Nếu không có phần tử nào thỏa mãn thì trả về false.
+- **Array.every():** Trả về true nếu TẤT CẢ các phần tử trong mảng đều thỏa mãn điều kiện. Nếu chỉ cần MỘT phần tử không thỏa mãn thì trả về false.
+
+## Khi nào dùng cái nào?
+
+- **Dùng Array.some():** Khi bạn chỉ cần kiểm tra ""Có tồn tại phần tử nào...?""
+- **Dùng Array.every():** Khi bạn cần kiểm tra ""Tất cả phần tử đều...?""
+
+## Ví dụ minh họa
+
+Giả sử bạn có một mảng số tự nhiên:
+
+```js
+const data = [1, 2, 3, 4, 5];
+```
+
+### 1. Kiểm tra có số chẵn nào không? (dùng some)
+
+```js
+const hasEven = data.some(num => num % 2 === 0);
+
+if (hasEven) {
+  console.log(""Yes"");
+} else {
+  console.log(""No"");
+}
+// Kết quả: ""Yes"" (vì có số 2 là chẵn)
+```
+
+### 2. Kiểm tra tất cả đều là số chẵn? (dùng every)
+
+```js
+const allEven = data.every(num => num % 2 === 0);
+
+if (allEven) {
+  console.log(""Yes"");
+} else {
+  console.log(""No"");
+}
+// Kết quả: ""No"" (vì có số lẻ)
+```
+
+## Tóm lại
+
+- **some()**: Khi chỉ cần một phần tử nào đó đúng điều kiện.  
+- **every()**: Khi tất cả phần tử phải đúng điều kiện.
+
+Nếu bạn chỉ cần kiểm tra ""có tồn tại"", hãy dùng some(). Nếu kiểm tra ""tất cả"", hãy dùng every()."
+2025-05-11 16:14:37,DOM là gì trong JavaScript? DOM khác gì so với HTML tĩnh?,"### DOM là gì trong JavaScript?
+
+**DOM** là viết tắt của **Document Object Model** (Mô hình Đối tượng Tài liệu). Đây là một cách trình duyệt mô tả cấu trúc của trang web (HTML hay XML) dưới dạng một cây đối tượng (object tree). Nhờ DOM, JavaScript có thể truy cập, thay đổi nội dung, cấu trúc hoặc kiểu dáng của trang web khi trang đang chạy.
+
+#### Đơn giản hơn:
+- HTML tĩnh: Nội dung bạn viết trong file `.html`, ví dụ như `<h1>Hello</h1>`.
+- DOM: Là phiên bản ""sống"" của HTML khi trang web đã được tải lên trình duyệt. JavaScript có thể thay đổi DOM này, làm nội dung trang thay đổi ngay lập tức mà không cần tải lại.
+
+---
+
+### Sự khác nhau giữa DOM và HTML tĩnh
+
+| HTML tĩnh                      | DOM (Khi chạy JavaScript)       |
+|-------------------------------|----------------------------------|
+| Là mã bạn viết trong file      | Là cây đối tượng do trình duyệt tạo ra từ HTML |
+| Không thay đổi khi chạy       | Có thể thay đổi nội dung, cấu trúc động bằng JavaScript |
+| Chỉ là văn bản                 | Là các đối tượng, thuộc tính, phương thức có thể thao tác |
+
+---
+
+### Ví dụ minh họa
+
+**HTML tĩnh:**  
+```html
+<p id=""demo"">Xin chào!</p>
+<button onclick=""changeText()"">Đổi chữ</button>
+```
+
+**JavaScript thao tác với DOM:**  
+```javascript
+function changeText() {
+  document.getElementById(""demo"").innerHTML = ""Chào bạn, tôi vừa thay đổi qua DOM!"";
+}
+```
+
+**Giải thích:**  
+- Ban đầu, `<p>` hiển thị ""Xin chào!"".
+- Khi nhấn nút, hàm `changeText()` được gọi.
+- JavaScript dùng DOM để tìm phần tử có id là ""demo"" và đổi nội dung bằng thuộc tính `innerHTML`.
+- Kết quả: Dòng chữ trên trang web thay đổi ngay lập tức mà không cần tải lại trang.
+
+---
+
+### Tóm lại
+- **HTML tĩnh** chỉ là mã nguồn ban đầu.
+- **DOM** là cây đối tượng trình duyệt tạo ra từ HTML, cho phép JavaScript thao tác, thay đổi trang web khi đang chạy.
+
+Nếu bạn có thêm câu hỏi, mình luôn sẵn sàng giải thích chi tiết hơn nhé!"
